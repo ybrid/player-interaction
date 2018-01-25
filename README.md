@@ -6,9 +6,9 @@ Specification of player interaction with **Hybrid Dynamic Live Audio Platform**
 
 [**Methods**](#methods)
 
-[**Credentials**](#credentials)
-
 [**Example Scenario**](#example-scenario)
+
+[**Credentials**](#credentials)
 
 ## Introduction
 
@@ -72,9 +72,9 @@ Status 200 OK
 2. Retrieve Meta Data
 3. Skip Content
 
-# Credentials
-## Authors
+## Credentials
+### Authors
 @sebastian-weiss
 
-## Copyright
+### Copyright
 AddRadio - a division of nacamar GmbH 2017-2018
