@@ -48,16 +48,16 @@ Status 200 OK
     "currentItem": {
         "artist": "TEST ARTIST",
         "description": "TEST DESCRIPTION",
-        "title": "TEST TITLE 5"
+        "title": "TEST TITLE 5",
         "type": "unrecognized",
-        "durationMillis": 212736,
+        "durationMillis": 21273,
     },
     "nextItem": {
         "artist": "TEST ARTIST",
         "description": "TEST DESCRIPTION",
         "title": "TEST TITLE 5",
-        "classifiedType": "unrecognized",
-        "durationMillis": 212736,
+        "type": "unrecognized",
+        "durationMillis": 212736
     },
     "station": {
         "genre": "unrecognized",
