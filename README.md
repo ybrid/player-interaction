@@ -24,13 +24,24 @@ Method  | Short Description
 http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/create-session
 ```
 
-#### Response
+#### Response **(application/json)**
 ```http
 Status 200 OK
 ```
+
+**Scheme**
 ```json
 {
-    "session-id":"b28ac752-7881-4aa1-8cc6-c7e0f794a7f7",
+    "session-id":<session-uuid>
+}
+```
+```ini
+session-uuid           = *TEXT
+```
+**Example**
+```json
+{
+    "session-id":"b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
 }
 ```
 ### show-meta
@@ -39,7 +50,7 @@ Status 200 OK
 http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/show-meta
 ```
 
-#### Response
+#### Response **(application/json)**
 ```http
 Status 200 OK
 ```
