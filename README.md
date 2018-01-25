@@ -45,28 +45,28 @@ Status 200 OK
 ```
 ```json
 {
-    currentItem: {
+    "currentItem": {
         "artist": "TEST ARTIST",
         "description": "TEST DESCRIPTION",
         "title": "TEST TITLE 5"
         "type": "unrecognized",
         "durationMillis": 212736,
     },
-    nextItem: {
+    "nextItem": {
         "artist": "TEST ARTIST",
         "description": "TEST DESCRIPTION",
         "title": "TEST TITLE 5",
         "classifiedType": "unrecognized",
         "durationMillis": 212736,
     },
-    station: {
+    "station": {
         "genre": "unrecognized",
         "name": "TEST STATION"
     },
-    timeToNextItemMillis: 180432
+    "timeToNextItemMillis": 180432
 }
 ```
-## Example Szenario
+## Example Scenario
 
 1. Create a Session
 2. Retrieve Meta Data
