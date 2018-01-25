@@ -28,8 +28,6 @@ http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/create-session
 ```http
 Status 200 OK
 ```
-
-**Scheme**
 ```json
 {
     "session-id" : <session-uuid>
@@ -38,7 +36,8 @@ Status 200 OK
 ```ini
 session-uuid = *TEXT
 ```
-**Example**
+
+##### Example
 ```json
 {
     "session-id" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
