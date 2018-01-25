@@ -32,16 +32,16 @@ Status 200 OK
 **Scheme**
 ```json
 {
-    "session-id":<session-uuid>
+    "session-id" : <session-uuid>
 }
 ```
 ```ini
-session-uuid           = *TEXT
+session-uuid = *TEXT
 ```
 **Example**
 ```json
 {
-    "session-id":"b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
+    "session-id" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
 }
 ```
 ### show-meta
