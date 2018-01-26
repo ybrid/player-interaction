@@ -43,6 +43,7 @@ session-uuid = *TEXT
     "session-id" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
 }
 ```
+
 ### show-meta
 #### Request
 ```http
@@ -56,22 +57,57 @@ Status 200 OK
 ```json
 {
     "currentItem": {
-        "artist": "TEST ARTIST",
-        "description": "TEST DESCRIPTION",
-        "title": "TEST TITLE 5",
-        "type": "unrecognized",
-        "durationMillis": 21273,
+        "artist": <artist>,
+        "description": <description>,
+        "title": <title>,
+        "type": <type>,
+        "durationMillis": <duration-milliseconds>,
     },
     "nextItem": {
-        "artist": "TEST ARTIST",
-        "description": "TEST DESCRIPTION",
-        "title": "TEST TITLE 5",
+        "artist": <artist>,
+        "description": <description>,
+        "title": <title>,
+        "type": <type>,
+        "durationMillis": <duration-milliseconds>
+    },
+    "station": {
+        "genre": <station-genre>,
+        "name": <station-name>
+    },
+    "timeToNextItemMillis": <time-to-next-item-milliseconds>
+}
+```
+```ini
+artist = *TEXT, can be empty.
+description = *TEXT, can be empty.
+title = *TEXT, can be empty.
+type = *TEXT, can be empty. If set to "unrecognized", type of item could not be detected.
+duration-milliseconds = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
+station-genre = *TEXT, can be empty.
+station-name = *TEXT, can be empty.
+time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
+```
+
+##### Example
+```json
+{
+    "currentItem": {
+        "artist": "Madonna",
+        "description": "",
+        "title": "Like a prayer",
+        "type": "unrecognized",
+        "durationMillis": 252573,
+    },
+    "nextItem": {
+        "artist": "Michael Jackson",
+        "description": "",
+        "title": "Bad",
         "type": "unrecognized",
         "durationMillis": 212736
     },
     "station": {
-        "genre": "unrecognized",
-        "name": "TEST STATION"
+        "genre": "Pop",
+        "name": "100,5 My Famous Station"
     },
     "timeToNextItemMillis": 180432
 }
