@@ -17,6 +17,7 @@ Method  | Short Description
 ------------- | -------------
 [**create-session**](#create-session)  | Creating a session
 [**show-meta**](#show-meta)  | Requesting current meta data of session
+[**skip**](#show-meta)  | Skipping to alternative content if possible.
 
 ### create-session
 #### Request
@@ -30,7 +31,7 @@ Status 200 OK
 ```
 ```json
 {
-    "session-id" : <session-uuid>
+    "sessionId" : <session-uuid>
 }
 ```
 ```ini
@@ -40,14 +41,17 @@ session-uuid = *TEXT
 ##### Example
 ```json
 {
-    "session-id" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
+    "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
 }
 ```
 
 ### show-meta
 #### Request
 ```http
-http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/show-meta
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/show-meta?sessionId=<session-uuid>
+```
+```ini
+session-uuid = *TEXT, session id retrieved during create-session.
 ```
 
 #### Response **(application/json)**
@@ -112,6 +116,33 @@ time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can 
     "timeToNextItemMillis": 180432
 }
 ```
+
+### skip
+#### Request
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/skip?sessionId=<session-uuid>
+```
+```ini
+session-uuid = *TEXT, session id retrieved during create-session.
+```
+
+#### Response **(application/json)**
+```http
+Status 200 OK
+```
+```json
+{
+}
+```
+```ini
+```
+
+##### Example
+```json
+{
+}
+```
+
 ## Example Scenario
 
 1. Create a Session
