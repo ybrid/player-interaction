@@ -65,9 +65,15 @@ Status 200 OK
 ```
 ```json
 {
+    "offset" : <measured-offset-millis>
 }
 ```
 ```ini
+measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. 
+                         This number will always be > 0 due to player'S buffering 
+                         behaviour.
+                         Value can be used e.g. for displaying a spinning wheel 
+                         during skipping.
 ```
 
 ##### Example
