@@ -81,6 +81,7 @@ measured-offset-millis = 1*DIGI, milliseconds offset between server and playout.
 ##### Example
 ```json
 {
+    "offset" : 3879
 }
 ```
 
@@ -157,6 +158,10 @@ time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can 
 ```
 
 ### skip
+Skipping current music item by replacing the rest of item's duration by an alternative item.
+The number of possible skips is limited to the available alternative contents per
+each item. Each skip iterates through the list of contents. Thereby, the last skip always returns to the original/main item.
+ 
 #### Request
 ```http
 http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/skip?sessionId=<session-uuid>
@@ -171,9 +176,15 @@ Status 200 OK
 ```
 ```json
 {
+    "skipsLeft" = <number-of-skips-left>
 }
 ```
 ```ini
+number-of-skips-left = 1*DIGIT, number of possible skips left after last operation.
+                       Number refers to possible skips for an individual music item.
+                       The last skip always returns to the original item.
+                       Value can be used e.g. to disable the skip button if no more 
+                       skip is left.
 ```
 
 ##### Example
