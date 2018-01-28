@@ -160,7 +160,8 @@ time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can 
 ### skip
 Skipping current music item by replacing the rest of item's duration by an alternative item.
 The number of possible skips is limited to the available alternative contents per
-each item. Each skip iterates through the list of contents. Thereby, the last skip always returns to the original/main item.
+each item. Each skip iterates through the list of contents. Thereby, the **last possible skip** 
+per item always returns to the original/main item.
  
 #### Request
 ```http
@@ -176,7 +177,7 @@ Status 200 OK
 ```
 ```json
 {
-    "skipsLeft" = <number-of-skips-left>
+    "skipsLeft": <number-of-skips-left>
 }
 ```
 ```ini
@@ -190,6 +191,7 @@ number-of-skips-left = 1*DIGIT, number of possible skips left after last operati
 ##### Example
 ```json
 {
+    "skipsLeft": 2
 }
 ```
 
