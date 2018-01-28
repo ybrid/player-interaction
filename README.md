@@ -1,5 +1,7 @@
 # player-interaction
-Specification of player interaction with **Hybrid Dynamic Live Audio Platform**
+Specification of player interaction with **Hybrid Dynamic Live Audio Platform**.
+
+A demo player for HTML5/JavaScrpt is available under **src/demo/html5**.
 
 ## Content
 [**Introduction**](#introduction)
