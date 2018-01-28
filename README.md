@@ -16,10 +16,16 @@ Specification of player interaction with **Hybrid Dynamic Live Audio Platform**
 Method  | Short Description
 ------------- | -------------
 [**create-session**](#create-session)  | Creating a session
+[**sync**](#sync)  | Syncing playout with server
 [**show-meta**](#show-meta)  | Requesting current meta data of session
 [**skip**](#show-meta)  | Skipping to alternative content if possible.
 
 ### create-session
+
+> In future releases clients have to authentcate with a **token**. This allows to exchange even secret data, like ad insertion points or others.
+> Therefore, a token based on a secret has to be created by the client each time it want's to create a new session. That means, a serverside 
+> generated uuid will become unnecessary.
+
 #### Request
 ```http
 http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/create-session
@@ -42,6 +48,31 @@ session-uuid = *TEXT
 ```json
 {
     "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
+}
+```
+### sync
+#### Request
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/sync?sessionId=<session-uuid>
+```
+```ini
+session-uuid = *TEXT, session id retrieved during create-session.
+```
+
+#### Response **(application/json)**
+```http
+Status 200 OK
+```
+```json
+{
+}
+```
+```ini
+```
+
+##### Example
+```json
+{
 }
 ```
 
