@@ -105,7 +105,7 @@ Status 200 OK
         "description": <description>,
         "title": <title>,
         "type": <type>,
-        "durationMillis": <duration-milliseconds>,
+        "durationMillis": <duration-milliseconds>
     },
     "nextItem": {
         "artist": <artist>,
