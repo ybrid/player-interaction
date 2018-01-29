@@ -140,7 +140,7 @@ time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can 
         "description": "",
         "title": "Like a prayer",
         "type": "unrecognized",
-        "durationMillis": 252573,
+        "durationMillis": 252573
     },
     "nextItem": {
         "artist": "Michael Jackson",
