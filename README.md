@@ -21,6 +21,7 @@ Method  | Short Description
 [**sync**](#sync)  | Syncing playout with server.
 [**show-meta**](#show-meta)  | Requesting current meta data of session.
 [**skip**](#skip)  | Skipping to alternative content if possible.
+[**skip-info**](#skip-info)  | Returns information about current skipping state.
 
 ### create-session
 
@@ -201,6 +202,37 @@ number-of-skips-left = 1*DIGIT, number of possible skips left after last operati
 ```json
 {
     "skipsLeft": 2
+}
+```
+
+### skip-info
+Similar to **skip** but only returns information on the current skipping state. The call does not influence the stream.
+ 
+#### Request
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/skip-info?sessionId=<session-uuid>
+```
+```ini
+session-uuid  = *TEXT, session id retrieved during create-session.
+```
+
+#### Response **(application/json)**
+```http
+Status 200 OK
+```
+```json
+{
+    "skipsLeft": <number-of-skips-left>
+}
+```
+```ini
+number-of-skips-left = See definition under skip.
+```
+
+##### Example
+```json
+{
+    "skipsLeft": -1
 }
 ```
 
