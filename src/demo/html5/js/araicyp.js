@@ -18,9 +18,7 @@ function createSession(host, path, callback) {
     xmlhttp.onreadystatechange = function() {
         if ((this.readyState == 4) && (this.status == 200)) {
             var response = JSON.parse(this.responseText);
-            if (response.status == 0) {
-                callback(response.sessionId);
-            }
+            callback(response.sessionId);
         }
     };
     xmlhttp.open("GET", url, true);
@@ -39,6 +37,12 @@ function skip(hostVal, pathVal, sessionIdVal) {
     var xmlhttp = new XMLHttpRequest();
     var url = "http://" + hostVal + "/" + pathVal + "/ctrl/skip?sessionId="
             + sessionIdVal;
+    xmlhttp.onreadystatechange = function() {
+        if ((this.readyState == 4) && (this.status == 200)) {
+            var response = JSON.parse(this.responseText);
+            console.info("number of skips left: " + response.skipsLeft);
+        }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
