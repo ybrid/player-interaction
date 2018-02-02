@@ -165,10 +165,18 @@ per item always returns to the original/main item.
  
 #### Request
 ```http
-http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/skip?sessionId=<session-uuid>
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/skip?sessionId=<session-uuid>&mode=<skipping-mode>
 ```
 ```ini
-session-uuid = *TEXT, session id retrieved during create-session.
+Parameter mode is not mandatory.
+
+session-uuid  = *TEXT, session id retrieved during create-session.
+skipping-mode = (end2end|fade2end), determines which kind of timing synchronisation should be used 
+                for current skip.
+                end2end (default): Beginning of alternative content will be skipped to fit to the left
+                                   main items duration.
+                fade2end:          Alternative content starts from the beginning and will become faded out at 
+                                   the end.
 ```
 
 #### Response **(application/json)**
