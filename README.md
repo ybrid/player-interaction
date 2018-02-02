@@ -186,16 +186,18 @@ Status 200 OK
 ```
 ```json
 {
-    "skipsLeft": <number-of-skips-left>
+    "skipsLeft": <number-of-skips-left>,
+    "nextSkipReturnsToMain": <next-skip-returns-to-main>
 }
 ```
 ```ini
-number-of-skips-left = 1*DIGIT, number of possible skips left after last operation.
-                       Number refers to possible skips for an individual music item.
-                       The last skip always returns to the original item.
-                       Value can be used e.g. to disable the skip button if no more 
-                       skip is left.
-                       In case of value -1 the number of skips left is unknown or unlimited.
+number-of-skips-left =      1*DIGIT, number of possible skips left after last operation.
+                            Number refers to possible skips for an individual music item.
+                            The last skip always returns to the original item.
+                            Value can be used e.g. to disable the skip button if no more 
+                            skip is left.
+                            In case of value -1 the number of skips left is unknown or unlimited.
+next-skip-returns-to-main = bool, value is true if next skip returns to main content.
 ```
 
 ##### Example
@@ -222,11 +224,13 @@ Status 200 OK
 ```
 ```json
 {
-    "skipsLeft": <number-of-skips-left>
+    "skipsLeft": <number-of-skips-left>,
+    "nextSkipReturnsToMain": <next-skip-returns-to-main>
 }
 ```
 ```ini
-number-of-skips-left = See definition under skip.
+number-of-skips-left      = See definition in skip section.
+next-skip-returns-to-main = See definition in skip section.
 ```
 
 ##### Example
