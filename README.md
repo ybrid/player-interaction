@@ -181,12 +181,12 @@ Status 200 OK
 }
 ```
 ```ini
-number-of-skips-left = 1*DIGIT, number of possible skips left after last operation.
+**number-of-skips-left** = **1*DIGIT**, number of possible skips left after last operation.
                        Number refers to possible skips for an individual music item.
                        The last skip always returns to the original item.
                        Value can be used e.g. to disable the skip button if no more 
                        skip is left.
-                       In case of value -1 the number of skips left is unknown or unlimited.
+                       In case of value **-1** the number of skips left is unknown or unlimited.
 ```
 
 ##### Example
