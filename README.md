@@ -17,10 +17,10 @@ A demo player for HTML5/JavaScrpt is available under **src/demo/html5**.
 ## Methods
 Method  | Short Description
 ------------- | -------------
-[**create-session**](#create-session)  | Creating a session
-[**sync**](#sync)  | Syncing playout with server
-[**show-meta**](#show-meta)  | Requesting current meta data of session
-[**skip**](#show-meta)  | Skipping to alternative content if possible.
+[**create-session**](#create-session)  | Creating a session.
+[**sync**](#sync)  | Syncing playout with server.
+[**show-meta**](#show-meta)  | Requesting current meta data of session.
+[**skip**](#skip)  | Skipping to alternative content if possible.
 
 ### create-session
 
