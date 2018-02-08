@@ -187,7 +187,7 @@ Status 200 OK
 ```json
 {
     "skipsLeft": <number-of-skips-left>,
-    "skipWasSuccessFull": <skip-was-successfull-flag>
+    "skipWasSuccessFull": <skip-was-successfull-flag>,
     "nextSkipReturnsToMain": <next-skip-returns-to-main>
 }
 ```
@@ -205,8 +205,8 @@ next-skip-returns-to-main = bool, value is true if next skip returns to main con
 ##### Example
 ```json
 {
-    "skipsLeft": 2
-    "skipWasSuccessFull": true
+    "skipsLeft": 2,
+    "skipWasSuccessFull": true,
     "nextSkipReturnsToMain": false
 }
 ```
