@@ -25,9 +25,10 @@ Method  | Short Description
 
 ### create-session
 
-> In future releases clients have to authentcate with a **token**. This allows to exchange even secret data, like ad insertion points or others.
-> Therefore, a token based on a secret has to be created by the client each time it want's to create a new session. That means, a serverside 
-> generated uuid will become unnecessary.
+> In future releases clients have to authentcate with a **token**. This allows to exchange even secret data, 
+> like ad insertion points or others. Therefore, a token based on a secret has to be created by the client 
+> each time it want's to create a new session. That means, a serverside generated uuid will become 
+> unnecessary.
 
 #### Request
 ```http
@@ -72,8 +73,8 @@ Status 200 OK
 }
 ```
 ```ini
-measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. This number will always be > 0 due to 
-                         player's buffering behaviour.
+measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. This number will always be 
+                         > 0 due to player's buffering behaviour.
                          Value can be used e.g. for displaying a spinning wheel during skipping.
 ```
 
@@ -124,7 +125,8 @@ Status 200 OK
 artist                         = *TEXT, can be empty.
 description                    = *TEXT, can be empty.
 title                          = *TEXT, can be empty.
-type                           = *TEXT, can be empty. If set to "unrecognized", type of item could not be detected.
+type                           = *TEXT, can be empty. If set to "unrecognized", type of item could not be 
+                                 detected.
 duration-milliseconds          = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
 station-genre                  = *TEXT, can be empty.
 station-name                   = *TEXT, can be empty.
@@ -174,8 +176,8 @@ skipping-mode = ( "end2end" | "fade2end" ), determines which kind of timing sync
                 for current skip.
                 "end2end" (default): Beginning of alternative content will be skipped to fit to the left
                                      main items duration.
-                "fade2end":          Alternative content starts from the beginning and will become faded out at 
-                                     the end.
+                "fade2end":          Alternative content starts from the beginning and will become faded out 
+                                     at the end.
 ```
 
 #### Response **(application/json)**
@@ -190,9 +192,10 @@ Status 200 OK
 }
 ```
 ```ini
-number-of-skips-left =      1*DIGIT, number of possible skips left after last operation. Number refers to possible skips
-                            for an individual music item. The last skip always returns to the original item. Value can 
-                            be used e.g. to disable the skip button if no more skip is left.
+number-of-skips-left =      1*DIGIT, number of possible skips left after last operation. Number refers to 
+                            possible skips for an individual music item. The last skip always returns to the 
+                            original item. Value can be used e.g. to disable the skip button if no more skip 
+                            is left.
                             In case of value -1 the number of skips left is unknown or unlimited.
 skip-was-successfull-flag = bool, value is true if last skip request could sucessfully be processed.
 next-skip-returns-to-main = bool, value is true if next skip returns to main content.
@@ -208,7 +211,8 @@ next-skip-returns-to-main = bool, value is true if next skip returns to main con
 ```
 
 ### skip-info
-Similar to **skip** but only returns information on the current skipping state. The call does not influence the stream.
+Similar to **skip** but only returns information on the current skipping state. The call does not influence 
+the stream.
  
 #### Request
 ```http
