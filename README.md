@@ -257,7 +257,18 @@ next-skip-returns-to-main = See definition in skip section.
 ```http
 ...
 <binary-data>
-<length-byte>StreamTitle='';StreamUrl='';<fillbytes>
+<length-byte>StreamTitle='<stream-title>';StreamUrl='<stream-url>';<fillbytes>
+<binary-data>
+...
+```ini
+stream-title = 
+stream-url   =
+```
+#####Example
+```http
+...
+<binary-data>
+<length-byte>StreamTitle='MADONNA - LIKE A VIRGIN';StreamUrl='http://aserverhostname.com/stream.mp3/ctrl/show-meta?sessionId=b28ac752-7881-4aa1-8cc6-c7e0f794a7f7&chunkId=';<fillbytes>
 <binary-data>
 ...
 ```
