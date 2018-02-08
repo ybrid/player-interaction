@@ -72,11 +72,9 @@ Status 200 OK
 }
 ```
 ```ini
-measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. 
-                         This number will always be > 0 due to player'S buffering 
-                         behaviour.
-                         Value can be used e.g. for displaying a spinning wheel 
-                         during skipping.
+measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. This number will always be > 0 due to 
+                         player's buffering behaviour.
+                         Value can be used e.g. for displaying a spinning wheel during skipping.
 ```
 
 ##### Example
@@ -123,13 +121,13 @@ Status 200 OK
 }
 ```
 ```ini
-artist = *TEXT, can be empty.
-description = *TEXT, can be empty.
-title = *TEXT, can be empty.
-type = *TEXT, can be empty. If set to "unrecognized", type of item could not be detected.
-duration-milliseconds = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
-station-genre = *TEXT, can be empty.
-station-name = *TEXT, can be empty.
+artist                         = *TEXT, can be empty.
+description                    = *TEXT, can be empty.
+title                          = *TEXT, can be empty.
+type                           = *TEXT, can be empty. If set to "unrecognized", type of item could not be detected.
+duration-milliseconds          = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
+station-genre                  = *TEXT, can be empty.
+station-name                   = *TEXT, can be empty.
 time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
 ```
 
@@ -192,11 +190,9 @@ Status 200 OK
 }
 ```
 ```ini
-number-of-skips-left =      1*DIGIT, number of possible skips left after last operation.
-                            Number refers to possible skips for an individual music item.
-                            The last skip always returns to the original item.
-                            Value can be used e.g. to disable the skip button if no more 
-                            skip is left.
+number-of-skips-left =      1*DIGIT, number of possible skips left after last operation. Number refers to possible skips
+                            for an individual music item. The last skip always returns to the original item. Value can 
+                            be used e.g. to disable the skip button if no more skip is left.
                             In case of value -1 the number of skips left is unknown or unlimited.
 skip-was-successfull-flag = bool, value is true if last skip request could sucessfully be processed.
 next-skip-returns-to-main = bool, value is true if next skip returns to main content.
