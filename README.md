@@ -240,7 +240,8 @@ next-skip-returns-to-main = See definition in skip section.
 ##### Example
 ```json
 {
-    "skipsLeft": -1
+    "skipsLeft": 2,
+    "nextSkipReturnsToMain": false
 }
 ```
 
