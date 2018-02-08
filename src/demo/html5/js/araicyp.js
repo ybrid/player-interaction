@@ -40,11 +40,50 @@ function skip(hostVal, pathVal, sessionIdVal) {
 	xmlhttp.onreadystatechange = function() {
 		if ((this.readyState == 4) && (this.status == 200)) {
 			var response = JSON.parse(this.responseText);
-			console.info("skip response [skipsLeft: " + response.skipsLeft
+			console.info("skip response [skipWasSuccessfull: "
+					+ response.skipWasSuccessfull + ", skipsLeft: "
+					+ response.skipsLeft + ", nextSkipReturnsToMain: "
+					+ response.nextSkipReturnsToMain + "].");
+		}
+	};
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
+
+/**
+ * @param {String}
+ *            hostVal - host of streaming server
+ * @param {String}
+ *            pathVal - path of requested resource
+ * @param {String}
+ *            sessionIdVal - session id
+ */
+function skipInfo(hostVal, pathVal, sessionIdVal) {
+	var xmlhttp = new XMLHttpRequest();
+	var url = "http://" + hostVal + "/" + pathVal
+			+ "/ctrl/skip-info?sessionId=" + sessionIdVal;
+	xmlhttp.onreadystatechange = function() {
+		if ((this.readyState == 4) && (this.status == 200)) {
+			var response = JSON.parse(this.responseText);
+			console.info("skip info response [skipsLeft: " + response.skipsLeft
 					+ ", nextSkipReturnsToMain: "
 					+ response.nextSkipReturnsToMain + "].");
 		}
 	};
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
+}
+
+/**
+ * @param {String}
+ *            hostVal - host of streaming server
+ * @param {String}
+ *            pathVal - path of requested resource
+ * @param {String}
+ *            sessionIdVal - session id
+ */
+function startSkipInfoWatcher(hostVal, pathVal, sessionIdVal) {
+	setInterval(function() {
+		skipInfo(hostVal, pathVal, sessionIdVal);
+	}, 2000);
 }

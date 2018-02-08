@@ -187,6 +187,7 @@ Status 200 OK
 ```json
 {
     "skipsLeft": <number-of-skips-left>,
+    "skipWasSuccessFull": <skip-was-successfull-flag>
     "nextSkipReturnsToMain": <next-skip-returns-to-main>
 }
 ```
@@ -197,6 +198,7 @@ number-of-skips-left =      1*DIGIT, number of possible skips left after last op
                             Value can be used e.g. to disable the skip button if no more 
                             skip is left.
                             In case of value -1 the number of skips left is unknown or unlimited.
+skip-was-successfull-flag = bool, value is true if last skip request could sucessfully be processed.
 next-skip-returns-to-main = bool, value is true if next skip returns to main content.
 ```
 
@@ -204,6 +206,8 @@ next-skip-returns-to-main = bool, value is true if next skip returns to main con
 ```json
 {
     "skipsLeft": 2
+    "skipWasSuccessFull": true
+    "nextSkipReturnsToMain": false
 }
 ```
 

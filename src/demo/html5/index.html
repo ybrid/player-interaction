@@ -4,72 +4,77 @@
 <meta charset="UTF-8">
 <title>ARAICYP Client</title>
 <link type="text/css" href="css/player.araicyp.css" rel="stylesheet" />
-<link type="text/css" href="css/jplayer.blue.monday.araicyp.css" rel="stylesheet" />
+<link type="text/css" href="css/jplayer.blue.monday.araicyp.css"
+	rel="stylesheet" />
 <script type="text/javascript" src="js/araicyp.js"></script>
 <script type="text/javascript" src="js/player.araicyp.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript">
-    /** host of streaming server*/
-    var host = "62.27.60.52";
+	/** host of streaming server*/
+	// 	var host = "localhost";
+	var host = "62.27.60.52";
 
-    /** path of requested stream*/
-    var path = "stream.mp3";
+	/** path of requested stream*/
+	var path = "stream.mp3";
 
-    var sessionId = null;
+	var sessionId = null;
 
-    $(document)
-            .ready(
-                    function() {
+	$(document)
+			.ready(
+					function() {
 
-                        var stream = {
-                            title : "",
-                            mp3 : "http://" + host + "/" + path
-                        };
-                        ready = false;
+						var stream = {
+							title : "",
+							mp3 : "http://" + host + "/" + path
+						};
+						ready = false;
 
-                        $("#jquery_jplayer_1")
-                                .jPlayer(
-                                        {
-                                            ready : function() {
-                                                ready = true;
-                                                createSession(
-                                                        host,
-                                                        path,
-                                                        function(sessionIdVal) {
-                                                            sessionId = sessionIdVal;
-                                                            stream.mp3 += "?sessionId="
-                                                                    + sessionId;
-                                                            $(this).jPlayer(
-                                                                    "setMedia",
-                                                                    stream);
-                                                        });
-                                            },
-                                            pause : function() {
-                                                $(this).jPlayer("clearMedia");
-                                            },
-                                            error : function(event) {
-                                                if (ready
-                                                        && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
-                                                    // Setup the media stream again and play it.
-                                                    $(this).jPlayer("setMedia",
-                                                            stream).jPlayer(
-                                                            "play");
-                                                }
-                                            },
-                                            cssSelectorAncestor : "#jp_container_1",
-                                            solution : "html",
-                                            supplied : "mp3",
-                                            preload : "none",
-                                            wmode : "window",
-                                            useStateClassSkin : true,
-                                            autoBlur : false,
-                                            smoothPlayBar : true,
-                                            keyEnabled : true,
-                                            remainingDuration : false,
-                                            toggleDuration : false
-                                        });
-                    });
+						$("#jquery_jplayer_1")
+								.jPlayer(
+										{
+											ready : function() {
+												ready = true;
+												createSession(
+														host,
+														path,
+														function(sessionIdVal) {
+															sessionId = sessionIdVal;
+															stream.mp3 += "?sessionId="
+																	+ sessionId;
+															$(this).jPlayer(
+																	"setMedia",
+																	stream);
+															startSkipInfoWatcher(
+																	host, path,
+																	sessionId);
+														});
+											},
+											pause : function() {
+												$(this).jPlayer("clearMedia");
+											},
+											error : function(event) {
+												if (ready
+														&& event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
+													// Setup the media stream again and play it.
+													$(this).jPlayer("setMedia",
+															stream).jPlayer(
+															"play");
+												}
+											},
+											cssSelectorAncestor : "#jp_container_1",
+											solution : "html",
+											supplied : "mp3",
+											preload : "none",
+											wmode : "window",
+											useStateClassSkin : true,
+											autoBlur : false,
+											smoothPlayBar : true,
+											keyEnabled : true,
+											remainingDuration : false,
+											toggleDuration : false
+										});
+					});
 </script>
 </head>
 <body>
