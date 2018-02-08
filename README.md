@@ -4,13 +4,12 @@ Specification of player interaction with **Hybrid Dynamic Live Audio Platform**.
 A demo player for HTML5/JavaScrpt is available under **src/demo/html5**.
 
 ## Content
-[**Introduction**](#introduction)
-
-[**Methods**](#methods)
-
-[**Example Scenario**](#example-scenario)
-
-[**Credentials**](#credentials)
+* [**Introduction**](#introduction)
+* [**Methods**](#methods)
+* [**Example Scenario**](#example-scenario)
+* [**Instream Meta Data**](#instream-meta-data)
+  * [**Icecast**](#icecast)
+* [**Credentials**](#credentials)
 
 ## Introduction
 
@@ -25,7 +24,7 @@ Method  | Short Description
 
 ### create-session
 
-> In future releases clients have to authentcate with a **token**. This allows to exchange even secret data, 
+> In future releases clients have to authenticate with a **token**. This allows to exchange even secret data, 
 > like ad insertion points or others. Therefore, a token based on a secret has to be created by the client 
 > each time it want's to create a new session. That means, a serverside generated uuid will become 
 > unnecessary.
@@ -250,6 +249,19 @@ next-skip-returns-to-main = See definition in skip section.
 1. Create a Session
 2. Retrieve Meta Data
 3. Skip Content
+
+## Instream Meta Data
+
+### Icecast
+
+```http
+...
+<binary-data>
+<length-byte>StreamTitle='';StreamUrl='';<fillbytes>
+<binary-data>
+...
+```
+
 
 ## Credentials
 ### Authors
