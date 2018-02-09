@@ -5,7 +5,7 @@ A demo player for HTML5/JavaScrpt is available under **src/demo/html5**.
 
 ## Content
 * [**Introduction**](#introduction)
-* [**Methods**](#methods)
+* [**Control Interface**](#control-interface)
 * [**Example Scenario**](#example-scenario)
 * [**Instream Meta Data**](#instream-meta-data)
   * [**Icecast**](#icecast)
@@ -44,8 +44,10 @@ http://anyserverhostname.com/stream.mp3?sessionId=b28ac752-7881-4aa1-8cc6-c7e0f7
 
 By adding the sessionId to the URL the stream is linked to the player. How to create a sessionId and how to implement the control interface at all will be explained in the following sections.
 
-## Methods
-Method  | Short Description
+## Control Interface
+The following commands are available:
+
+Command  | Short Description
 ------------- | -------------
 [**create-session**](#create-session)  | Creating a session.
 [**sync**](#sync)  | Syncing playout with server.
