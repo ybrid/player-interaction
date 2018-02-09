@@ -6,9 +6,10 @@ A demo player for HTML5/JavaScrpt is available under **src/demo/html5**.
 ## Content
 * [**Introduction**](#introduction)
 * [**Control Interface**](#control-interface)
-* [**Example Scenario**](#example-scenario)
-* [**Instream Meta Data**](#instream-meta-data)
-  * [**Icecast**](#icecast)
+  * [**Example Scenario**](#example-scenario)
+* [**Advanced Stream Features**](#advanced-stream-features)
+  * [**Instream Meta Data**](#instream-meta-data)
+    * [**Icecast**](#icecast)
 * [**Credentials**](#credentials)
 
 ## Introduction
@@ -277,15 +278,17 @@ next-skip-returns-to-main = See definition in skip section.
 }
 ```
 
-## Example Scenario
+### Example Scenario
 
 1. Create a Session
 2. Retrieve Meta Data
 3. Skip Content
 
-## Instream Meta Data
+## Advanced Stream Features
 
-### Icecast
+### Instream Meta Data
+
+#### Icecast
 
 ```http
 ...
