@@ -27,6 +27,23 @@ PATH_TO_SERVICE = Includes trailing slash. Example "/stream.mp3".
 http://anyserverhostname.com/stream.mp3
 ```
 
+To use advanced features like skipping and others the player needs to implement the **control interface** of the service. This enables to send commands to the service that directly influence the behaviour of the delivered stream. That being said, a player that implemented the control interface is somehow comparable to a **remote control for the service**.
+
+If the control interface was implemented the player would need to request the stream slightly different:
+
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>?sessionId=<session-uuid>
+```
+```ini
+<session-uuid> = See definition in section create-session.
+```
+##### Example
+```http
+http://anyserverhostname.com/stream.mp3?sessionId=b28ac752-7881-4aa1-8cc6-c7e0f794a7f7
+```
+
+By adding the sessionId to the URL the stream is linked to the player. How to create a sessionId and how to implement the control interface at all will be explained in the following sections.
+
 ## Methods
 Method  | Short Description
 ------------- | -------------
