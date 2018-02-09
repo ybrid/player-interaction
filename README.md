@@ -289,19 +289,30 @@ next-skip-returns-to-main = See definition in skip section.
 
 ### Limited Pre-Stream Ad Insertion Control
 Sometimes it is necessary to suppress pre-stream inserted adverts, e.g. in case of reconnecting to the stream
-after a short break. For that reason it is possible to add a parameter to the stream's URL to avoid an advert at
-the beginning.
+after a short break. For that reason it is possible to add the parameter `noPreAd` with its value set to `true`
+to the stream's URL to avoid an advert atthe beginning.
 
-**This feature is available only during an open session! Parameters attached to any URL without a valid session id will be ignored!**
+**This feature is available only during an open session! Parameters attached to any URL without a valid session 
+id will be ignored!**
 
-To prevent fraudulent use of this feature and the stream, the serice checks
+To prevent fraudulent use of this feature and the stream, the service checks
 * whether the account associated with the stream was enabled for this feature and
 * the amount of times during a session this feature was used.
 
 If one of aboves conditions fails the advert will be inserted even if the parameter was set.
 
-
-
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>?sessionId=<session-uuid>&noPreAd=true
+```
+```ini
+HOSTNAME        = See definition in section Introduction.
+PATH_TO_SERVICE = See definition in section Introduction.
+session-uuid    = See definition in section create-session.
+```
+##### Example
+```http
+http://anyserverhostname.com/stream.mp3?sessionId=b28ac752-7881-4aa1-8cc6-c7e0f794a7f7&noPreAd=true
+```
 
 ### Instream Meta Data
 
