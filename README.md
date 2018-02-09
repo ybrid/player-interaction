@@ -8,6 +8,7 @@ A demo player for HTML5/JavaScrpt is available under **src/demo/html5**.
 * [**Control Interface**](#control-interface)
   * [**Example Scenario**](#example-scenario)
 * [**Advanced Stream Features**](#advanced-stream-features)
+  * [**Limited Pre-Stream Ad Insertion Control**](#limited-pre-stream-ad-insertion-control)
   * [**Instream Meta Data**](#instream-meta-data)
     * [**Icecast**](#icecast)
 * [**Credentials**](#credentials)
@@ -285,6 +286,22 @@ next-skip-returns-to-main = See definition in skip section.
 3. Skip Content
 
 ## Advanced Stream Features
+
+### Limited Pre-Stream Ad Insertion Control
+Sometimes it is necessary to suppress pre-stream inserted adverts, e.g. in case of reconnecting to the stream
+after a short break. For that reason it is possible to add a parameter to the stream's URL to avoid an advert at
+the beginning.
+
+**This feature is available only during an open session! Parameters attached to any URL without a valid session id will be ignored!**
+
+To prevent fraudulent use of this feature and the stream, the serice checks
+* whether the account associated with the stream was enabled for this feature and
+* the amount of times during a session this feature was used.
+
+If one of aboves conditions fails the advert will be inserted even if the parameter was set.
+
+
+
 
 ### Instream Meta Data
 
