@@ -12,6 +12,20 @@ A demo player for HTML5/JavaScrpt is available under **src/demo/html5**.
 * [**Credentials**](#credentials)
 
 ## Introduction
+The simplest form of service player interaction is just to request a stream. In that case the stream will be delivered conform with the Icecast protocol.
+
+##### Scheme of Stream Request
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>
+```
+```ini
+HOSTNAME        = Hostname of service.
+PATH_TO_SERVICE = Includes trailing slash. Example "/stream.mp3".
+```
+##### Example
+```http
+http://anyserverhostname.com/stream.mp3
+```
 
 ## Methods
 Method  | Short Description
