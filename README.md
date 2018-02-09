@@ -35,7 +35,7 @@ If the control interface was implemented the player would need to request the st
 http://<HOSTNAME><PATH_TO_SERVICE>?sessionId=<session-uuid>
 ```
 ```ini
-<session-uuid> = See definition in section create-session.
+session-uuid = See definition in section create-session.
 ```
 ##### Example
 ```http
