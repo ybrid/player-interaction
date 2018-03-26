@@ -54,8 +54,8 @@ Command  | Short Description
 [**create-session**](#create-session)  | Creating a session.
 [**sync**](#sync)  | Syncing playout with server.
 [**show-meta**](#show-meta)  | Requesting current meta data of session.
-[**skip**](#skip)  | Skipping to alternative content if possible.
-[**skip-info**](#skip-info)  | Returns information about current skipping state.
+[**swap**](#swap)  | Swapping current content for alternative content if possible.
+[**swap-info**](#swap-info)  | Returns information about current swapping state.
 
 ### create-session
 
@@ -192,21 +192,21 @@ time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can 
 }
 ```
 
-### skip
-Skipping current music item by replacing the rest of item's duration by an alternative item.
-The number of possible skips is limited to the available alternative contents per
-each item. Each skip iterates through the list of contents. Thereby, the **last possible skip** 
+### swap
+Swapping the current music item by replacing the rest of item's duration by an alternative item.
+The number of possible swaps is limited to the available alternative contents per
+each item. Each swap iterates through the list of contents. Thereby, the **last possible swap** 
 per item always returns to the original/main item.
  
 #### Request
 ```http
-http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/skip?sessionId=<session-uuid>&mode=<skipping-mode>
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/swap?sessionId=<session-uuid>&mode=<swapping-mode>
 ```
 ```ini
 Parameter mode is not mandatory.
 
 session-uuid  = *TEXT, session id retrieved during create-session.
-skipping-mode = ( "end2end" | "fade2end" ), determines which kind of timing synchronisation should be used 
+swapping-mode = ( "end2end" | "fade2end" ), determines which kind of timing synchronisation should be used 
                 for current skip.
                 "end2end" (default): Beginning of alternative content will be skipped to fit to the left
                                      main items duration.
@@ -220,37 +220,36 @@ Status 200 OK
 ```
 ```json
 {
-    "skipsLeft": <number-of-skips-left>,
-    "skipWasSuccessFull": <skip-was-successfull-flag>,
-    "nextSkipReturnsToMain": <next-skip-returns-to-main>
+    "swapsLeft": <number-of-swaps-left>,
+    "swapWasSuccessFull": <swap-was-successfull-flag>,
+    "nextSwapReturnsToMain": <next-swap-returns-to-main>
 }
 ```
 ```ini
-number-of-skips-left =      1*DIGIT, number of possible skips left after last operation. Number refers to 
-                            possible skips for an individual music item. The last skip always returns to the 
-                            original item. Value can be used e.g. to disable the skip button if no more skip 
+number-of-swaps-left =      1*DIGIT, number of possible swaps left after last operation. Number refers to 
+                            possible swaps for an individual music item. The last swap always returns to the 
+                            original item. Value can be used e.g. to disable the swap button if no more swap 
                             is left.
-                            In case of value -1 the number of skips left is unknown or unlimited.
-skip-was-successfull-flag = bool, value is true if last skip request could sucessfully be processed.
-next-skip-returns-to-main = bool, value is true if next skip returns to main content.
+                            In case of value -1 the number of swaps left is unknown or unlimited.
+swap-was-successfull-flag = bool, value is true if last swap request could sucessfully be processed.
+next-swap-returns-to-main = bool, value is true if next swap returns to main content.
 ```
 
 ##### Example
 ```json
 {
-    "skipsLeft": 2,
-    "skipWasSuccessFull": true,
-    "nextSkipReturnsToMain": false
+    "swapsLeft": 2,
+    "swapWasSuccessFull": true,
+    "nextSwapReturnsToMain": false
 }
 ```
 
-### skip-info
-Similar to **skip** but only returns information on the current skipping state. The call does not influence 
-the stream.
+### swap-info
+Similar to **swap** but only returns information on the current swapping state without actually performing a swap. The call does not influence the stream.
  
 #### Request
 ```http
-http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/skip-info?sessionId=<session-uuid>
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/swap-info?sessionId=<session-uuid>
 ```
 ```ini
 session-uuid  = *TEXT, session id retrieved during create-session.
@@ -262,20 +261,20 @@ Status 200 OK
 ```
 ```json
 {
-    "skipsLeft": <number-of-skips-left>,
-    "nextSkipReturnsToMain": <next-skip-returns-to-main>
+    "swapsLeft": <number-of-swaps-left>,
+    "nextSwapReturnsToMain": <next-swap-returns-to-main>
 }
 ```
 ```ini
-number-of-skips-left      = See definition in skip section.
-next-skip-returns-to-main = See definition in skip section.
+number-of-swaps-left      = See definition in swap section.
+next-swap-returns-to-main = See definition in swap section.
 ```
 
 ##### Example
 ```json
 {
-    "skipsLeft": 2,
-    "nextSkipReturnsToMain": false
+    "swapsLeft": 2,
+    "nextSwapReturnsToMain": false
 }
 ```
 
@@ -283,7 +282,7 @@ next-skip-returns-to-main = See definition in skip section.
 
 1. Create a Session
 2. Retrieve Meta Data
-3. Skip Content
+3. Swap Content
 
 ## Advanced Stream Features
 
