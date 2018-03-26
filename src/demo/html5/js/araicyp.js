@@ -33,17 +33,17 @@ function createSession(host, path, callback) {
  * @param {String}
  *            sessionIdVal - session id
  */
-function skip(hostVal, pathVal, sessionIdVal) {
+function swap(hostVal, pathVal, sessionIdVal) {
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://" + hostVal + "/" + pathVal + "/ctrl/skip?sessionId="
+	var url = "http://" + hostVal + "/" + pathVal + "/ctrl/swap?sessionId="
 			+ sessionIdVal;
 	xmlhttp.onreadystatechange = function() {
 		if ((this.readyState == 4) && (this.status == 200)) {
 			var response = JSON.parse(this.responseText);
-			console.info("skip response [skipWasSuccessfull: "
-					+ response.skipWasSuccessfull + ", skipsLeft: "
-					+ response.skipsLeft + ", nextSkipReturnsToMain: "
-					+ response.nextSkipReturnsToMain + "].");
+			console.info("swap response [swapWasSuccessfull: "
+					+ response.swapWasSuccessfull + ", swapsLeft: "
+					+ response.swapsLeft + ", nextSwapReturnsToMain: "
+					+ response.nextSwapReturnsToMain + "].");
 		}
 	};
 	xmlhttp.open("GET", url, true);
@@ -58,16 +58,16 @@ function skip(hostVal, pathVal, sessionIdVal) {
  * @param {String}
  *            sessionIdVal - session id
  */
-function skipInfo(hostVal, pathVal, sessionIdVal) {
+function swapInfo(hostVal, pathVal, sessionIdVal) {
 	var xmlhttp = new XMLHttpRequest();
 	var url = "http://" + hostVal + "/" + pathVal
-			+ "/ctrl/skip-info?sessionId=" + sessionIdVal;
+			+ "/ctrl/swap-info?sessionId=" + sessionIdVal;
 	xmlhttp.onreadystatechange = function() {
 		if ((this.readyState == 4) && (this.status == 200)) {
 			var response = JSON.parse(this.responseText);
-			console.info("skip info response [skipsLeft: " + response.skipsLeft
-					+ ", nextSkipReturnsToMain: "
-					+ response.nextSkipReturnsToMain + "].");
+			console.info("swap info response [swapsLeft: " + response.swapsLeft
+					+ ", nextSwapReturnsToMain: "
+					+ response.nextSwapReturnsToMain + "].");
 		}
 	};
 	xmlhttp.open("GET", url, true);
@@ -82,8 +82,8 @@ function skipInfo(hostVal, pathVal, sessionIdVal) {
  * @param {String}
  *            sessionIdVal - session id
  */
-function startSkipInfoWatcher(hostVal, pathVal, sessionIdVal) {
+function startSwapInfoWatcher(hostVal, pathVal, sessionIdVal) {
 	setInterval(function() {
-		skipInfo(hostVal, pathVal, sessionIdVal);
+		swapInfo(hostVal, pathVal, sessionIdVal);
 	}, 2000);
 }

@@ -12,8 +12,7 @@
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript">
 	/** host of streaming server*/
-	// 	var host = "localhost";
-	var host = "62.27.60.52";
+	var host = "democast.ybrid.io";
 
 	/** path of requested stream*/
 	var path = "stream.mp3";
@@ -45,7 +44,7 @@
 															$(this).jPlayer(
 																	"setMedia",
 																	stream);
-															startSkipInfoWatcher(
+															startSwapInfoWatcher(
 																	host, path,
 																	sessionId);
 														});
@@ -93,7 +92,7 @@
 					<div class="jp-controls">
 						<button class="jp-play" role="button" tabindex="0">play</button>
 						<button class="jp-next" role="button" tabindex="0"
-							onclick="skipButtonClicked();">next</button>
+							onclick="swapButtonClicked();">next</button>
 					</div>
 					<div class="jp-volume-controls">
 						<button class="jp-mute" role="button" tabindex="0">mute</button>
@@ -117,9 +116,7 @@
 				<!-- 				</div> -->
 				<div class="jp-no-solution">
 					<span>Update Required</span> To play the media you will need to
-					either update your browser to a recent version or update your <a
-						href="http://get.adobe.com/flashplayer/" target="_blank">Flash
-						plugin</a>.
+					update your browser to a recent version.
 				</div>
 
 			</div>

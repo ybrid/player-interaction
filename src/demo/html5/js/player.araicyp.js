@@ -13,7 +13,7 @@ function spinningWheelOff() {
     document.getElementById("overlay").style.display = "none";
 }
 
-function skipButtonClicked() {
-    skip(host, path, sessionId);
+function swapButtonClicked() {
+    swap(host, path, sessionId);
     spinningWheelOn();
 }
