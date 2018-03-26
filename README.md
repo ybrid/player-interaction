@@ -207,7 +207,7 @@ Parameter mode is not mandatory.
 
 session-uuid  = *TEXT, session id retrieved during create-session.
 swapping-mode = ( "end2end" | "fade2end" ), determines which kind of timing synchronisation should be used 
-                for current skip.
+                for current swap.
                 "end2end" (default): Beginning of alternative content will be skipped to fit to the left
                                      main items duration.
                 "fade2end":          Alternative content starts from the beginning and will become faded out 
