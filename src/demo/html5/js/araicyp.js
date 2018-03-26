@@ -14,7 +14,7 @@
  */
 function createSession(host, path, callback) {
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://" + host + "/" + path + "/ctrl/create-session";
+	var url = "https://" + host + "/" + path + "/ctrl/create-session";
 	xmlhttp.onreadystatechange = function() {
 		if ((this.readyState == 4) && (this.status == 200)) {
 			var response = JSON.parse(this.responseText);
@@ -35,7 +35,7 @@ function createSession(host, path, callback) {
  */
 function swap(hostVal, pathVal, sessionIdVal) {
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://" + hostVal + "/" + pathVal + "/ctrl/swap?sessionId="
+	var url = "https://" + hostVal + "/" + pathVal + "/ctrl/swap?sessionId="
 			+ sessionIdVal;
 	xmlhttp.onreadystatechange = function() {
 		if ((this.readyState == 4) && (this.status == 200)) {
@@ -60,7 +60,7 @@ function swap(hostVal, pathVal, sessionIdVal) {
  */
 function swapInfo(hostVal, pathVal, sessionIdVal) {
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://" + hostVal + "/" + pathVal
+	var url = "https://" + hostVal + "/" + pathVal
 			+ "/ctrl/swap-info?sessionId=" + sessionIdVal;
 	xmlhttp.onreadystatechange = function() {
 		if ((this.readyState == 4) && (this.status == 200)) {
