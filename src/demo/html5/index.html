@@ -13,7 +13,8 @@
 <script type="text/javascript">
 	/** host of streaming server*/
 	var host = "democast.ybrid.io";
-
+	var scheme = "https";
+	
 	/** path of requested stream*/
 	var path = "stream.mp3";
 
@@ -25,7 +26,7 @@
 
 						var stream = {
 							title : "",
-							mp3 : "https://" + host + "/" + path
+							mp3 : scheme + "://" + host + "/" + path
 						};
 						ready = false;
 
@@ -35,6 +36,7 @@
 											ready : function() {
 												ready = true;
 												createSession(
+														scheme,
 														host,
 														path,
 														function(sessionIdVal) {
@@ -44,7 +46,7 @@
 															$(this).jPlayer(
 																	"setMedia",
 																	stream);
-															startSwapInfoWatcher(
+															startSwapInfoWatcher(scheme,
 																	host, path,
 																	sessionId);
 														});

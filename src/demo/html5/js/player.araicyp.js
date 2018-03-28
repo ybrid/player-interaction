@@ -14,6 +14,6 @@ function spinningWheelOff() {
 }
 
 function swapButtonClicked() {
-    swap(host, path, sessionId);
+    swap(scheme, host, path, sessionId);
     spinningWheelOn();
 }
