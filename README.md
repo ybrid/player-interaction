@@ -143,14 +143,14 @@ Status 200 OK
 ```
 ```json
 {
-    "max-bit-rate" : <max-bit-rate-in-bps>
+    "maxBitRate" : <max-bit-rate-in-bps>
 }
 ```
 
 ##### Example
 ```json
 {
-    "max-bit-rate" : 64000
+    "maxBitRate" : 64000
 }
 ```
 
