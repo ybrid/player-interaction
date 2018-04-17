@@ -132,7 +132,9 @@ http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/set-max-bit-rate?value=<max-bit-rate-in-
 ```
 ```ini
 max-bit-rate-in-bps = 1*DIGI, maximum bi rate in bits per second that the server should delivery during an 
-                      adaptive playout session. Value can be set to -1, means that there is no upper limit.
+                      adaptive playout session. Value can be set to -1, means that there is no upper limit. If 
+                      the bit rate given is not available the server will select the next lower available 
+                      bitrate. If there is no lower bit rate, the lowest available bit rate will be selected. 
 ```
 
 #### Response **(application/json)**
@@ -148,7 +150,7 @@ Status 200 OK
 ##### Example
 ```json
 {
-    "offset" : 3879
+    "max-bit-rate" : 64000
 }
 ```
 
