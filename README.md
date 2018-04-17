@@ -53,6 +53,7 @@ Command  | Short Description
 ------------- | -------------
 [**create-session**](#create-session)  | Creating a session.
 [**sync**](#sync)  | Syncing playout with server.
+[**set-max-bit-rate**](#set-max-bit-rate)  | Setting the maximum bitrate to be used for adaptive playout.
 [**show-meta**](#show-meta)  | Requesting current meta data of session.
 [**swap**](#swap)  | Swapping current content for alternative content if possible.
 [**swap-info**](#swap-info)  | Returns information about current swapping state.
@@ -88,6 +89,7 @@ session-uuid = *TEXT
     "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
 }
 ```
+
 ### sync
 #### Request
 ```http
@@ -110,6 +112,37 @@ Status 200 OK
 measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. This number will always be 
                          > 0 due to player's buffering behaviour.
                          Value can be used e.g. for displaying a spinning wheel during skipping.
+```
+
+##### Example
+```json
+{
+    "offset" : 3879
+}
+```
+
+### set-max-bit-rate
+This call can be used by a player instance to control the maximum bitrate the server should use to deliver to 
+the client. E.g. if the player is hosted on a smart phone, if only mobile internet is available the maximum 
+bit rate could be reduced to limit traffic costs. If WLAN is available, the meximum could be set to undefined 
+(-1). 
+#### Request
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/set-max-bit-rate?value=<max-bit-rate-in-bps>
+```
+```ini
+max-bit-rate-in-bps = 1*DIGI, maximum bi rate in bits per second that the server should delivery during an 
+                      adaptive playout session. Value can be set to -1, means that there is no upper limit.
+```
+
+#### Response **(application/json)**
+```http
+Status 200 OK
+```
+```json
+{
+    "max-bit-rate" : <max-bit-rate-in-bps>
+}
 ```
 
 ##### Example
