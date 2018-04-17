@@ -123,8 +123,8 @@ measured-offset-millis = 1*DIGI, milliseconds offset between server and playout.
 
 ### set-max-bit-rate
 This call can be used by a player instance to control the maximum bitrate the server should use to deliver to 
-the client. E.g. if the player is hosted on a smart phone, if only mobile internet is available the maximum 
-bit rate could be reduced to limit traffic costs. If WLAN is available, the meximum could be set to undefined 
+the client. E.g. if the player is hosted on a smart phone and mobile internet is available only, the maximum 
+bit rate could be reduced to limit traffic costs. If WLAN is available, the maximum could be set to undefined 
 (-1). 
 #### Request
 ```http
