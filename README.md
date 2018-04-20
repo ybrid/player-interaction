@@ -169,6 +169,7 @@ Status 200 OK
 ```
 ```json
 {
+    "currentBitRate": <currently-selected-bit-rate>,
     "currentItem": {
         "artist": <artist>,
         "description": <description>,
@@ -191,6 +192,8 @@ Status 200 OK
 }
 ```
 ```ini
+currently-selected-bit-rate    = 1*DIGI, currently by the server selected delivery bit rate in bits per 
+                                 second.
 artist                         = *TEXT, can be empty.
 description                    = *TEXT, can be empty.
 title                          = *TEXT, can be empty.
@@ -205,6 +208,7 @@ time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can 
 ##### Example
 ```json
 {
+    "currentBitRate": 128000,
     "currentItem": {
         "artist": "Madonna",
         "description": "",
