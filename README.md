@@ -52,11 +52,11 @@ The following commands are available:
 Command  | Short Description
 ------------- | -------------
 [**create-session**](#create-session)  | Creating a session.
-[**sync**](#sync)  | Syncing playout with server.
 [**set-max-bit-rate**](#set-max-bit-rate)  | Setting the maximum bitrate to be used for adaptive playout.
 [**show-meta**](#show-meta)  | Requesting current meta data of session.
 [**swap**](#swap)  | Swapping current content for alternative content if possible.
 [**swap-info**](#swap-info)  | Returns information about current swapping state.
+[**sync**](#sync)  | Syncing player with service.
 
 ### create-session
 
@@ -91,12 +91,16 @@ session-uuid = *TEXT
 ```
 
 ### sync
+Method for syncing player with service. Based on ICY meta data the service tries to determine how far the player is behind playout's time. Therefore, this method is supported using Icecast transportation protocol only. This call MUST NOT be called every time the StreamTitle field is updated in the stream. Rather, the player should call this in the event that the value of this field changed.
+
 #### Request
 ```http
-http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/sync?sessionId=<session-uuid>
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/sync?sessionId=<session-uuid>&icyStreamTitle=<icy-meta-stream-title-urlencoded>
 ```
 ```ini
-session-uuid = *TEXT, session id retrieved during create-session.
+session-uuid                     = *TEXT, session id retrieved during create-session.
+icy-meta-stream-title-urlencoded = <url encoding of icy-meta-stream-title
+icy-meta-stream-title            = *TEXT, current StreamTitle from stream in Icecast protocol format.
 ```
 
 #### Response **(application/json)**
