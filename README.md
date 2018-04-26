@@ -14,7 +14,8 @@ A demo player for HTML5/JavaScrpt is available under **src/demo/html5**.
 * [**Credentials**](#credentials)
 
 ## Introduction
-The simplest form of service player interaction is just to request a stream. In that case the stream will be delivered conform with the Icecast protocol.
+The simplest form of service player interaction is just to request a stream. In that case the stream will be 
+delivered conform with the Icecast protocol.
 
 ##### Scheme of Stream Request
 ```http
@@ -29,7 +30,10 @@ PATH_TO_SERVICE = Includes trailing slash. Example "/stream.mp3".
 http://anyserverhostname.com/stream.mp3
 ```
 
-To use advanced features like skipping and others the player needs to implement the **control interface** of the service. This enables to send commands to the service that directly influence the behaviour of the delivered stream. That being said, a player that implemented the control interface is somehow comparable to a **remote control for the service**.
+To use advanced features like skipping and others the player needs to implement the **control interface** of 
+the service. This enables to send commands to the service that directly influence the behaviour of the 
+delivered stream. That being said, a player that implemented the control interface is somehow comparable to a 
+**remote control for the service**.
 
 If the control interface was implemented the player would need to request the stream slightly different:
 
@@ -44,7 +48,8 @@ session-uuid = See definition in section create-session.
 http://anyserverhostname.com/stream.mp3?sessionId=b28ac752-7881-4aa1-8cc6-c7e0f794a7f7
 ```
 
-By adding the sessionId to the URL the stream is linked to the player. How to create a sessionId and how to implement the control interface at all will be explained in the following sections.
+By adding the sessionId to the URL the stream is linked to the player. How to create a sessionId and how to 
+implement the control interface at all will be explained in the following sections.
 
 ## Control Interface
 The following commands are available:
@@ -87,41 +92,6 @@ session-uuid = *TEXT
 ```json
 {
     "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
-}
-```
-
-### sync
-Method for syncing player with service. Based on ICY meta data the service tries to determine how far the player is behind playout's time. Therefore, this method is supported using Icecast transportation protocol only. This call MUST NOT be called every time the StreamTitle field is updated in the stream. Rather, the player should call this in the event that the value of this field changed.
-
-#### Request
-```http
-http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/sync?sessionId=<session-uuid>&icyStreamTitle=<icy-meta-stream-title-urlencoded>
-```
-```ini
-session-uuid                     = *TEXT, session id retrieved during create-session.
-icy-meta-stream-title-urlencoded = <url encoding of icy-meta-stream-title
-icy-meta-stream-title            = *TEXT, current StreamTitle from stream in Icecast protocol format.
-```
-
-#### Response **(application/json)**
-```http
-Status 200 OK
-```
-```json
-{
-    "offset" : <measured-offset-millis>
-}
-```
-```ini
-measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. This number will always be 
-                         > 0 due to player's buffering behaviour.
-                         Value can be used e.g. for displaying a spinning wheel during skipping.
-```
-
-##### Example
-```json
-{
-    "offset" : 3879
 }
 ```
 
@@ -289,7 +259,8 @@ next-swap-returns-to-main = bool, value is true if next swap returns to main con
 ```
 
 ### swap-info
-Similar to **swap** but only returns information on the current swapping state without actually performing a swap. The call does not influence the stream.
+Similar to **swap** but only returns information on the current swapping state without actually performing a 
+swap. The call does not influence the stream.
  
 #### Request
 ```http
@@ -322,6 +293,44 @@ next-swap-returns-to-main = See definition in swap section.
 }
 ```
 
+### sync
+Method for syncing player with service. Based on ICY meta data the service tries to determine how far the 
+player is behind playout's time. Therefore, this method is supported using Icecast transportation protocol 
+only. This call MUST NOT be called every time the StreamTitle field is updated in the stream. Rather, the 
+player should call this in the event that the value of this field changed.
+
+#### Request
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/sync?sessionId=<session-uuid>&icyStreamTitle=<icy-meta-stream-title-urlencoded>
+```
+```ini
+session-uuid                     = *TEXT, session id retrieved during create-session.
+icy-meta-stream-title-urlencoded = <url encoding of icy-meta-stream-title
+icy-meta-stream-title            = *TEXT, current StreamTitle from stream in Icecast protocol format.
+```
+
+#### Response **(application/json)**
+```http
+Status 200 OK
+```
+```json
+{
+    "offset" : <measured-offset-millis>
+}
+```
+```ini
+measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. This number will always be 
+                         > 0 due to player's buffering behaviour.
+                         Value can be used e.g. for displaying a spinning wheel during skipping.
+```
+
+##### Example
+```json
+{
+    "offset" : 3879
+}
+```
+
 ### Example Scenario
 
 1. Create a Session
@@ -335,8 +344,8 @@ Sometimes it is necessary to suppress pre-stream inserted adverts, e.g. in case 
 after a short break. For that reason it is possible to add the parameter `noPreAd` with its value set to `true`
 to the stream's URL to avoid an advert atthe beginning.
 
-**This feature is available only during an open session! Parameters attached to any URL without a valid session 
-id will be ignored!**
+**This feature is available only during an open session! Parameters attached to any URL without a valid 
+session id will be ignored!**
 
 To prevent fraudulent use of this feature and the stream, the service checks
 * whether the account associated with the stream was enabled for this feature and
