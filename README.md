@@ -73,6 +73,15 @@ Command  | Short Description
 #### Request
 ```http
 http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/create-session
+
+OR
+
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/create-session?max-bit-rate=<max-bit-rate-in-bps>
+```
+
+```ini
+max-bit-rate-in-bps = Optional parameter to set maximum bitrate right from the beginning. See 
+                      command set-max-bit-rate for more details. 
 ```
 
 #### Response **(application/json)**
