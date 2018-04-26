@@ -321,7 +321,9 @@ Status 200 OK
 ```ini
 measured-offset-millis = 1*DIGI, milliseconds offset between server and playout. This number will always be 
                          > 0 due to player's buffering behaviour.
-                         Value can be used e.g. for displaying a spinning wheel during skipping.
+                         Value can be used e.g. for displaying a spinning wheel during skipping. In the case 
+                         that the given StreamTitle did not match, or the current plyout protocol is not 
+                         Icecast, -1 will be returned.
 ```
 
 ##### Example
