@@ -301,12 +301,12 @@ player should call this in the event that the value of this field changed.
 
 #### Request
 ```http
-http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/sync?sessionId=<session-uuid>&icyStreamTitle=<icy-meta-stream-title-urlencoded>
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/sync?sessionId=<session-uuid>&icyStreamTitle=<icy-meta-stream-title-utf8-urlencoded>
 ```
 ```ini
-session-uuid                     = *TEXT, session id retrieved during create-session.
-icy-meta-stream-title-urlencoded = <url encoding of icy-meta-stream-title
-icy-meta-stream-title            = *TEXT, current StreamTitle from stream in Icecast protocol format.
+session-uuid                          = *TEXT, session id retrieved during create-session.
+icy-meta-stream-title-utf8-urlencoded = url encoding of icy-meta-stream-title in UTF-8
+icy-meta-stream-title                 = *TEXT, current StreamTitle from stream in Icecast protocol format.
 ```
 
 #### Response **(application/json)**
