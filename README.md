@@ -52,11 +52,12 @@ By adding the sessionId to the URL the stream is linked to the player. How to cr
 implement the control interface at all will be explained in the following sections.
 
 ## Control Interface
-The following commands are available:
+The following commands (in alphabetical order) are available:
 
 Command  | Short Description
 ------------- | -------------
 [**create-session**](#create-session)  | Creating a session.
+[**is-session-valid**](#is-session-valid)  | Checks whether a created session is valid any longer or not.
 [**set-max-bit-rate**](#set-max-bit-rate)  | Setting the maximum bitrate to be used for adaptive playout.
 [**show-meta**](#show-meta)  | Requesting current meta data of session.
 [**swap**](#swap)  | Swapping current content for alternative content if possible.
@@ -101,6 +102,56 @@ session-uuid = *TEXT
 ```json
 {
     "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
+}
+```
+
+### is-session-valid
+
+In some scenariors it is useful to check the validity of a session before initiating a player with a stream 
+connected with it. Hence, this command allows to check the validity in front of starting a stream again.
+
+#### Request
+```http
+http://<HOSTNAME><PATH_TO_SERVICE>/ctrl/is-session-valid?sessionToCheckId=<session-uuid>
+```
+Please note, that the parameter for the session id is different from all other commands!
+
+```ini
+session-uuid = *TEXT, session to be checked for being valid
+```
+
+#### Response **(application/json)**
+```http
+Status 200 OK
+```
+```json
+{
+    "message" : <message>,
+    "valid" : <valid>
+}
+```
+```ini
+message = *TEXT, a message in case session is not valid.
+valid   = BOOL, true if session is valid.
+```
+
+##### Examples
+```json
+{
+    "message": "",
+    "valid": true
+}
+```
+```json
+{
+    "message": "Session [id: e5efe8c9-96ab-4dac-82c4-a68ca7805cca] is invalid.",
+    "valid": false
+}
+```
+```json
+{
+    "message": "Session [id: e5efe8c9-96ab-4dac-82c4-a68ca7805cca] is closed.",
+    "valid": false
 }
 ```
 
