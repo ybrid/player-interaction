@@ -210,6 +210,21 @@ Status 200 OK
         "description": <description>,
         "title": <title>,
         "type": <type>,
+        "companions": [
+            {
+                "altText": <alternative-text>,
+                "height": <height>,
+                "onClickThroughURL": <on-click-through-url>,
+                "onCreativeViewURL": <on-creative-view-url>,
+                "staticResourceURL": <static-resource-url>,
+                "width": <width>,
+                "sequenceNumber": <sequence-number>
+            },
+            {
+            ...
+            }
+            ...
+        ],
         "durationMillis": <duration-milliseconds>
     },
     "nextItem": {
@@ -233,14 +248,23 @@ artist                         = *TEXT, can be empty.
 description                    = *TEXT, can be empty.
 title                          = *TEXT, can be empty.
 type                           = *TEXT, can be empty. If set to "unrecognized", type of item could not be 
-                                 detected.
+                                 detected.                                
 duration-milliseconds          = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
 station-genre                  = *TEXT, can be empty.
 station-name                   = *TEXT, can be empty.
 time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
+
+# Companion Advertisement Properties                                 
+alternative-text               = *TEXT, alternative text that can be used for e.g. mouse overs.
+height                         = 1*DIGI, height of companion banner.
+on-click-through-url           = *TEXT, URL to be used of User clicks on companion banner.
+on-creative-view-url           = *TEXT, URL to be triggered as soon as the banner was presented to the user.
+static-resource-url            = *TEXT, URL to companion banner itself.
+width                          = 1*DIGI, width of companion banner.
+sequence-number                = 1*DIGI, sequence number. Hint in which order the companions should be used.
 ```
 
-##### Example
+##### Example for Current Music Item
 ```json
 {
     "currentBitRate": 128000,
@@ -248,14 +272,15 @@ time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can 
         "artist": "Madonna",
         "description": "",
         "title": "Like a prayer",
-        "type": "unrecognized",
+        "type": "MUSIC",
+        "companions": [],
         "durationMillis": 252573
     },
     "nextItem": {
         "artist": "Michael Jackson",
         "description": "",
         "title": "Bad",
-        "type": "unrecognized",
+        "type": "MUSIC",
         "durationMillis": 212736
     },
     "station": {
@@ -263,6 +288,43 @@ time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can 
         "name": "100,5 My Famous Station"
     },
     "timeToNextItemMillis": 180432
+}
+```
+
+##### Example for Current Advertisement Item
+```json
+{
+    "currentBitRate": 128000,
+    "currentItem": {
+        "artist": "",
+        "description": "",
+        "title": "@@ADVERT@@",
+        "type": "ADVERTISEMENT",
+        "companions": [
+            {
+                "altText": "http://www.famous-company.com/",
+                "height": 250,
+                "onClickThroughURL": "https://webserver.com/clickthrough?id=1234567899",
+                "onCreativeViewURL": "https://webserver.com/creativeView?id=1234567899",
+                "staticResourceURL": "https://webserver.com/banner.jpg",
+                "width": 300,
+                "sequenceNumber": 1
+            }
+        ],
+        "durationMillis": 252573
+    },
+    "nextItem": {
+        "artist": "Michael Jackson",
+        "description": "",
+        "title": "Bad",
+        "type": "MUSIC",
+        "durationMillis": 212736
+    },
+    "station": {
+        "genre": "Pop",
+        "name": "100,5 My Famous Station"
+    },
+    "timeToNextItemMillis": 18032
 }
 ```
 
