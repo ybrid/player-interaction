@@ -208,6 +208,7 @@ Status 200 OK
     "currentItem": {
         "artist": <artist>,
         "description": <description>,
+        "id": <id>,
         "title": <title>,
         "type": <type>,
         "companions": [
@@ -228,6 +229,7 @@ Status 200 OK
         "durationMillis": <duration-milliseconds>
     },
     "nextItem": {
+        "id": <id>,
         "artist": <artist>,
         "description": <description>,
         "title": <title>,
@@ -244,6 +246,7 @@ Status 200 OK
 ```ini
 currently-selected-bit-rate    = 1*DIGI, currently by the server selected delivery bit rate in bits per 
                                  second.
+id                             = *TEXT, an id identifying the item.
 artist                         = *TEXT, can be empty.
 description                    = *TEXT, can be empty.
 title                          = *TEXT, can be empty.
@@ -269,6 +272,7 @@ sequence-number                = 1*DIGI, sequence number. Hint in which order th
 {
     "currentBitRate": 128000,
     "currentItem": {
+        "id": "1234-612",
         "artist": "Madonna",
         "description": "",
         "title": "Like a prayer",
@@ -277,6 +281,7 @@ sequence-number                = 1*DIGI, sequence number. Hint in which order th
         "durationMillis": 252573
     },
     "nextItem": {
+        "id": "1432-556",
         "artist": "Michael Jackson",
         "description": "",
         "title": "Bad",
@@ -296,6 +301,7 @@ sequence-number                = 1*DIGI, sequence number. Hint in which order th
 {
     "currentBitRate": 128000,
     "currentItem": {
+        "id": "AD-12344",
         "artist": "",
         "description": "",
         "title": "@@ADVERT@@",
@@ -314,6 +320,7 @@ sequence-number                = 1*DIGI, sequence number. Hint in which order th
         "durationMillis": 252573
     },
     "nextItem": {
+        "id": "1432-556",
         "artist": "Michael Jackson",
         "description": "",
         "title": "Bad",
