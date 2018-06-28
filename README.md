@@ -240,6 +240,10 @@ Status 200 OK
         "genre": <station-genre>,
         "name": <station-name>
     },
+    "swapInfo": {
+         "nextSwapReturnsToMain": <next-swap-returns-to-main>,
+         "swapsLeft": <number-of-swaps-left>
+    },
     "timeToNextItemMillis": <time-to-next-item-milliseconds>
 }
 ```
@@ -256,6 +260,10 @@ duration-milliseconds          = 1*DIGIT, duration of item in milliseconds, can 
 station-genre                  = *TEXT, can be empty.
 station-name                   = *TEXT, can be empty.
 time-to-next-item-milliseconds = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
+
+# Swap Info Section
+number-of-swaps-left           = See definition in swap command section.
+next-swap-returns-to-main      = See definition in swap command section.
 
 # Companion Advertisement Properties                                 
 alternative-text               = *TEXT, alternative text that can be used for e.g. mouse overs.
@@ -291,6 +299,10 @@ sequence-number                = 1*DIGI, sequence number. Hint in which order th
     "station": {
         "genre": "Pop",
         "name": "100,5 My Famous Station"
+    },
+    "swapInfo": {
+        "nextSwapReturnsToMain": false,
+        "swapsLeft": 3
     },
     "timeToNextItemMillis": 180432
 }
@@ -330,6 +342,10 @@ sequence-number                = 1*DIGI, sequence number. Hint in which order th
     "station": {
         "genre": "Pop",
         "name": "100,5 My Famous Station"
+    },
+    "swapInfo": {
+        "nextSwapReturnsToMain": false,
+        "swapsLeft": 0
     },
     "timeToNextItemMillis": 18032
 }
