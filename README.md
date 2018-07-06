@@ -92,7 +92,7 @@ Status 200 OK
 ```
 ```json
 {
-    "host" : <host>
+    "host" : <host>,
     "sessionId" : <session-uuid>
 }
 ```
@@ -104,7 +104,7 @@ session-uuid = *TEXT
 ##### Example
 ```json
 {
-    "host" : "vg652-uz6.platform-eu.ybrid.io"
+    "host" : "vg652-uz6.platform-eu.ybrid.io",
     "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
 }
 ```
