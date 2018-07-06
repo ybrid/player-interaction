@@ -22,7 +22,8 @@ delivered conform with the Icecast protocol.
 http://<HOSTNAME><PATH_TO_SERVICE>
 ```
 ```ini
-HOSTNAME        = Hostname of service.
+HOSTNAME        = Hostname of service. The host to be used changes during the subsequent workflow. See command 
+                  create-session on how to retrieve the hostname to be used.
 PATH_TO_SERVICE = Includes trailing slash. Example "/stream.mp3".
 ```
 ##### Example
@@ -91,16 +92,19 @@ Status 200 OK
 ```
 ```json
 {
+    "host" : <host>
     "sessionId" : <session-uuid>
 }
 ```
 ```ini
+host         = *TEXT, host to be used by the client / player for all subsequent requests.
 session-uuid = *TEXT
 ```
 
 ##### Example
 ```json
 {
+    "host" : "vg652-uz6.platform-eu.ybrid.io"
     "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
 }
 ```
@@ -501,10 +505,10 @@ To prevent fraudulent use of this feature and the stream, the service checks
 If one of aboves conditions fails the advert will be inserted even if the parameter was set.
 
 ```http
-http://<HOSTNAME><PATH_TO_SERVICE>?sessionId=<session-uuid>&noPreAd=true
+http://<host><PATH_TO_SERVICE>?sessionId=<session-uuid>&noPreAd=true
 ```
 ```ini
-HOSTNAME        = See definition in section Introduction.
+host            = See definition in section create-session.
 PATH_TO_SERVICE = See definition in section Introduction.
 session-uuid    = See definition in section create-session.
 ```
