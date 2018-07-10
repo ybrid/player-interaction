@@ -63,7 +63,7 @@ Command  | Short Description
 [**show-meta**](#show-meta)  | Requesting current meta data of session.
 [**swap**](#swap)  | Swapping current content for alternative content if possible.
 [**swap-info**](#swap-info)  | Returns information about current swapping state.
-[**sync**](#sync)  | Syncing player with service.
+[~~**sync**~~](#sync)  | *(deprecated since 20180710)* Syncing player with service.
 
 ### create-session
 
@@ -442,7 +442,7 @@ next-swap-returns-to-main = See definition in swap section.
 }
 ```
 
-### sync
+### ~~sync~~ *(deprecated since 20180710)*
 Method for syncing player with service. Based on ICY meta data the service tries to determine how far the 
 player is behind playout's time. Therefore, this method is supported using Icecast transportation protocol 
 only. This call MUST NOT be called every time the StreamTitle field is updated in the stream. Rather, the 
