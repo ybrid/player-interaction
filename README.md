@@ -258,8 +258,8 @@ id                             = *TEXT, an id identifying the item.
 artist                         = *TEXT, can be empty.
 description                    = *TEXT, can be empty.
 title                          = *TEXT, can be empty.
-type                           = *TEXT, can be empty. If set to "unrecognized", type of item could not be 
-                                 detected.                                
+type                           = ( "ADVERTISEMENT" | "COMEDY" | "JINGLE" | "MUSIC" | "NEWS" | "VOICE" | "unrecognized" ) 
+                                 If set to "unrecognized", type of item could not be detected.
 duration-milliseconds          = 1*DIGIT, duration of item in milliseconds, can be -1 if not set.
 station-genre                  = *TEXT, can be empty.
 station-name                   = *TEXT, can be empty.
