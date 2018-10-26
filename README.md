@@ -1,5 +1,5 @@
 # player-interaction
-This document specifies how clients, or more specific players, interact with **YBRID, a Hybrid Dynamic Live Audio Platform**. As well, a demo player written in HTML5/JavaScript can be found in **src/demo/html5**.
+This document specifies how clients, or more specific players, interact with **Ybrid, a Hybrid Dynamic Live Audio Platform**. As well, a demo player written in HTML5/JavaScript can be found in **src/demo/html5**.
 
 ## Content
 * [**Introduction**](#introduction)
