@@ -551,4 +551,4 @@ fill-bytes   =
 @sebastian-weiss
 
 ### Copyright
-AddRadio - a division of nacamar GmbH 2017-2018
+YBRID, a Dynamic Audio Experience Technology developed by nacamar GmbH 2017-2018
