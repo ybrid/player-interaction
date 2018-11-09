@@ -3,126 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <title>ARAICYP Client</title>
-<link type="text/css" href="css/player.araicyp.css" rel="stylesheet" />
-<link type="text/css" href="css/jplayer.blue.monday.araicyp.css"
-	rel="stylesheet" />
-<script type="text/javascript" src="js/araicyp.js"></script>
-<script type="text/javascript" src="js/player.araicyp.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet">
+<link type="text/css" href="player.araicyp.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<script type="text/javascript" src="ybrid/tools.ybrid.js"></script>
+<script type="text/javascript" src="ybrid/core.ybrid.js"></script>
+<script type="text/javascript" src="ybrid/PlotDataSet.ybrid.js"></script>
+<script type="text/javascript" src="ybrid/plot.ybrid.js"></script>
+<script type="text/javascript" src="ybrid/player.ybrid.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript">
-	/** host of streaming server*/
-	var host = "democast.ybrid.io";
-	var scheme = "https";
-	
-	/** path of requested stream*/
-	var path = "stream.mp3";
+    /** host of streaming server*/
+    const scheme = 'https';
+    const host = 'democast.ybrid.io';
+    const path = '/stream.mp3';
 
-	var sessionId = null;
-
-	$(document)
-			.ready(
-					function() {
-
-						var stream = {
-							title : "",
-							mp3 : scheme + "://" + host + "/" + path
-						};
-						ready = false;
-
-						$("#jquery_jplayer_1")
-								.jPlayer(
-										{
-											ready : function() {
-												ready = true;
-												createSession(
-														scheme,
-														host,
-														path,
-														function(sessionIdVal) {
-															sessionId = sessionIdVal;
-															stream.mp3 += "?sessionId="
-																	+ sessionId;
-															$(this).jPlayer(
-																	"setMedia",
-																	stream);
-															startSwapInfoWatcher(scheme,
-																	host, path,
-																	sessionId);
-														});
-											},
-											pause : function() {
-												$(this).jPlayer("clearMedia");
-											},
-											error : function(event) {
-												if (ready
-														&& event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
-													// Setup the media stream again and play it.
-													$(this).jPlayer("setMedia",
-															stream).jPlayer(
-															"play");
-												}
-											},
-											cssSelectorAncestor : "#jp_container_1",
-											solution : "html",
-											supplied : "mp3",
-											preload : "none",
-											wmode : "window",
-											useStateClassSkin : true,
-											autoBlur : false,
-											smoothPlayBar : true,
-											keyEnabled : true,
-											remainingDuration : false,
-											toggleDuration : false
-										});
-					});
+    window.addEventListener('load', function() {
+        initConsole();
+        initPlots();
+        initAudio();
+    }, false);
 </script>
 </head>
 <body>
-	<div id="overlay">
-		<div id="loader"></div>
-	</div>
-	<div id="araicyp-container" class="araicyp-container">
-		<h1>Hybrid Dynamic Live Stream</h1>
-		<h2>Test&nbsp;Client</h2>
-		<!-- 		<p>Bla</p> -->
-		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-		<div id="jp_container_1" class="jp-audio-stream" role="application"
-			aria-label="media player">
-			<div class="jp-type-single">
-				<div class="jp-gui jp-interface">
-					<div class="jp-controls">
-						<button class="jp-play" role="button" tabindex="0">play</button>
-						<button class="jp-next" role="button" tabindex="0"
-							onclick="swapButtonClicked();">next</button>
-					</div>
-					<div class="jp-volume-controls">
-						<button class="jp-mute" role="button" tabindex="0">mute</button>
-						<button class="jp-volume-max" role="button" tabindex="0">max
-							volume</button>
-						<div class="jp-volume-bar">
-							<div class="jp-volume-bar-value"></div>
-						</div>
-					</div>
-					<!-- 				<div class="jp-time-holder"> -->
-					<!-- 					<div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div> -->
-					<!-- 					<div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div> -->
-					<!-- 					<div class="jp-toggles"> -->
-					<!-- 						<button class="jp-repeat" role="button" tabindex="0">repeat</button> -->
-					<!-- 					</div> -->
-					<!-- 				</div> -->
-				</div>
-				<!-- 				<div class="jp-details"> -->
-				<!-- 					<div class="jp-title" aria-label="title">&nbsp;</div> -->
-				<!-- 					<div class="jp-artist" aria-label="artist">&nbsp;</div> -->
-				<!-- 				</div> -->
-				<div class="jp-no-solution">
-					<span>Update Required</span> To play the media you will need to
-					update your browser to a recent version.
-				</div>
-
-			</div>
-		</div>
-	</div>
+    <div id="overlay">
+        <div id="loader-title">Swapping...</div>
+        <div id="loader">
+            <i class="fas fa-sync fa-spin" style="color: #000;"></i>
+        </div>
+    </div>
+    <div id="ad-overlay" onclick="document.getElementById('ad-overlay').style.display='none';">
+        <div id="companion"></div>
+    </div>
+    <div id="column1">
+        <textarea id="session-area"></textarea>
+        <textarea id="meta-area-2"></textarea>
+    </div>
+    <div id="column2">
+        <h1>ybrid</h1>
+        <h2>Hybrid Dynamic Live Audio</h2>
+        <h3>&mdash;&nbsp;Demonstration&nbsp;Client&nbsp;&mdash;</h3>
+        <p style="text-align: center; font-size: 48px">
+            <audio></audio>
+            <i id="play-button" class="fas fa-play-circle audioElement" onclick="togglePlay()" onmouseover=""></i>
+            &nbsp; <i id="swap-button" class="fas fa-sync audioElement" onclick="swapButtonClicked()"></i>
+        </p>
+        <form>
+            <p>
+                Select max. bit rate <input type="radio" id="contactChoice1" name="bitRateSelector" value="32000"
+                    onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)"> <label
+                    for="contactChoice1">32 kbps</label> <input type="radio" id="contactChoice2" name="bitRateSelector"
+                    value="80000" onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)">
+                <label for="contactChoice2">80 kbps</label> <input type="radio" id="contactChoice3"
+                    name="bitRateSelector" value="192000"
+                    onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)"> <label
+                    for="contactChoice3">192 kbps</label>
+            </p>
+        </form>
+        <div id="sub-column-2">
+        </div>
+    </div>
+    <div id="column3">
+        <div id="bandwidth-plot"></div>
+        <div id="buffer-plot"></div>
+        <textarea id="log-area"></textarea>
+    </div>
+    <div id="araicyp-container" class="araicyp-container"></div>
 </body>
 </html>
