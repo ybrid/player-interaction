@@ -1,8 +1,6 @@
 body {
 	color: white;
-	background-image: url("img/background.png");
-	background-repeat: no-repeat;
-	background-position: 35% 0%;
+	size: 100% 100 %;
 	/* 	background-color: rgb(30, 30, 30); */
 	background-color: black;
 	/* 	font-family: "Open Sans", sans-serif; */
@@ -188,12 +186,24 @@ h1 {
 	left: calc(50% - 150px);
 }
 
+#main {
+	position:fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	
+	background-image: url("http://www.ybrid.io/ydemo/img/ybrid-background.svg");
+	background-repeat: no-repeat;
+	background-position: 50% 20%;
+	background-size: 150% 150%;
+}
 #column1 {
 	position: fixed;
 	width: -webkit-calc(33% - 66px);
 	width: calc(33% - 66px);
-	height: -webkit-calc(100% - 160px);
-	height: calc(100% - 160px);
+	height: -webkit-calc(100% - 100px);
+	height: calc(100% - 100px);
 	top: 50px;
 	left: 45px;
 	background-color: rgba(0, 0, 0, 0);
@@ -210,12 +220,25 @@ h1 {
 	width: calc(33% - 76px);
 	height: -webkit-calc(100% - 170px);
 	height: calc(100% - 170px);
-	top: 50px;
+	top: 280px;
+	top: 280px;
 	left: -webkit-calc(33% + 29px);
 	left: calc(33% + 29px);
 	text-align: left;
 	padding: 5px;
 	z-index: 0;
+}
+
+#logo-in-column-2 {
+	position: fixed;
+	top: 50px;
+/* 	width: -webkit-calc(33% - 176px);
+	width: calc(33% - 176px);
+ */
+ 	width: 200px;
+	width: 200px;
+	left: -webkit-calc(33% + ((33% - 200px)/2));
+	left: calc(33% + ((33% - 200px)/2));
 }
 
 #column2 #sub-column-2 {
@@ -248,8 +271,8 @@ h1 {
 #column1 #meta-area-2 {
 	width: -webkit-calc(100% - 5px);
 	width: calc(100% - 5px);
-	height: -webkit-calc(100% - 155px);
-	height: calc(100% - 55px);
+	height: -webkit-calc(100% - 120px);
+	height: calc(100% - 120px);
 	/* 	background-color: rgb(240, 240, 240); */
 	background-color: rgba(0, 0, 0, 0.5);
 	font-family: "Overpass Mono", sans-serif;
@@ -263,15 +286,15 @@ h1 {
 	position: fixed;
 	width: -webkit-calc(33% - 66px);
 	width: calc(33% - 66px);
-	height: -webkit-calc(100% - 160px);
-	height: calc(100% - 160px);
+	height: -webkit-calc(100% - 100px);
+	height: calc(100% - 100px);
 	top: 50px;
 	left: -webkit-calc(66% + 12px);
 	left: calc(66% + 12px);
 	background-color: rgba(0, 0, 0, 0);
 	text-align: left;
 	padding: 5px;
-	font-size: 8px;
+	font-size: 8px;	
 	color: #00ff00;
 	z-index: 0;
 }
