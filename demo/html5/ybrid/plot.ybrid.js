@@ -28,14 +28,6 @@ function pushTimelineUntilNow(dataSet, length, value) {
     }
 }
 
-function push3DTimelineUntilNow(dataSet3D, length, dataSet) {
-    now = Date.now();
-    deltaTMillis = maxPlotTimeRangeMillis / length;
-    for (i = length; i > 0; i--) {
-        dataSet3D.push(dataSet, (now - (i * deltaTMillis)));
-    }
-}
-
 function initPlots() {
     bandwidthPlotter = document.getElementById(bandwidthPlotId);
     initPlot(bandwidthPlotter, bandwidthDS, 'Bandwidth', 'bps', 0, 192000, 'hv',
@@ -231,76 +223,3 @@ function initPlotBars(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
     });
 }
 
-function updatePlot3D(plotter, dataSet3D){
-    Plotly.update(plotter, {
-        z: [dataSet3D.convertToSurface()]
-    });
-}
-
-function initPlot3D(plotter, dataSet3D, plotTitle, zAxisTitle, minZ, maxZ,
-        shapeVal, filled, dtickVal) {
-    fillVal = 'none';
-    modeVal = 'lines';
-    if (filled) {
-        fillVal = 'tozeroy';
-        // modeVal = 'none';
-    }
-
-    Plotly.react(plotter, [ {
-        z : dataSet3D.convertToSurface(),
-//        type : 'heatmap',
-        type : 'surface',
-        zmin: minZ,
-        zmax: maxZ,
-        colorscale : [ [ 0, 'rgb(0, 64, 0)' ], [ 0.40, 'rgb(0, 255, 0)' ],
-                [ 0.55, 'rgb(255, 255, 0)' ], [ 0.8, 'rgb(255, 0, 255)' ] , [ 1.0, 'rgb(0, 255, 255)' ] ],
-        colorbar : {
-            thickness : 5,
-// title: 'dB',
-            range: [minZ, maxZ]
-        },
-        opacity : 1.0
-    } ], {
-        scene: {
-            xaxis : {
-                visible: false,
-                gridcolor: plotGridColor,
-                showaxeslabels:  false
-            },
-            yaxis : {
-                visible: false,
-                gridcolor: plotGridColor,
-                showaxeslabels:  false
-            },
-            zaxis : {
-                visible: true,
-                gridwidth: 2.0,
-                gridcolor: plotGridColor,
-                showaxeslabels:  false,
-                autorange: false,
-                range: [ minZ, maxZ ],
-                dtick : dtickVal,
-                title: zAxisTitle
-            },
-        },
-        font : {
-            family : plotFont,
-            color : '#fff'
-        },
-        autosize : true,
-        height : 298,
-        title : plotTitle,
-        titlefont : {
-            size : 12,
-        },
-        margin : {
-            l : 0,
-            r : 0,
-            b : 7,
-            t : 25,
-            pad : 5
-        },
-        paper_bgcolor : paperBackground,
-        plot_bgcolor : plotBackground
-    });
-}
