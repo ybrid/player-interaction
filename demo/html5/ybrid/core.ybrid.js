@@ -4,8 +4,6 @@
  * @author Sebastian A. Weiß (C) 2018 nacamar GmbH
  */
 
-const showCompanions = false;
-
 /**
  * @param {String}
  *            schemeVal - http or https
@@ -17,6 +15,7 @@ const showCompanions = false;
  *            sessionIdVal - session id
  * @param {int}
  *            maxBitRateVal - maximum bit rate
+ * @link https://github.com/ybrid/player-interaction#set-max-bit-rate
  */
 function setMaxBitRate(schemeVal, hostVal, pathVal, sessionIdVal, maxBitRateVal) {
     var xmlhttp = new XMLHttpRequest();
@@ -43,6 +42,7 @@ function setMaxBitRate(schemeVal, hostVal, pathVal, sessionIdVal, maxBitRateVal)
  *            pathVal - path of requested resource
  * @param {String}
  *            sessionIdVal - session id
+ * @link https://github.com/ybrid/player-interaction#swap
  */
 function swap(schemeVal, hostVal, pathVal, sessionIdVal) {
     var xmlhttp = new XMLHttpRequest();
@@ -66,6 +66,7 @@ function swap(schemeVal, hostVal, pathVal, sessionIdVal) {
  *            baseURL
  * @param {String}
  *            sessionIdVal - session id
+ * @link https://github.com/ybrid/player-interaction#swap-info
  */
 function swapInfo(baseURL, sessionIdVal) {
     var xmlhttp = new XMLHttpRequest();
@@ -133,6 +134,12 @@ function handleItemMetaURL(url) {
     xmlhttp.send();
 }
 
+/**
+ * Shows overlay with companion ad.  
+ * @param companionURL 
+ * @param {String} alt - alternative text / tooltip for companion 
+ * @param onClickThrough - event handler triggered on mouse click on companion
+ */
 function showCompanionAd(companionURL, alt, onClickThrough) {
     if (showCompanions) {
         var adOverlay = document.getElementById("ad-overlay");
@@ -159,6 +166,9 @@ function showCompanionAd(companionURL, alt, onClickThrough) {
     }
 }
 
+/**
+ * Hides companion ad overlay.
+ */
 function hideCompanionAd() {
     var adOverlay = document.getElementById("ad-overlay");
     adOverlay.style.display = "none";

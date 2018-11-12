@@ -19,7 +19,10 @@ var playoutBuffer;
 var startTS = -1;
 var maxTS;
 
-function initAudio() {
+function initAudioIfNeeded() {
+    if (typeof audioCtx !== 'undefined') {
+        return;
+    }
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     audio = document.querySelector('audio');
     var source = audioCtx.createMediaElementSource(audio);
@@ -33,8 +36,9 @@ function initAudio() {
     // source.connect(gainNode);
     // gainNode.connect(audioCtx.destination);
 
+    source.connect(audioCtx.destination);
+
     audio.addEventListener('canplay', function() {
-        logTimeRanges(sourceBuffer.buffered);
         audio.play();
         console.info("triggered playing...");
     });
@@ -142,6 +146,7 @@ function togglePlay() {
         playButton.classList.add("fa-pause-circle");
         initPlotLines();
         try {
+            initAudioIfNeeded();
             initMediaSource();
             var baseURL = createBaseURL(scheme, host, path);
             initializeBuffering(baseURL);
