@@ -7,7 +7,6 @@
 const acceptMimeType = 'application/x-ybrid-discrete';
 
 var audio;
-var analyser;
 var mimeCodec;
 var mediaSource;
 var sourceBuffer;
