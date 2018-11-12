@@ -14,8 +14,9 @@ form {
 }
 
 h1, h2, h3 {
-	font-family: "Poiret One", sans-serif;
+	font-family: "Comfortaa", sans-serif;
 	/* 	font-family: "Montserrat", sans-serif; */
+	font-weight: 400;
 	text-align: center;
 	margin-top: 0px;
 	margin-bottom: 0.5em;
@@ -34,7 +35,6 @@ h2 {
 }
 
 h1 {
-	font-family: "Audiowide", sans-serif;
 	margin-bottom: 0.1em;
 	/* 	text-align: center; */
 	font-size: 96px;
@@ -239,19 +239,6 @@ h1 {
 	width: 200px;
 	left: -webkit-calc(33% + ((33% - 200px)/2));
 	left: calc(33% + ((33% - 200px)/2));
-}
-
-#column2 #sub-column-2 {
-	position: inherit;
-	width: -webkit-calc(33% - 86px);
-	width: calc(33% - 86px);
-	height: 390px;
-	top: -webkit-calc(100% - 500px);
-	top: calc(100% - 500px);
-	background-color: rgba(0, 0, 0, 0);
-	font-size: 10px;
-	padding: 5px;
-	color: #00ff00;
 }
 
 #column1 #session-area {
