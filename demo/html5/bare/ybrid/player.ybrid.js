@@ -114,13 +114,13 @@ function buffer(baseURLVal, sessionId, callback) {
             delay = delay.toFixed(0);
             console.info("delay: " + delay);
             sourceBuffer.appendBuffer(chunk);
-            var url = headers.get('AR-Meta-Item-URL');
+            var url = headers.get(ARAICYP_HEADER_ITEM_URL);
             if (typeof url !== undefined && url != null) {
                 setTimeout(function() {
                     handleItemMetaURL(decodeURIComponent(url));
                 }, delay);
             }
-            var bitRate = headers.get('AR-CTRL-Current-Bit-Rate');
+            var bitRate = headers.get(ARAICYP_HEADER_CURRENT_BITRATE);
             if (typeof bitRate !== undefined && bitRate != null) {
                 console.info("Current bit rate: " + bitRate);
             }
@@ -158,15 +158,20 @@ function togglePlay() {
 }
 
 function spinningWheelOn() {
-    document.getElementById("overlay").style.display = "block";
+    var swapButton = document.getElementById("swap-button");
+    swapButton.classList.add('fa-spin');
+    swapButton.onclick = false;
     setTimeout(spinningWheelOff, 2000);
 }
 
 function spinningWheelOff() {
-    document.getElementById("overlay").style.display = "none";
+    var swapButton = document.getElementById("swap-button");
+    swapButton.classList.remove('fa-spin');
+    swapButton.onclick = swapButtonClicked;
 }
 
 function swapButtonClicked() {
     swap(scheme, host, path, sessionId);
     spinningWheelOn();
 }
+

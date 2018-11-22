@@ -27,9 +27,6 @@ h2 {
 h1 {
 	margin-bottom: 0.1em;
 	font-size: 96px;
-	color: #000;
-	text-shadow: -2px -2px 0 #f0f, 2px -2px 0 #f0f, -2px 2px 0 #f0f, 2px 2px
-		0 #f0f;
 }
 
 .audioElementDisabled {
@@ -59,60 +56,6 @@ h1 {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
-}
-
-/*
- * Spinning Wheel
- */
-#loader-title {
-	font-family: "Audiowide", sans-serif;
-	/* 	font-family: "Montserrat", sans-serif; */
-	position: absolute;
-	top: -webkit-calc(50% - 65px);
-	top: calc(50% - 65px);
-	left: -webkit-calc(50% - 100x);
-	left: calc(50% - 100px);
-	width: 64px;
-	font-size: 32px;
-	text-align: center;
-	vertical-align: center;
-	color: black;
-	text-shadow:
-		-1px -1px 0 #0f0,
-		1px -1px 0 #0f0,
-		-1px 1px 0 #0f0,
-		1px 1px 0 #0f0;
-	z-index: 99;
-}
-
-#loader {
-	position: absolute;
-	top: -webkit-calc(50% - 80px);
-	top: calc(50% - 80px);
-	left: -webkit-calc(50% - 40px);
-	left: calc(50% - 40px);
-	color: #000;
-	text-shadow: -2px -2px 0 #f0f, 2px -2px 0 #f0f, -2px 2px 0 #f0f, 2px 2px
-		0 #f0f;
-	font-size: 64px;
-	width: 64px;
-	height: 64px;
-}
-
-#overlay {
-	position: fixed; /* Sit on top of the page content */
-	display: none; /* Hidden by default */
-	width: 100%; /* Full width (cover the whole page) */
-	height: 100%; /* Full height (cover the whole page) */
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.8);
-	/* Black background with opacity */
-	z-index: 2;
-	/* Specify a stack order in case you're using a different order for other elements */
-	cursor: pointer; /* Add a pointer on hover */
 }
 
 #ad-overlay {

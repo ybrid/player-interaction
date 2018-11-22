@@ -92,12 +92,11 @@ function swapInfo(baseURL, sessionIdVal) {
 function handleSwapInfo(swapInfo) {
     var swapButton = document.getElementById("swap-button");
     if (swapInfo.swapsLeft == 0) {
-        // swapButton.classList.remove('fa-spin');
+        swapButton.classList.remove('fa-spin');
         swapButton.classList.remove('audioElement');
         swapButton.classList.add('audioElementDisabled');
         swapButton.onclick = false;
     } else {
-        // swapButton.classList.add('fa-spin');
         swapButton.classList.remove('audioElementDisabled');
         swapButton.classList.add('audioElement');
         swapButton.onclick = swapButtonClicked;
