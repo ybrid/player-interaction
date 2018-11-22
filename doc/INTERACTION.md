@@ -1,4 +1,4 @@
-# player-interaction
+# How a Player Should Interact with Ybrid
 This document specifies how clients, or more specific players, interact with **Ybrid, a Hybrid Dynamic Live Audio Platform**.
 
 ## Content
