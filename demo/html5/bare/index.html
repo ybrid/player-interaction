@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <title>Ybrid Demo Client</title>
 <link type="text/css" href="player.ybrid.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-<link rel="shortcut icon" type="image/png" href="http://www.ybrid.io/ybrid_fav.png" sizes="any">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+	integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+	crossorigin="anonymous">
+<link rel="shortcut icon" type="image/png"
+	href="http://www.ybrid.io/ybrid_fav.png" sizes="any">
 <script type="text/javascript" src="ybrid/conf.ybrid.js"></script>
 <script type="text/javascript" src="ybrid/araicyp.ybrid.js"></script>
 <script type="text/javascript" src="ybrid/tools.ybrid.js"></script>
@@ -14,32 +17,41 @@
 <script type="text/javascript" src="ybrid/player.ybrid.js"></script>
 </head>
 <body>
-    <div id="ad-overlay" onclick="document.getElementById('ad-overlay').style.display='none';">
-        <div id="companion"></div>
-    </div>
-    <div id="main">
-        <h2>Ybrid</h2>
-        <h3>Hybrid&nbsp;Dynamic&nbsp;Live&nbsp;Audio Demonstration&nbsp;Client</h3>
-        <div id="artist"></div>
-        <div id="title"></div>
-        <p style="text-align: center; font-size: 48px">
-            <audio></audio>
-            <i id="play-button" class="fas fa-play-circle audioElement" onclick="togglePlay()" onmouseover=""></i>
-            &nbsp; <i id="swap-button" class="fas fa-sync audioElement" onclick="swapButtonClicked()"></i>
-        </p>
-        <form>
-            <p>
-                Select max. bit rate <input type="radio" id="contactChoice1" name="bitRateSelector" value="32000"
-                    onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)"> <label
-                    for="contactChoice1">32 kbps</label> <input type="radio" id="contactChoice2" name="bitRateSelector"
-                    value="80000" onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)">
-                <label for="contactChoice2">80 kbps</label> <input type="radio" id="contactChoice3"
-                    name="bitRateSelector" value="192000"
-                    onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)"> <label
-                    for="contactChoice3">192 kbps</label>
-            </p>
-        </form>
-    </div>
-    <div id="araicyp-container" class="araicyp-container"></div>
+	<div id="ad-overlay"
+		onclick="document.getElementById('ad-overlay').style.display='none';">
+		<div id="companion"></div>
+	</div>
+	<div id="main">
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<h2>Ybrid</h2>
+		<h3>Hybrid&nbsp;Dynamic&nbsp;Live&nbsp;Audio
+			Demonstration&nbsp;Client</h3>
+		<div id="artist"></div>
+		<div id="title"></div>
+		<p style="text-align: center; font-size: 48px">
+			<audio></audio>
+			<i id="play-button" class="fas fa-play-circle audioElement"
+				onclick="togglePlay()" onmouseover=""></i> &nbsp; <i
+				id="swap-button" class="fas fa-sync audioElement"
+				onclick="swapButtonClicked()"></i>
+		</p>
+		<form>
+			<p>
+				Select max. bit rate <input type="radio" id="contactChoice1"
+					name="bitRateSelector" value="32000"
+					onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)">
+				<label for="contactChoice1">32 kbps</label> <input type="radio"
+					id="contactChoice2" name="bitRateSelector" value="80000"
+					onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)">
+				<label for="contactChoice2">80 kbps</label> <input type="radio"
+					id="contactChoice3" name="bitRateSelector" value="192000"
+					onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)">
+				<label for="contactChoice3">192 kbps</label>
+			</p>
+		</form>
+	</div>
+	<div id="araicyp-container" class="araicyp-container"></div>
 </body>
 </html>
