@@ -126,6 +126,10 @@ function handleItemMetaURL(url) {
             }
             document.getElementById("artist").innerHTML = result.currentItem.artist;
             document.getElementById("title").innerHTML = result.currentItem.title;
+            if(result.timeToNextItemMillis > -1){
+            	var secs = result.timeToNextItemMillis / 1000
+                document.getElementById("ttni").innerHTML = secs.toFixed(1) + " sec.";
+            }
             handleSwapInfo(result.swapInfo);
         }
     };
