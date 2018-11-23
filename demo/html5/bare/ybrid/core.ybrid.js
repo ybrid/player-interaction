@@ -124,6 +124,8 @@ function handleItemMetaURL(url) {
             } else {
                 hideCompanionAd();
             }
+            document.getElementById("artist").innerHTML = result.currentItem.artist;
+            document.getElementById("title").innerHTML = result.currentItem.title;
             handleSwapInfo(result.swapInfo);
         }
     };
