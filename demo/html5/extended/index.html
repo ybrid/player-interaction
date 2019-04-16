@@ -14,7 +14,8 @@
 <link rel="shortcut icon" type="image/png" href="http://www.ybrid.io/ybrid_fav.png" sizes="any">
 <script type="text/javascript" src="ybrid/conf.ybrid.js"></script>
 <script type="text/javascript" src="../common/tools.ybrid.js"></script>
-<script type="text/javascript" src="ybrid/core.ybrid.js"></script>
+<script type="text/javascript" src="../common/core.ybrid.js"></script>
+<script type="text/javascript" src="ybrid/core-extension.ybrid.js"></script>
 <script type="text/javascript" src="ybrid/PlotDataSet.ybrid.js"></script>
 <script type="text/javascript" src="ybrid/plot.ybrid.js"></script>
 <script type="text/javascript" src="ybrid/player.ybrid.js"></script>
@@ -28,7 +29,7 @@
 </head>
 <body>
     <div id="overlay">
-        <div id="loader-title">Swapping...</div>
+        <div id="loader-title">Please wait...</div>
         <div id="loader">
             <i class="fas fa-sync fa-spin" style="color: #000;"></i>
         </div>
@@ -45,10 +46,14 @@
         <div id="column2">
             <h2>Hybrid Dynamic Live Audio</h2>
             <h3>&mdash;&nbsp;Demonstration&nbsp;Client&nbsp;&mdash;</h3>
-            <p style="text-align: center; font-size: 48px">
+            <p class="control">
                 <audio></audio>
-                <i id="play-button" class="fas fa-play-circle audioElement" onclick="togglePlay()" onmouseover=""></i>
-                &nbsp; <i id="swap-button" class="fas fa-sync audioElement" onclick="swapButtonClicked()"></i>
+                <i id="skip-backwards-button" class="fas fa-fast-backward audioElementDisabled" onclick="" onmouseover=""></i> &nbsp; 
+                <i id="rewind-button" class="fas fa-backward audioElementDisabled" onclick="" onmouseover=""></i> &nbsp; 
+                <i id="play-button" class="fas fa-play audioElement" onclick="togglePlay()" onmouseover=""></i> &nbsp; 
+                <i id="swap-button" class="fas fa-sync audioElementDisabled" onclick=""></i> &nbsp;
+                <i id="fast-forward-button" class="fas fa-forward audioElementDisabled" onclick="" onmouseover=""></i> &nbsp; 
+                <i id="skip-forwards-button" class="fas fa-fast-forward audioElementDisabled" onclick="" onmouseover=""></i> 
             </p>
             <form>
                 <p>

@@ -1,6 +1,6 @@
 body {
 	color: white;
-	size: 100% 100 %;
+	size: 100% 100%;
 	/* 	background-color: rgb(30, 30, 30); */
 	background-color: black;
 	/* 	font-family: "Open Sans", sans-serif; */
@@ -60,13 +60,17 @@ h1 {
 	background: #ff00ff;
 }
 
+.control {
+	font-size: 40px;
+	background-color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+}
+
 .audioElementDisabled {
-	font-size: 64px;
 	color: grey;
 }
 
 .audioElement {
-	font-size: 64px;
 	color: white;
 }
 
@@ -96,20 +100,17 @@ h1 {
 	font-family: "Audiowide", sans-serif;
 	/* 	font-family: "Montserrat", sans-serif; */
 	position: absolute;
-	top: -webkit-calc(50% - 65px);
-	top: calc(50% - 65px);
-	left: -webkit-calc(50% - 100x);
-	left: calc(50% - 100px);
-	width: 64px;
+	top: -webkit-calc(50% - 60px);
+	top: calc(50% - 60px);
+	left: -webkit-calc(50% - 150px);
+	left: calc(50% - 150px);
+	width: 284px;
 	font-size: 32px;
 	text-align: center;
 	vertical-align: center;
 	color: black;
-	text-shadow:
-		-1px -1px 0 #0f0,
-		1px -1px 0 #0f0,
-		-1px 1px 0 #0f0,
-		1px 1px 0 #0f0;
+	text-shadow: -1px -1px 0 #0f0, 1px -1px 0 #0f0, -1px 1px 0 #0f0, 1px 1px
+		0 #0f0;
 	z-index: 99;
 }
 
@@ -117,8 +118,8 @@ h1 {
 	position: absolute;
 	top: -webkit-calc(50% - 80px);
 	top: calc(50% - 80px);
-	left: -webkit-calc(50% - 40px);
-	left: calc(50% - 40px);
+	left: -webkit-calc(50% - 45px);
+	left: calc(50% - 45px);
 	/*     border: 6px solid rgba(0, 0, 0, 0); */
 	/*     border-radius: 50%; */
 	/* /*     border-top: 6px solid rgb(239, 121, 24); */ */
@@ -187,17 +188,18 @@ h1 {
 }
 
 #main {
-	position:fixed;
+	position: fixed;
 	top: 0px;
 	left: 0px;
 	height: 100%;
 	width: 100%;
-	
-	background-image: url("http://www.ybrid.io/ydemo/img/ybrid-background.svg");
+	background-image:
+		url("http://www.ybrid.io/ydemo/img/ybrid-background.svg");
 	background-repeat: no-repeat;
 	background-position: 50% 20%;
 	background-size: 150% 150%;
 }
+
 #column1 {
 	position: fixed;
 	width: -webkit-calc(33% - 66px);
@@ -232,13 +234,13 @@ h1 {
 #logo-in-column-2 {
 	position: fixed;
 	top: 50px;
-/* 	width: -webkit-calc(33% - 176px);
+	/* 	width: -webkit-calc(33% - 176px);
 	width: calc(33% - 176px);
  */
- 	width: 200px;
 	width: 200px;
-	left: -webkit-calc(33% + ((33% - 200px)/2));
-	left: calc(33% + ((33% - 200px)/2));
+	width: 200px;
+	left: -webkit-calc(33% + (( 33% - 200px)/2));
+	left: calc(33% + (( 33% - 200px)/2));
 }
 
 #column1 #session-area {
@@ -250,7 +252,7 @@ h1 {
 	font-family: "Overpass Mono", sans-serif;
 	font-size: 10px;
 	color: #00ff00;
-    margin-bottom: 6px;
+	margin-bottom: 6px;
 	/*     border: solid 1px rgb(169, 169, 169); */
 	border: dotted 1px rgb(255, 255, 0);
 }
@@ -281,7 +283,7 @@ h1 {
 	background-color: rgba(0, 0, 0, 0);
 	text-align: left;
 	padding: 5px;
-	font-size: 8px;	
+	font-size: 8px;
 	color: #00ff00;
 	z-index: 0;
 }

@@ -141,8 +141,14 @@ function togglePlay() {
     var playButton = document.getElementById("play-button");
     if (stopped == true) {
         stopped = false;
-        playButton.classList.remove("fa-play-circle");
-        playButton.classList.add("fa-pause-circle");
+        playButton.classList.remove("fa-play");
+        playButton.classList.add("fa-pause");
+        
+        enableCTRLButton(document.getElementById("skip-backwards-button"), skipBackwardsButtonClicked);
+        enableCTRLButton(document.getElementById("rewind-button"), rewindButtonClicked);
+        enableCTRLButton(document.getElementById("fast-forward-button"), fastForwardButtonClicked);
+        enableCTRLButton(document.getElementById("skip-forwards-button"), skipForwardsButtonClicked);
+        
         initPlotLines();
         try {
             initAudioIfNeeded();
@@ -154,8 +160,14 @@ function togglePlay() {
         }
     } else {
         stopped = true;
-        playButton.classList.remove("fa-pause-circle");
-        playButton.classList.add("fa-play-circle");
+        playButton.classList.remove("fa-pause");
+        playButton.classList.add("fa-play");
+
+        disableCTRLButton(document.getElementById("skip-backwards-button"));
+        disableCTRLButton(document.getElementById("rewind-button"));
+        disableCTRLButton(document.getElementById("fast-forward-button"));
+        disableCTRLButton(document.getElementById("skip-forwards-button"));
+
         audio.pause();
         console.info("stopped");
     }
@@ -174,3 +186,25 @@ function swapButtonClicked() {
     swap(scheme, host, path, sessionId);
     spinningWheelOn();
 }
+
+function rewindButtonClicked() {
+    rewind(scheme, host, path, sessionId);
+    spinningWheelOn();
+}
+
+function fastForwardButtonClicked() {
+    fastForward(scheme, host, path, sessionId);
+    spinningWheelOn();
+}
+
+function skipBackwardsButtonClicked() {
+    skipBackwards(scheme, host, path, sessionId);
+    spinningWheelOn();
+}
+
+function skipForwardsButtonClicked() {
+    skipForwards(scheme, host, path, sessionId);
+    spinningWheelOn();
+}
+
+
