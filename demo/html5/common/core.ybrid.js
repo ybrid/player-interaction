@@ -191,25 +191,6 @@ function swapInfo(baseURL, sessionIdVal) {
 }
 
 /**
- * @param button
- * @param clickFunction
- */
-function enableCTRLButton(button, clickFunction) {
-    button.classList.remove('audioElementDisabled');
-    button.classList.add('audioElement');
-    button.onclick = clickFunction;
-}
-
-/**
- * @param button
- */
-function disableCTRLButton(button) {
-    button.classList.remove('audioElement');
-    button.classList.add('audioElementDisabled');
-    button.onclick = false;
-}
-
-/**
  * Shows overlay with companion ad.
  * 
  * @param companionURL

@@ -15,7 +15,7 @@ function handleSwapInfo(swapInfo) {
         swapButton.classList.remove('fa-spin');
         disableCTRLButton(swapButton);
     } else {
-        enableCTRLButton(swapBbutton, swapButtonClicked)
+        enableCTRLButton(swapButton, swapButtonClicked)
     }
 }
 

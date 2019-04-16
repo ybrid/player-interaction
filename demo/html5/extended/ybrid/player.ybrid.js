@@ -143,11 +143,7 @@ function togglePlay() {
         stopped = false;
         playButton.classList.remove("fa-play");
         playButton.classList.add("fa-pause");
-        
-        enableCTRLButton(document.getElementById("skip-backwards-button"), skipBackwardsButtonClicked);
-        enableCTRLButton(document.getElementById("rewind-button"), rewindButtonClicked);
-        enableCTRLButton(document.getElementById("fast-forward-button"), fastForwardButtonClicked);
-        enableCTRLButton(document.getElementById("skip-forwards-button"), skipForwardsButtonClicked);
+        enableAllCTRL();
         
         initPlotLines();
         try {
@@ -162,11 +158,8 @@ function togglePlay() {
         stopped = true;
         playButton.classList.remove("fa-pause");
         playButton.classList.add("fa-play");
-
-        disableCTRLButton(document.getElementById("skip-backwards-button"));
-        disableCTRLButton(document.getElementById("rewind-button"));
-        disableCTRLButton(document.getElementById("fast-forward-button"));
-        disableCTRLButton(document.getElementById("skip-forwards-button"));
+        disableAllCTRL();
+        disableCTRLButton(document.getElementById("swap-button"));
 
         audio.pause();
         console.info("stopped");

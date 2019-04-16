@@ -28,13 +28,15 @@ h1 {
 	font-size: 96px;
 }
 
+.control {
+	font-size: 40px;
+}
+
 .audioElementDisabled {
-	font-size: 64px;
 	color: grey;
 }
 
 .audioElement {
-	font-size: 64px;
 	color: black;
 }
 
@@ -83,10 +85,9 @@ h1 {
 }
 
 #main {
-	position:fixed;
+	position: fixed;
 	top: 0px;
 	left: 0px;
 	height: 100%;
 	width: 100%;
 }
-

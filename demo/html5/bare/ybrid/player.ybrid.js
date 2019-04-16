@@ -138,8 +138,10 @@ function togglePlay() {
     var playButton = document.getElementById("play-button");
     if (stopped == true) {
         stopped = false;
-        playButton.classList.remove("fa-play-circle");
-        playButton.classList.add("fa-pause-circle");
+        playButton.classList.remove("fa-play");
+        playButton.classList.add("fa-pause");
+        enableAllCTRL();
+
         try {
             initAudioIfNeeded();
             initMediaSource();
@@ -150,8 +152,11 @@ function togglePlay() {
         }
     } else {
         stopped = true;
-        playButton.classList.remove("fa-pause-circle");
-        playButton.classList.add("fa-play-circle");
+        playButton.classList.remove("fa-pause");
+        playButton.classList.add("fa-play");
+        disableAllCTRL();
+        disableCTRLButton(document.getElementById("swap-button"));
+        
         audio.pause();
         console.info("stopped");
     }
@@ -161,6 +166,7 @@ function spinningWheelOn() {
     var swapButton = document.getElementById("swap-button");
     swapButton.classList.add('fa-spin');
     swapButton.onclick = false;
+    disableAllCTRL();
     setTimeout(spinningWheelOff, 2000);
 }
 
@@ -168,6 +174,7 @@ function spinningWheelOff() {
     var swapButton = document.getElementById("swap-button");
     swapButton.classList.remove('fa-spin');
     swapButton.onclick = swapButtonClicked;
+    enableAllCTRL();
 }
 
 function swapButtonClicked() {
@@ -175,3 +182,22 @@ function swapButtonClicked() {
     spinningWheelOn();
 }
 
+function rewindButtonClicked() {
+    rewind(scheme, host, path, sessionId);
+    spinningWheelOn();
+}
+
+function fastForwardButtonClicked() {
+    fastForward(scheme, host, path, sessionId);
+    spinningWheelOn();
+}
+
+function skipBackwardsButtonClicked() {
+    skipBackwards(scheme, host, path, sessionId);
+    spinningWheelOn();
+}
+
+function skipForwardsButtonClicked() {
+    skipForwards(scheme, host, path, sessionId);
+    spinningWheelOn();
+}
