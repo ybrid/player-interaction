@@ -177,27 +177,3 @@ function spinningWheelOff() {
     enableAllCTRL();
 }
 
-function swapButtonClicked() {
-    swap(scheme, host, path, sessionId);
-    spinningWheelOn();
-}
-
-function rewindButtonClicked() {
-    rewind(scheme, host, path, sessionId);
-    spinningWheelOn();
-}
-
-function fastForwardButtonClicked() {
-    fastForward(scheme, host, path, sessionId);
-    spinningWheelOn();
-}
-
-function skipBackwardsButtonClicked() {
-    skipBackwards(scheme, host, path, sessionId);
-    spinningWheelOn();
-}
-
-function skipForwardsButtonClicked() {
-    skipForwards(scheme, host, path, sessionId);
-    spinningWheelOn();
-}

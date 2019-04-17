@@ -42,43 +42,16 @@ function setMaxBitRate(schemeVal, hostVal, pathVal, sessionIdVal, maxBitRateVal)
  *            pathVal - path of requested resource
  * @param {String}
  *            sessionIdVal - session id
- * @link https://github.com/ybrid/player-interaction#rewind
+ * @link https://github.com/ybrid/player-interaction#wind
  */
-function rewind(schemeVal, hostVal, pathVal, sessionIdVal) {
+function wind(schemeVal, hostVal, pathVal, sessionIdVal, duration) {
     var xmlhttp = new XMLHttpRequest();
-    var url = schemeVal + "://" + hostVal + pathVal
-            + "/ctrl/rewind?duration=60000&sessionId=" + sessionIdVal;
+    var url = schemeVal + "://" + hostVal + pathVal + "/ctrl/wind?duration="
+            + duration + "&sessionId=" + sessionIdVal;
     xmlhttp.onreadystatechange = function() {
         if (((this.readyState == 4)) && ((this.status == 200))) {
             var response = JSON.parse(this.responseText);
             console.info("rewind result [requestedDuration: "
-                    + response.requestedDuration + ", effectiveDuration: "
-                    + response.effectiveDuration + "].");
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-}
-
-/**
- * @param {String}
- *            schemeVal - http or https
- * @param {String}
- *            hostVal - host of streaming server
- * @param {String}
- *            pathVal - path of requested resource
- * @param {String}
- *            sessionIdVal - session id
- * @link https://github.com/ybrid/player-interaction#fast-forward
- */
-function fastForward(schemeVal, hostVal, pathVal, sessionIdVal) {
-    var xmlhttp = new XMLHttpRequest();
-    var url = schemeVal + "://" + hostVal + pathVal
-            + "/ctrl/fast-forward?duration=60000&sessionId=" + sessionIdVal;
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var response = JSON.parse(this.responseText);
-            console.info("fast forward result [requestedDuration: "
                     + response.requestedDuration + ", effectiveDuration: "
                     + response.effectiveDuration + "].");
         }
