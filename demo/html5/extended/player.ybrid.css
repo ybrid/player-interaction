@@ -62,20 +62,20 @@ h1 {
 
 .control {
 	font-size: 40px;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(255, 255, 255, 0.4);
 	text-align: center;
 }
 
 .audioElementDisabled {
-	color: grey;
+	color: black;
 }
 
 .audioElement {
-	color: white;
+	color: #fff;
 }
 
 .audioElement:hover {
-	color: #ff00ff;
+	color: #f0f;
 }
 
 .audioElement:active {
