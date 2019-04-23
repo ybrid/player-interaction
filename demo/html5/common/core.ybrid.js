@@ -69,6 +69,32 @@ function wind(schemeVal, hostVal, pathVal, sessionIdVal, duration) {
  *            pathVal - path of requested resource
  * @param {String}
  *            sessionIdVal - session id
+ * @link https://github.com/ybrid/player-interaction#back-to-now
+ */
+function backToNow(schemeVal, hostVal, pathVal, sessionIdVal) {
+    var xmlhttp = new XMLHttpRequest();
+    var url = schemeVal + "://" + hostVal + pathVal + "/ctrl/back-to-now?sessionId=" + sessionIdVal;
+    xmlhttp.onreadystatechange = function() {
+        if (((this.readyState == 4)) && ((this.status == 200))) {
+            var response = JSON.parse(this.responseText);
+            console.info("rewind result [requestedDuration: "
+                    + response.requestedDuration + ", effectiveDuration: "
+                    + response.effectiveDuration + "].");
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+/**
+ * @param {String}
+ *            schemeVal - http or https
+ * @param {String}
+ *            hostVal - host of streaming server
+ * @param {String}
+ *            pathVal - path of requested resource
+ * @param {String}
+ *            sessionIdVal - session id
  * @link https://github.com/ybrid/player-interaction#skipt-backwards
  */
 function skipBackwards(schemeVal, hostVal, pathVal, sessionIdVal) {

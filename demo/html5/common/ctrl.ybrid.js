@@ -17,6 +17,7 @@ function enableCTRLButton(button, clickFunction) {
 function enableAllCTRL(){
     enableCTRLButton(document.getElementById("skip-backwards-button"), skipBackwardsButtonClicked);
     enableCTRLButton(document.getElementById("rewind-button"), rewindButtonClicked);
+    enableCTRLButton(document.getElementById("back-to-now-button"), backToNowButtonClicked);
     enableCTRLButton(document.getElementById("fast-forward-button"), fastForwardButtonClicked);
     enableCTRLButton(document.getElementById("skip-forwards-button"), skipForwardsButtonClicked);
 }
@@ -33,6 +34,7 @@ function disableCTRLButton(button) {
 function disableAllCTRL(){
     disableCTRLButton(document.getElementById("skip-backwards-button"));
     disableCTRLButton(document.getElementById("rewind-button"));
+    disableCTRLButton(document.getElementById("back-to-now-button"));
     disableCTRLButton(document.getElementById("fast-forward-button"));
     disableCTRLButton(document.getElementById("skip-forwards-button"));
 }
@@ -44,6 +46,11 @@ function swapButtonClicked() {
 
 function rewindButtonClicked() {
     wind(scheme, host, path, sessionId, -60000);
+    spinningWheelOn();
+}
+
+function backToNowButtonClicked() {
+    backToNow(scheme, host, path, sessionId);
     spinningWheelOn();
 }
 
