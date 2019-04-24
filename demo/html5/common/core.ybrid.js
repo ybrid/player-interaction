@@ -123,7 +123,6 @@ function skipForwards(schemeVal, hostVal, pathVal, sessionIdVal) {
     var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal
             + "/ctrl/skip-forwards?sessionId=" + sessionIdVal;
-console.info(url);
     xmlhttp.onreadystatechange = function() {
         if (((this.readyState == 4)) && ((this.status == 200))) {
             var response = JSON.parse(this.responseText);

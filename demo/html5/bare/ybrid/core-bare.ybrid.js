@@ -59,15 +59,17 @@ function handleItemMetaURL(url) {
  *            windResult
  */
 function handleWindResult(windResult) {
-    var backToNowButton = document.getElementById("back-to-now-button");
-    if (windResult.totalOffset == 0) {
-        disableCTRLButton(backToNowButton);
-    } else {
-        enableCTRLButton(backToNowButton, backToNowButtonClicked)
-    }
-    var secs = windResult.totalOffset / 1000;
-    document.getElementById("otn").innerHTML = secs.toFixed(1) + " sec.";
     console.info("wind result [totalOffset: " + windResult.totalOffset
             + ", effectiveWindDuration: " + windResult.effectiveWindDuration
             + "].");
+    if (windResult.effectiveWindDuration != -1){
+        var backToNowButton = document.getElementById("back-to-now-button");
+        if (windResult.totalOffset == 0) {
+            disableCTRLButton(backToNowButton);
+        } else {
+            enableCTRLButton(backToNowButton, backToNowButtonClicked)
+        }
+        var secs = windResult.totalOffset / 1000;
+        document.getElementById("otn").innerHTML = secs.toFixed(1) + " sec.";
+    }
 }
