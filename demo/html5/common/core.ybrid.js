@@ -51,9 +51,7 @@ function wind(schemeVal, hostVal, pathVal, sessionIdVal, duration) {
     xmlhttp.onreadystatechange = function() {
         if (((this.readyState == 4)) && ((this.status == 200))) {
             var response = JSON.parse(this.responseText);
-            console.info("rewind result [requestedDuration: "
-                    + response.requestedDuration + ", effectiveDuration: "
-                    + response.effectiveDuration + "].");
+            handleWindResult(response);
         }
     };
     xmlhttp.open("GET", url, true);
@@ -73,13 +71,12 @@ function wind(schemeVal, hostVal, pathVal, sessionIdVal, duration) {
  */
 function backToNow(schemeVal, hostVal, pathVal, sessionIdVal) {
     var xmlhttp = new XMLHttpRequest();
-    var url = schemeVal + "://" + hostVal + pathVal + "/ctrl/back-to-now?sessionId=" + sessionIdVal;
+    var url = schemeVal + "://" + hostVal + pathVal
+            + "/ctrl/back-to-now?sessionId=" + sessionIdVal;
     xmlhttp.onreadystatechange = function() {
         if (((this.readyState == 4)) && ((this.status == 200))) {
             var response = JSON.parse(this.responseText);
-            console.info("rewind result [requestedDuration: "
-                    + response.requestedDuration + ", effectiveDuration: "
-                    + response.effectiveDuration + "].");
+            handleWindResult(response);
         }
     };
     xmlhttp.open("GET", url, true);
@@ -104,8 +101,7 @@ function skipBackwards(schemeVal, hostVal, pathVal, sessionIdVal) {
     xmlhttp.onreadystatechange = function() {
         if (((this.readyState == 4)) && ((this.status == 200))) {
             var response = JSON.parse(this.responseText);
-            console.info("skip result [skippedMilliseconds: "
-                    + response.skippedMilliseconds + "].");
+            handleWindResult(response);
         }
     };
     xmlhttp.open("GET", url, true);
@@ -127,11 +123,11 @@ function skipForwards(schemeVal, hostVal, pathVal, sessionIdVal) {
     var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal
             + "/ctrl/skip-forwards?sessionId=" + sessionIdVal;
+console.info(url);
     xmlhttp.onreadystatechange = function() {
         if (((this.readyState == 4)) && ((this.status == 200))) {
             var response = JSON.parse(this.responseText);
-            console.info("skip result [skippedMilliseconds: "
-                    + response.skippedMilliseconds + "].");
+            handleWindResult(response);
         }
     };
     xmlhttp.open("GET", url, true);

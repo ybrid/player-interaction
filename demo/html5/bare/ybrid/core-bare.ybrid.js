@@ -42,9 +42,10 @@ function handleItemMetaURL(url) {
             }
             document.getElementById("artist").innerHTML = result.currentItem.artist;
             document.getElementById("title").innerHTML = result.currentItem.title;
-            if(result.timeToNextItemMillis > -1){
-            	var secs = result.timeToNextItemMillis / 1000
-                document.getElementById("ttni").innerHTML = secs.toFixed(1) + " sec.";
+            if (result.timeToNextItemMillis > -1) {
+                var secs = result.timeToNextItemMillis / 1000
+                document.getElementById("ttni").innerHTML = secs.toFixed(1)
+                        + " sec.";
             }
             handleSwapInfo(result.swapInfo);
         }
@@ -53,3 +54,20 @@ function handleItemMetaURL(url) {
     xmlhttp.send();
 }
 
+/**
+ * @param {Object}
+ *            windResult
+ */
+function handleWindResult(windResult) {
+    var backToNowButton = document.getElementById("back-to-now-button");
+    if (windResult.totalOffset == 0) {
+        disableCTRLButton(backToNowButton);
+    } else {
+        enableCTRLButton(backToNowButton, backToNowButtonClicked)
+    }
+    var secs = windResult.totalOffset / 1000;
+    document.getElementById("otn").innerHTML = secs.toFixed(1) + " sec.";
+    console.info("wind result [totalOffset: " + windResult.totalOffset
+            + ", effectiveWindDuration: " + windResult.effectiveWindDuration
+            + "].");
+}

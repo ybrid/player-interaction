@@ -17,7 +17,6 @@ function enableCTRLButton(button, clickFunction) {
 function enableAllCTRL(){
     enableCTRLButton(document.getElementById("skip-backwards-button"), skipBackwardsButtonClicked);
     enableCTRLButton(document.getElementById("rewind-button"), rewindButtonClicked);
-    enableCTRLButton(document.getElementById("back-to-now-button"), backToNowButtonClicked);
     enableCTRLButton(document.getElementById("fast-forward-button"), fastForwardButtonClicked);
     enableCTRLButton(document.getElementById("skip-forwards-button"), skipForwardsButtonClicked);
 }
