@@ -62,7 +62,7 @@ function handleWindResult(windResult) {
     console.info("wind result [totalOffset: " + windResult.totalOffset
             + ", effectiveWindDuration: " + windResult.effectiveWindDuration
             + "].");
-    if (windResult.effectiveWindDuration != -1){
+    if (windResult.windRequestWasSuccessfull){
         var backToNowButton = document.getElementById("back-to-now-button");
         if (windResult.totalOffset == 0) {
             disableCTRLButton(backToNowButton);

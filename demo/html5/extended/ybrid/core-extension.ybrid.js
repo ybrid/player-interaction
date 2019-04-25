@@ -58,15 +58,15 @@ function handleWindResult(windResult) {
     console.info("wind result [totalOffset: " + windResult.totalOffset
             + ", effectiveWindDuration: " + windResult.effectiveWindDuration
             + "].");
-    if (windResult.effectiveWindDuration != -1) {
+    var niceJson = JSON.stringify(windResult, undefined, 4);
+    document.getElementById("wind-result-area").innerHTML = niceJson;
+    if (windResult.windRequestWasSuccessfull) {
         var backToNowButton = document.getElementById("back-to-now-button");
         if (windResult.totalOffset == 0) {
             disableCTRLButton(backToNowButton);
         } else {
             enableCTRLButton(backToNowButton, backToNowButtonClicked)
         }
-        // var secs = windResult.totalOffset / 1000;
-        // document.getElementById("otn").innerHTML = secs.toFixed(1) + " sec.";
     }
 }
 

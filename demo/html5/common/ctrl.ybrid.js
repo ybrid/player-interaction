@@ -58,6 +58,16 @@ function fastForwardButtonClicked() {
     spinningWheelOn();
 }
 
+function skipBackwardsTypedButtonClicked(requestedItemType) {
+    skipBackwards(scheme, host, path, sessionId, requestedItemType);
+    spinningWheelOn();
+}
+
+function skipForwardsTypedButtonClicked(requestedItemType) {
+    skipForwards(scheme, host, path, sessionId, requestedItemType);
+    spinningWheelOn();
+}
+
 function skipBackwardsButtonClicked() {
     skipBackwards(scheme, host, path, sessionId);
     spinningWheelOn();

@@ -41,6 +41,7 @@
     <div id="main">
         <div id="column1">
             <textarea id="session-area"></textarea>
+            <textarea id="wind-result-area"></textarea>
             <textarea id="meta-area-2"></textarea>
         </div>
         <img id="logo-in-column-2" src="http://www.ybrid.io/ydemo/img/ybrid_colored.png" />
@@ -49,13 +50,15 @@
             <h3>&mdash;&nbsp;Demonstration&nbsp;Client&nbsp;&mdash;</h3>
             <p class="control">
                 <audio></audio>
-                <i id="skip-backwards-button" class="fas fa-fast-backward audioElementDisabled" onclick="" onmouseover=""></i> &nbsp; 
-                <i id="rewind-button" class="fas fa-backward audioElementDisabled" onclick="" onmouseover=""></i> &nbsp; 
-                <i id="back-to-now-button" class="fas fa-level-down-alt audioElementDisabled" onclick="" onmouseover=""></i> &nbsp; 
-                <i id="play-button" class="fas fa-play audioElement" onclick="togglePlay()" onmouseover=""></i> &nbsp; 
-                <i id="swap-button" class="fas fa-sync audioElementDisabled" onclick=""></i> &nbsp;
-                <i id="fast-forward-button" class="fas fa-forward audioElementDisabled" onclick="" onmouseover=""></i> &nbsp; 
-                <i id="skip-forwards-button" class="fas fa-fast-forward audioElementDisabled" onclick="" onmouseover=""></i> 
+                <i id="skip-backwards-button" class="fas fa-fast-backward audioElementDisabled" onclick=""
+                    onmouseover=""></i> &nbsp; <i id="rewind-button" class="fas fa-backward audioElementDisabled"
+                    onclick="" onmouseover=""></i> &nbsp; <i id="back-to-now-button"
+                    class="fas fa-level-down-alt audioElementDisabled" onclick="" onmouseover=""></i> &nbsp; <i
+                    id="play-button" class="fas fa-play audioElement" onclick="togglePlay()" onmouseover=""></i> &nbsp;
+                <i id="swap-button" class="fas fa-sync audioElementDisabled" onclick=""></i> &nbsp; <i
+                    id="fast-forward-button" class="fas fa-forward audioElementDisabled" onclick="" onmouseover=""></i>
+                &nbsp; <i id="skip-forwards-button" class="fas fa-fast-forward audioElementDisabled" onclick=""
+                    onmouseover=""></i>
             </p>
             <form>
                 <p>
@@ -68,6 +71,32 @@
                         name="bitRateSelector" value="192000"
                         onclick="setMaxBitRate(scheme, host, path, sessionId, bitRateSelector.value)"> <label
                         for="contactChoice3">192 kbps</label>
+                </p>
+                <p>
+                    Backwards to next <select name="requestedItemTypeBackwards">
+                        <option value="NEWS">NEWS</option>
+                        <option value="WEATHER">WEATHER</option>
+                        <option value="TRAFFIC">TRAFFIC</option>
+                        <option value="MUSIC">MUSIC</option>
+                        <option value="COMEDY">COMEDY</option>
+                        <option value="JINGLE">JINGLE</option>
+                        <option value="VOICE">VOICE</option>
+                        <option value="ADVERTISEMENT">ADVERTISEMENT</option>
+                    </select>
+                    <input type="button" value="Skip" onclick="skipBackwardsTypedButtonClicked(requestedItemTypeBackwards.value)"/>
+                </p>
+                <p>
+                    Forwards to next <select name="requestedItemTypeForwards">
+                        <option value="NEWS">NEWS</option>
+                        <option value="WEATHER">WEATHER</option>
+                        <option value="TRAFFIC">TRAFFIC</option>
+                        <option value="MUSIC">MUSIC</option>
+                        <option value="COMEDY">COMEDY</option>
+                        <option value="JINGLE">JINGLE</option>
+                        <option value="VOICE">VOICE</option>
+                        <option value="ADVERTISEMENT">ADVERTISEMENT</option>
+                    </select>
+                    <input type="button" value="Skip" onclick="skipForwardsTypedButtonClicked(requestedItemTypeForwards.value)"/>
                 </p>
             </form>
         </div>

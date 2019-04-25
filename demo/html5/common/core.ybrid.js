@@ -92,12 +92,19 @@ function backToNow(schemeVal, hostVal, pathVal, sessionIdVal) {
  *            pathVal - path of requested resource
  * @param {String}
  *            sessionIdVal - session id
- * @link https://github.com/ybrid/player-interaction#skipt-backwards
+ * @param {String}
+ *            requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
+ *            JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
+ * @link https://github.com/ybrid/player-interaction#skip-backwards
  */
-function skipBackwards(schemeVal, hostVal, pathVal, sessionIdVal) {
+function skipBackwards(schemeVal, hostVal, pathVal, sessionIdVal,
+        requestedItemType) {
     var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal
             + "/ctrl/skip-backwards?sessionId=" + sessionIdVal;
+    if (requestedItemType) {
+        url += "&requestedItemType=" + requestedItemType;
+    }
     xmlhttp.onreadystatechange = function() {
         if (((this.readyState == 4)) && ((this.status == 200))) {
             var response = JSON.parse(this.responseText);
@@ -117,12 +124,19 @@ function skipBackwards(schemeVal, hostVal, pathVal, sessionIdVal) {
  *            pathVal - path of requested resource
  * @param {String}
  *            sessionIdVal - session id
- * @link https://github.com/ybrid/player-interaction#skipt-forwards
+ * @param {String}
+ *            requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
+ *            JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
+ * @link https://github.com/ybrid/player-interaction#skip-forwards
  */
-function skipForwards(schemeVal, hostVal, pathVal, sessionIdVal) {
+function skipForwards(schemeVal, hostVal, pathVal, sessionIdVal,
+        requestedItemType) {
     var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal
             + "/ctrl/skip-forwards?sessionId=" + sessionIdVal;
+    if (requestedItemType) {
+        url += "&requestedItemType=" + requestedItemType;
+    }
     xmlhttp.onreadystatechange = function() {
         if (((this.readyState == 4)) && ((this.status == 200))) {
             var response = JSON.parse(this.responseText);

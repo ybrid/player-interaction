@@ -244,24 +244,38 @@ h1 {
 }
 
 #column1 #session-area {
-	width: -webkit-calc(100% - 5px);
-	width: calc(100% - 5px);
-	height: 100px;
-	/* 	background-color: rgb(240, 240, 240); */
-	background-color: rgba(0, 0, 0, 0.5);
-	font-family: "Overpass Mono", sans-serif;
-	font-size: 10px;
-	color: #00ff00;
-	margin-bottom: 6px;
-	/*     border: solid 1px rgb(169, 169, 169); */
-	border: dotted 1px rgb(255, 255, 0);
+    width: -webkit-calc(100% - 5px);
+    width: calc(100% - 5px);
+    height: 100px;
+    /*  background-color: rgb(240, 240, 240); */
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "Overpass Mono", sans-serif;
+    font-size: 10px;
+    color: #00ff00;
+    margin-bottom: 6px;
+    /*     border: solid 1px rgb(169, 169, 169); */
+    border: dotted 1px rgb(255, 255, 0);
+}
+
+#column1 #wind-result-area {
+    width: -webkit-calc(100% - 5px);
+    width: calc(100% - 5px);
+    height: 100px;
+    /*  background-color: rgb(240, 240, 240); */
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "Overpass Mono", sans-serif;
+    font-size: 10px;
+    color: #00ff00;
+    margin-bottom: 6px;
+    /*     border: solid 1px rgb(169, 169, 169); */
+    border: dotted 1px rgb(255, 255, 0);
 }
 
 #column1 #meta-area-2 {
 	width: -webkit-calc(100% - 5px);
 	width: calc(100% - 5px);
-	height: -webkit-calc(100% - 120px);
-	height: calc(100% - 120px);
+	height: -webkit-calc(100% - 240px);
+	height: calc(100% - 240px);
 	/* 	background-color: rgb(240, 240, 240); */
 	background-color: rgba(0, 0, 0, 0.5);
 	font-family: "Overpass Mono", sans-serif;
