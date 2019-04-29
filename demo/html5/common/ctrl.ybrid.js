@@ -48,6 +48,11 @@ function rewindButtonClicked() {
     spinningWheelOn();
 }
 
+function windToButtonClicked(requestedTimestamp) {
+    windTo(scheme, host, path, sessionId, requestedTimestamp);
+    spinningWheelOn();
+}
+
 function backToNowButtonClicked() {
     backToNow(scheme, host, path, sessionId);
     spinningWheelOn();

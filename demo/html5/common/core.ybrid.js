@@ -18,19 +18,13 @@
  * @link https://github.com/ybrid/player-interaction#set-max-bit-rate
  */
 function setMaxBitRate(schemeVal, hostVal, pathVal, sessionIdVal, maxBitRateVal) {
-    var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal
             + "/ctrl/set-max-bit-rate?sessionId=" + sessionIdVal + "&value="
             + maxBitRateVal;
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var response = JSON.parse(this.responseText);
-            console.info("set-max-bit-rate response [maxBitRate: "
-                    + response.maxBitRate + "].");
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    fetchJsonXHR(url, function(response) {
+        console.info("set-max-bit-rate response [maxBitRate: "
+                + response.maxBitRate + "].");
+    });
 }
 
 /**
@@ -42,20 +36,38 @@ function setMaxBitRate(schemeVal, hostVal, pathVal, sessionIdVal, maxBitRateVal)
  *            pathVal - path of requested resource
  * @param {String}
  *            sessionIdVal - session id
+ * @param {Long}
+ *            duration - negative to wind backwards, positive to wind forwards.
+ *            Value in milliseconds.
  * @link https://github.com/ybrid/player-interaction#wind
  */
 function wind(schemeVal, hostVal, pathVal, sessionIdVal, duration) {
-    var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal + "/ctrl/wind?duration="
             + duration + "&sessionId=" + sessionIdVal;
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var response = JSON.parse(this.responseText);
-            handleWindResult(response);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    fetchJsonXHR(url, function(response) {
+        handleWindResult(response);
+    });
+}
+
+/**
+ * @param {String}
+ *            schemeVal - http or https
+ * @param {String}
+ *            hostVal - host of streaming server
+ * @param {String}
+ *            pathVal - path of requested resource
+ * @param {String}
+ *            sessionIdVal - session id
+ * @param {Long}
+ *            ts - timestamp to wind to, value in milliseconds since 1.1.1970.
+ * @link https://github.com/ybrid/player-interaction#wind
+ */
+function windTo(schemeVal, hostVal, pathVal, sessionIdVal, timestamp) {
+    var url = schemeVal + "://" + hostVal + pathVal + "/ctrl/wind?ts="
+            + timestamp + "&sessionId=" + sessionIdVal;
+    fetchJsonXHR(url, function(response) {
+        handleWindResult(response);
+    });
 }
 
 /**
@@ -70,17 +82,11 @@ function wind(schemeVal, hostVal, pathVal, sessionIdVal, duration) {
  * @link https://github.com/ybrid/player-interaction#back-to-now
  */
 function backToNow(schemeVal, hostVal, pathVal, sessionIdVal) {
-    var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal
             + "/ctrl/back-to-now?sessionId=" + sessionIdVal;
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var response = JSON.parse(this.responseText);
-            handleWindResult(response);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    fetchJsonXHR(url, function(response) {
+        handleWindResult(response);
+    });
 }
 
 /**
@@ -99,20 +105,14 @@ function backToNow(schemeVal, hostVal, pathVal, sessionIdVal) {
  */
 function skipBackwards(schemeVal, hostVal, pathVal, sessionIdVal,
         requestedItemType) {
-    var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal
             + "/ctrl/skip-backwards?sessionId=" + sessionIdVal;
     if (requestedItemType) {
         url += "&requestedItemType=" + requestedItemType;
     }
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var response = JSON.parse(this.responseText);
-            handleWindResult(response);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    fetchJsonXHR(url, function(response) {
+        handleWindResult(response);
+    });
 }
 
 /**
@@ -131,20 +131,14 @@ function skipBackwards(schemeVal, hostVal, pathVal, sessionIdVal,
  */
 function skipForwards(schemeVal, hostVal, pathVal, sessionIdVal,
         requestedItemType) {
-    var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal
             + "/ctrl/skip-forwards?sessionId=" + sessionIdVal;
     if (requestedItemType) {
         url += "&requestedItemType=" + requestedItemType;
     }
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var response = JSON.parse(this.responseText);
-            handleWindResult(response);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    fetchJsonXHR(url, function(response) {
+        handleWindResult(response);
+    });
 }
 
 /**
@@ -159,20 +153,14 @@ function skipForwards(schemeVal, hostVal, pathVal, sessionIdVal,
  * @link https://github.com/ybrid/player-interaction#swap
  */
 function swap(schemeVal, hostVal, pathVal, sessionIdVal) {
-    var xmlhttp = new XMLHttpRequest();
     var url = schemeVal + "://" + hostVal + pathVal + "/ctrl/swap?sessionId="
             + sessionIdVal;
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var response = JSON.parse(this.responseText);
-            console.info("swap response [swapWasSuccessfull: "
-                    + response.swapWasSuccessfull + ", swapsLeft: "
-                    + response.swapsLeft + ", nextSwapReturnsToMain: "
-                    + response.nextSwapReturnsToMain + "].");
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    fetchJsonXHR(url, function(response) {
+        console.info("swap response [swapWasSuccessfull: "
+                + response.swapWasSuccessfull + ", swapsLeft: "
+                + response.swapsLeft + ", nextSwapReturnsToMain: "
+                + response.nextSwapReturnsToMain + "].");
+    });
 }
 
 /**
@@ -183,19 +171,13 @@ function swap(schemeVal, hostVal, pathVal, sessionIdVal) {
  * @link https://github.com/ybrid/player-interaction#swap-info
  */
 function swapInfo(baseURL, sessionIdVal) {
-    var xmlhttp = new XMLHttpRequest();
     var url = baseURL + "/ctrl/swap-info?sessionId=" + sessionIdVal;
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var response = JSON.parse(this.responseText);
-            console.info("swap info response [swapsLeft: " + response.swapsLeft
-                    + ", nextSwapReturnsToMain: "
-                    + response.nextSwapReturnsToMain + "].");
-            handleSwapInfo(response);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    fetchJsonXHR(url, function(response) {
+        console.info("swap info response [swapsLeft: " + response.swapsLeft
+                + ", nextSwapReturnsToMain: " + response.nextSwapReturnsToMain
+                + "].");
+        handleSwapInfo(response);
+    });
 }
 
 /**

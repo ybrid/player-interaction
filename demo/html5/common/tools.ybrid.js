@@ -1,9 +1,9 @@
 
 /**
  * @param {String}
- *                url
+ *            url
  * @param {Function}
- *                callback - callback function for retrieving json object
+ *            callback - callback function for retrieving json object
  */
 function fetchJson(url, callback, init) {
     try {
@@ -24,9 +24,27 @@ function fetchJson(url, callback, init) {
 
 /**
  * @param {String}
- *                url
+ *            url
  * @param {Function}
- *                callback - callback function for retrieving arraybuffer object
+ *            callback - callback function for retrieving json object
+ */
+function fetchJsonXHR(url, callback){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (((this.readyState == 4)) && ((this.status == 200))) {
+            var response = JSON.parse(this.responseText);
+            callback(response);
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+/**
+ * @param {String}
+ *            url
+ * @param {Function}
+ *            callback - callback function for retrieving arraybuffer object
  */
 function fetchArrayBuffer(url, callback, init) {
     try {
@@ -56,7 +74,7 @@ function fetchArrayBuffer(url, callback, init) {
 
 /**
  * @param {TimeRanges}
- *                timeRanges to be logged to console.
+ *            timeRanges to be logged to console.
  */
 function logTimeRanges(timeRanges) {
     for (i = 0; i < timeRanges.length; i++) {
@@ -67,11 +85,11 @@ function logTimeRanges(timeRanges) {
 
 /**
  * @param {String}
- *                schemeVal, e.g. http or https
+ *            schemeVal, e.g. http or https
  * @param {String}
- *                hostVal, e.g. 'my.streamingserver.com'
+ *            hostVal, e.g. 'my.streamingserver.com'
  * @param {String}
- *                pathVal, e.g. '/stream.mp3'
+ *            pathVal, e.g. '/stream.mp3'
  * @returns {String} the base URL created from given parameters, e.g.
  *          'https://my.streamingserver.com/stream.mp3'
  */
