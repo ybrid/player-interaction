@@ -19,4 +19,4 @@ HTML5/Javascript | [**Extended HTML Player**](demo/html5/extended)  | A nice and
 @sebastian-weiss
 
 ### Copyright
-YBRID, a Dynamic Audio Experience Technology developed by nacamar GmbH 2017-2018
+YBRID, a Dynamic Audio Experience Technology developed by nacamar GmbH 2017-2019
