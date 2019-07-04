@@ -8,12 +8,10 @@
     integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link rel="shortcut icon" type="image/png" href="http://www.ybrid.io/ybrid_fav.png" sizes="any">
 <script type="text/javascript" src="ybrid/conf.ybrid.js"></script>
-<script type="text/javascript" src="../common/tools.ybrid.js"></script>
 <script type="text/javascript" src="../common/araicyp.ybrid.js"></script>
-<script type="text/javascript" src="../common/v1.api.ybrid.js"></script>
-<script type="text/javascript" src="../common/audio.ybrid.js"></script>
+<script type="text/javascript" src="../common/tools.ybrid.js"></script>
 <script type="text/javascript" src="../common/ctrl.ybrid.js"></script>
-<script type="text/javascript" src="../common/companion-support.ybrid.js"></script>
+<script type="text/javascript" src="../common/core.ybrid.js"></script>
 <script type="text/javascript" src="ybrid/core-bare.ybrid.js"></script>
 <script type="text/javascript" src="ybrid/player.ybrid.js"></script>
 </head>
@@ -37,14 +35,8 @@
         <p>&nbsp;</p>
         <p class="control">
             <audio></audio>
-            <i id="skip-backwards-button" class="fas fa-fast-backward audioElementDisabled" onclick="" onmouseover=""></i>
-            &nbsp; <i id="rewind-button" class="fas fa-backward audioElementDisabled" onclick="" onmouseover=""></i>
-            &nbsp; <i id="back-to-now-button" class="fas fa-level-down-alt audioElementDisabled" onclick="" onmouseover=""></i>
-            &nbsp; <i id="play-button" class="fas fa-play audioElement" onclick="togglePlay()" onmouseover=""></i>
-            &nbsp; <i id="swap-button" class="fas fa-sync audioElementDisabled" onclick=""></i> &nbsp; <i
-                id="fast-forward-button" class="fas fa-forward audioElementDisabled" onclick="" onmouseover=""></i>
-            &nbsp; <i id="skip-forwards-button" class="fas fa-fast-forward audioElementDisabled" onclick=""
-                onmouseover=""></i>
+            <i id="play-button" class="fas fa-play audioElement" onclick="togglePlay()" onmouseover=""></i> &nbsp; 
+            <i id="swap-button" class="fas fa-sync audioElementDisabled" onclick=""></i>
         </p>
         <form>
             <p>
