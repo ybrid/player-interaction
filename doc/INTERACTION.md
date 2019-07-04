@@ -110,7 +110,7 @@ session-uuid = *TEXT
 ### is-session-valid
 
 In some scenariors it is useful to check the validity of a session before initiating a player with a stream 
-connected with it. Hence, this command allows to check the validity in front of starting a stream again.
+connected with it. Hence, this command allows to validate a session before starting a stream again.
 
 #### Request
 ```http
