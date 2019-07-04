@@ -14,13 +14,6 @@ function enableCTRLButton(button, clickFunction) {
     button.onclick = clickFunction;
 }
 
-function enableAllCTRL(){
-    enableCTRLButton(document.getElementById("skip-backwards-button"), skipBackwardsButtonClicked);
-    enableCTRLButton(document.getElementById("rewind-button"), rewindButtonClicked);
-    enableCTRLButton(document.getElementById("fast-forward-button"), fastForwardButtonClicked);
-    enableCTRLButton(document.getElementById("skip-forwards-button"), skipForwardsButtonClicked);
-}
-
 /**
  * @param button
  */
@@ -30,55 +23,47 @@ function disableCTRLButton(button) {
     button.onclick = false;
 }
 
-function disableAllCTRL(){
-    disableCTRLButton(document.getElementById("skip-backwards-button"));
-    disableCTRLButton(document.getElementById("rewind-button"));
-    disableCTRLButton(document.getElementById("back-to-now-button"));
-    disableCTRLButton(document.getElementById("fast-forward-button"));
-    disableCTRLButton(document.getElementById("skip-forwards-button"));
-}
-
 function swapButtonClicked() {
-    swap(scheme, host, path, sessionId);
+    swap();
     spinningWheelOn();
 }
 
 function rewindButtonClicked() {
-    wind(scheme, host, path, sessionId, -60000);
+    wind(-60000);
     spinningWheelOn();
 }
 
 function windToButtonClicked(requestedTimestamp) {
-    windTo(scheme, host, path, sessionId, requestedTimestamp);
+    windTo(requestedTimestamp);
     spinningWheelOn();
 }
 
 function backToNowButtonClicked() {
-    backToNow(scheme, host, path, sessionId);
+    backToNow();
     spinningWheelOn();
 }
 
 function fastForwardButtonClicked() {
-    wind(scheme, host, path, sessionId, 60000);
+    wind(60000);
     spinningWheelOn();
 }
 
 function skipBackwardsTypedButtonClicked(requestedItemType) {
-    skipBackwards(scheme, host, path, sessionId, requestedItemType);
+    skipBackwards(requestedItemType);
     spinningWheelOn();
 }
 
 function skipForwardsTypedButtonClicked(requestedItemType) {
-    skipForwards(scheme, host, path, sessionId, requestedItemType);
+    skipForwards(requestedItemType);
     spinningWheelOn();
 }
 
 function skipBackwardsButtonClicked() {
-    skipBackwards(scheme, host, path, sessionId);
+    skipBackwards();
     spinningWheelOn();
 }
 
 function skipForwardsButtonClicked() {
-    skipForwards(scheme, host, path, sessionId);
+    skipForwards();
     spinningWheelOn();
 }

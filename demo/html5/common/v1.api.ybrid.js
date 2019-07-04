@@ -36,7 +36,7 @@ function createSession(schemeVal, hostVal, pathVal, callback) {
  * @link https://github.com/ybrid/player-interaction#set-max-bit-rate
  */
 function setMaxBitRate(maxBitRateVal) {
-    var url = baseURL + "/ctrl/set-max-bit-rate?sessionId=" + sessionIdVal
+    var url = baseURL + "/ctrl/set-max-bit-rate?sessionId=" + sessionId
             + "&value=" + maxBitRateVal;
     fetchJsonXHR(url, function(response) {
         console.info("set-max-bit-rate response [maxBitRate: "
@@ -52,7 +52,7 @@ function setMaxBitRate(maxBitRateVal) {
  */
 function wind(duration) {
     var url = baseURL + "/ctrl/wind?duration=" + duration + "&sessionId="
-            + sessionIdVal;
+            + sessionId;
     fetchJsonXHR(url, function(response) {
         handleWindResult(response);
     });
@@ -65,7 +65,7 @@ function wind(duration) {
  */
 function windTo(timestamp) {
     var url = baseURL + "/ctrl/wind?ts=" + timestamp + "&sessionId="
-            + sessionIdVal;
+            + sessionId;
     fetchJsonXHR(url, function(response) {
         handleWindResult(response);
     });
@@ -75,7 +75,7 @@ function windTo(timestamp) {
  * @link https://github.com/ybrid/player-interaction#back-to-now
  */
 function backToNow() {
-    var url = baseURL + "/ctrl/back-to-now?sessionId=" + sessionIdVal;
+    var url = baseURL + "/ctrl/back-to-now?sessionId=" + sessionId;
     fetchJsonXHR(url, function(response) {
         handleWindResult(response);
     });
@@ -88,7 +88,7 @@ function backToNow() {
  * @link https://github.com/ybrid/player-interaction#skip-backwards
  */
 function skipBackwards(requestedItemType) {
-    var url = baseURL + "/ctrl/skip-backwards?sessionId=" + sessionIdVal;
+    var url = baseURL + "/ctrl/skip-backwards?sessionId=" + sessionId;
     if (requestedItemType) {
         url += "&requestedItemType=" + requestedItemType;
     }
@@ -104,7 +104,7 @@ function skipBackwards(requestedItemType) {
  * @link https://github.com/ybrid/player-interaction#skip-forwards
  */
 function skipForwards(requestedItemType) {
-    var url = baseURL + "/ctrl/skip-forwards?sessionId=" + sessionIdVal;
+    var url = baseURL + "/ctrl/skip-forwards?sessionId=" + sessionId;
     if (requestedItemType) {
         url += "&requestedItemType=" + requestedItemType;
     }
@@ -117,7 +117,7 @@ function skipForwards(requestedItemType) {
  * @link https://github.com/ybrid/player-interaction#swap
  */
 function swap() {
-    var url = baseURL + "/ctrl/swap?sessionId=" + sessionIdVal;
+    var url = baseURL + "/ctrl/swap?sessionId=" + sessionId;
     fetchJsonXHR(url, function(response) {
         console.info("swap response [swapWasSuccessfull: "
                 + response.swapWasSuccessfull + ", swapsLeft: "
@@ -130,7 +130,7 @@ function swap() {
  * @link https://github.com/ybrid/player-interaction#swap-info
  */
 function swapInfo() {
-    var url = baseURL + "/ctrl/swap-info?sessionId=" + sessionIdVal;
+    var url = baseURL + "/ctrl/swap-info?sessionId=" + sessionId;
     fetchJsonXHR(url, function(response) {
         console.info("swap info response [swapsLeft: " + response.swapsLeft
                 + ", nextSwapReturnsToMain: " + response.nextSwapReturnsToMain
