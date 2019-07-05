@@ -123,18 +123,17 @@ function togglePlay() {
         
         initPlotLines();
         try {
-            initAudioIfNeeded((time, bufferSize)=>{
-                pushBufferPlotItem(bufferSize);
-            });
-            initMediaSource();
-            initializeBuffering(scheme, host, path,
-                (baseURLVal, sessionId) => {
-                    var result = "sessionId:\t"+sessionId + "\nbase URL:\t"+baseURLVal;
-                    document.getElementById("session-area").innerHTML = result;
-                },// 
-                (currentBitRate) => {
-                    pushBandwidthPlotItem(currentBitRate);
-                });
+            startAudio(//
+                    (time, bufferSize) => {
+                        pushBufferPlotItem(bufferSize);
+                    },//
+                    (baseURLVal, sessionId) => {
+                        var result = "sessionId:\t"+sessionId + "\nbase URL:\t"+baseURLVal;
+                        document.getElementById("session-area").innerHTML = result;
+                    }, 
+                    (currentBitRate) => {
+                        pushBandwidthPlotItem(currentBitRate);
+                    });
         } catch (e) {
             alert(e);
         }
@@ -144,9 +143,7 @@ function togglePlay() {
         playButton.classList.add("fa-play");
         disableAllCTRL();
         disableCTRLButton(document.getElementById("swap-button"));
-
-        audio.pause();
-        console.info("stopped");
+        stopAudio();
     }
 }
 

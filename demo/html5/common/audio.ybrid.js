@@ -13,6 +13,20 @@ var _mediaSource;
 var _sourceBuffer;
 var _stopped = true;
 
+
+/**
+ * Starting audio, initializing contextes and buffers, starting buffering audio
+ * from ybrid plattform.
+ * 
+ * @param audioEventListener
+ *            can be used to retrieve and handle information about the buffer's
+ *            current state.
+ * @param sessionInfoHandler
+ *            can be used to retrieve and handle information about the current
+ *            session.
+ * @param currentBitRateHandler
+ *            can be used to retrieve and handle the current bit rate.
+ */
 function startAudio(audioEventListener, sessionInfoHandler, currentBitRateHandler){
     _stopped = false;
     initAudioIfNeeded(audioEventListener);
@@ -20,6 +34,10 @@ function startAudio(audioEventListener, sessionInfoHandler, currentBitRateHandle
     initializeBuffering(scheme, host, path, sessionInfoHandler, currentBitRateHandler);
 }
 
+
+/**
+ * Stopping all audio components.
+ */
 function stopAudio(){
     _stopped = true;
     _audio.pause();
