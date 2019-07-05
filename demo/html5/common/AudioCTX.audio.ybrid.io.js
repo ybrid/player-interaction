@@ -26,8 +26,8 @@ io.ybrid.audio.AudioCTX = function () {
     }
     
     /**
-     * Starting audio, initializing contextes and buffers, starting buffering
-     * audio from ybrid plattform.
+     * Starting audio, initializing contexts and buffers, starting buffering
+     * audio from ybrid platform.
      * 
      * @param audioEventListener
      *            can be used to retrieve and handle information about the
@@ -78,19 +78,21 @@ io.ybrid.audio.AudioCTX = function () {
         // gainNode.connect(audioCtx.destination);
 
         source.connect(_audioCtx.destination);
-        _audio.addEventListener('canplay', function() {
-            _audio.play();
-            console.info("triggered playing...");
-        });
+        _audio.addEventListener('canplay',
+            () => {
+                _audio.play();
+                console.info("triggered playing...");
+            });
 
-        _audio.addEventListener('timeupdate', function() {
-            var bufferSize = _calculateBufferSize();
-            if (typeof audioEventListener !== 'undefined') {
-                audioEventListener(_audio.currentTime, bufferSize);
-            }
-            console.info("time pointer: " + _audio.currentTime.toFixed(3)
+        _audio.addEventListener('timeupdate',
+            () => {
+                var bufferSize = _calculateBufferSize();
+                if (typeof audioEventListener !== 'undefined') {
+                    audioEventListener(_audio.currentTime, bufferSize);
+                }
+                console.info("time pointer: " + _audio.currentTime.toFixed(3)
                     + ", buffer size: " + bufferSize.toFixed(3));
-        });
+            });
     }
 
     /**
