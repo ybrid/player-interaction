@@ -20,4 +20,4 @@ HTML5/Javascript | [**Extended HTML Player**](demo/html5/extended)  | A beautifu
 @sebastian-weiss
 
 ### Copyright
-YBRID®, a Dynamic Audio Experience Technology developed by nacamar GmbH 2017-2019
+YBRID®, a Hybrid Dynamic Live Audio Technology developed by nacamar GmbH 2017-2019
