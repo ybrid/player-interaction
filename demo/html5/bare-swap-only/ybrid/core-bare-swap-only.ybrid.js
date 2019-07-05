@@ -4,6 +4,9 @@
  * @author Sebastian A. Weiß (C) 2019 nacamar GmbH
  */
 
+var ybridCtrl = io.ybrid.ctrl.v1.YbridCTRL();
+var audioCtx = io.ybrid.audio.AudioCTX();
+
 var stopped = true;
 
 /**
@@ -82,10 +85,9 @@ function togglePlay() {
         stopped = false;
         playButton.classList.remove("fa-play");
         playButton.classList.add("fa-pause");
-        enableAllCTRL();
 
         try {
-            startAudio(//
+            audioCtx.startAudio(//
                     () => {
                     },//
                     (baseURLVal, sessionId) => {
@@ -101,9 +103,8 @@ function togglePlay() {
         stopped = true;
         playButton.classList.remove("fa-pause");
         playButton.classList.add("fa-play");
-        disableAllCTRL();
         disableCTRLButton(document.getElementById("swap-button"));
-        stopAudio();
+        audioCtx.stopAudio();
     }
 }
 
@@ -111,7 +112,6 @@ function spinningWheelOn() {
     var swapButton = document.getElementById("swap-button");
     swapButton.classList.add('fa-spin');
     swapButton.onclick = false;
-    disableAllCTRL();
     setTimeout(spinningWheelOff, 2000);
 }
 
@@ -119,12 +119,69 @@ function spinningWheelOff() {
     var swapButton = document.getElementById("swap-button");
     swapButton.classList.remove('fa-spin');
     swapButton.onclick = swapButtonClicked;
-    enableAllCTRL();
 }
 
-function enableAllCTRL(){
+/**
+ * @param button
+ * @param clickFunction
+ */
+function enableCTRLButton(button, clickFunction) {
+    button.classList.remove('audioElementDisabled');
+    button.classList.add('audioElement');
+    button.onclick = clickFunction;
 }
 
-function disableAllCTRL(){
+/**
+ * @param button
+ */
+function disableCTRLButton(button) {
+    button.classList.remove('audioElement');
+    button.classList.add('audioElementDisabled');
+    button.onclick = false;
+}
+
+function swapButtonClicked() {
+    ybridCtrl.swap();
+    spinningWheelOn();
+}
+
+function rewindButtonClicked() {
+    ybridCtrl.wind(-60000);
+    spinningWheelOn();
+}
+
+function windToButtonClicked(requestedTimestamp) {
+    ybridCtrl.windTo(requestedTimestamp);
+    spinningWheelOn();
+}
+
+function backToNowButtonClicked() {
+    ybridCtrl.backToNow();
+    spinningWheelOn();
+}
+
+function fastForwardButtonClicked() {
+    ybridCtrl.wind(60000);
+    spinningWheelOn();
+}
+
+function skipBackwardsTypedButtonClicked(requestedItemType) {
+    ybridCtrl.skipBackwards(requestedItemType);
+    spinningWheelOn();
+}
+
+function skipForwardsTypedButtonClicked(requestedItemType) {
+    ybridCtrl.skipForwards(requestedItemType);
+    spinningWheelOn();
+}
+
+function skipBackwardsButtonClicked() {
+    ybridCtrl.skipBackwards();
+    spinningWheelOn();
+}
+
+function skipForwardsButtonClicked() {
+    ybridCtrl.skipForwards();
+    spinningWheelOn();
 }
 

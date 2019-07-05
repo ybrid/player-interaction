@@ -83,17 +83,3 @@ function logTimeRanges(timeRanges) {
     }
 }
 
-/**
- * @param {String}
- *            schemeVal, e.g. http or https
- * @param {String}
- *            hostVal, e.g. 'my.streamingserver.com'
- * @param {String}
- *            pathVal, e.g. '/stream.mp3'
- * @returns {String} the base URL created from given parameters, e.g.
- *          'https://my.streamingserver.com/stream.mp3'
- */
-function createBaseURL(schemeVal, hostVal, pathVal){
-    return schemeVal + '://' + hostVal + pathVal;
-} 
-
