@@ -85,15 +85,15 @@ function togglePlay() {
         enableAllCTRL();
 
         try {
-            initAudioIfNeeded();
-            initMediaSource();
-            initializeBuffering(scheme, host, path,
-                (baseURLVal, sessionId) => {
-                    console.info("created session [id: " + sessionId + ", baseURL: " + baseURLVal + "]");
-                }, 
-                (currentBitRate) => {
-                    console.info("Current bit rate: " + currentBitRate);
-                });
+            startAudio(//
+                    () => {
+                    },//
+                    (baseURLVal, sessionId) => {
+                        console.info("created session [id: " + sessionId + ", baseURL: " + baseURLVal + "]");
+                    }, 
+                    (currentBitRate) => {
+                        console.info("Current bit rate: " + currentBitRate);
+                    });
         } catch (e) {
             alert(e);
         }
@@ -103,9 +103,7 @@ function togglePlay() {
         playButton.classList.add("fa-play");
         disableAllCTRL();
         disableCTRLButton(document.getElementById("swap-button"));
-        
-        audio.pause();
-        console.info("stopped");
+        stopAudio();
     }
 }
 

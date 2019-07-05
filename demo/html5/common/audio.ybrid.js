@@ -4,13 +4,27 @@
  * @author Sebastian A. Weiß (C) 2019 nacamar GmbH
  */
 
-const acceptMimeType = 'application/x-ybrid-discrete';
+const ACCEPTED_MIME_TYPE = 'application/x-ybrid-discrete';
 const CODEC_MIME_TYPE = 'audio/mpeg';
 
-var audio;
-var audioCtx;
-var mediaSource;
-var sourceBuffer;
+var _audio;
+var _audioCtx;
+var _mediaSource;
+var _sourceBuffer;
+var _stopped = true;
+
+function startAudio(audioEventListener, sessionInfoHandler, currentBitRateHandler){
+    _stopped = false;
+    initAudioIfNeeded(audioEventListener);
+    initMediaSource();
+    initializeBuffering(scheme, host, path, sessionInfoHandler, currentBitRateHandler);
+}
+
+function stopAudio(){
+    _stopped = true;
+    _audio.pause();
+    console.info("audio stopped");
+}
 
 
 /**
@@ -20,12 +34,12 @@ var sourceBuffer;
  *            {Function} - callback for buffering info
  */
 function initAudioIfNeeded(audioEventListener) {
-    if (typeof audioCtx !== 'undefined') {
+    if (typeof _audioCtx !== 'undefined') {
         return;
     }
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    audio = document.querySelector('audio');
-    var source = audioCtx.createMediaElementSource(audio);
+    _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    _audio = document.querySelector('audio');
+    var source = _audioCtx.createMediaElementSource(_audio);
 
     // // Create a gain node
     // var gainNode = audioCtx.createGain();
@@ -36,30 +50,34 @@ function initAudioIfNeeded(audioEventListener) {
     // source.connect(gainNode);
     // gainNode.connect(audioCtx.destination);
 
-    source.connect(audioCtx.destination);
-    audio.addEventListener('canplay', function() {
-        audio.play();
+    source.connect(_audioCtx.destination);
+    _audio.addEventListener('canplay', function() {
+        _audio.play();
         console.info("triggered playing...");
     });
 
-    audio.addEventListener('timeupdate', function() {
+    _audio.addEventListener('timeupdate', function() {
         var bufferSize = calculateBufferSize();
         if (typeof audioEventListener !== 'undefined') {
-            audioEventListener(audio.currentTime, bufferSize);
+            audioEventListener(_audio.currentTime, bufferSize);
         }
-        console.info("time pointer: " + audio.currentTime.toFixed(3)
+        console.info("time pointer: " + _audio.currentTime.toFixed(3)
                 + ", buffer size: " + bufferSize.toFixed(3));
     });
 }
 
 /**
- * Calculates the current buffer's size.
+ * Calculates the current buffer's size in seconds.
  */
 function calculateBufferSize() {
-    if (sourceBuffer.buffered.length < 1) {
+    try {
+        if (_sourceBuffer.buffered.length < 1) {
+            return 0;
+        }
+        return _sourceBuffer.buffered.end(0) - _audio.currentTime;
+    } catch (e) {
         return 0;
     }
-    return sourceBuffer.buffered.end(0) - audio.currentTime;
 }
 
 /**
@@ -67,14 +85,16 @@ function calculateBufferSize() {
  */
 function initMediaSource() {
     if ('MediaSource' in window && MediaSource.isTypeSupported(CODEC_MIME_TYPE)) {
-        mediaSource = new MediaSource();
-        audio.src = URL.createObjectURL(mediaSource);
-        mediaSource.addEventListener('sourceopen', function() {
-            sourceBuffer = mediaSource.addSourceBuffer(CODEC_MIME_TYPE);
-            sourceBuffer.addEventListener('updateend', function() {
-                logTimeRanges(sourceBuffer.buffered);
+        _mediaSource = new MediaSource();
+        _audio.src = URL.createObjectURL(_mediaSource);
+        _mediaSource.addEventListener('sourceopen', //
+            () => {
+                _sourceBuffer = _mediaSource.addSourceBuffer(CODEC_MIME_TYPE);
+                _sourceBuffer.addEventListener('updateend',//
+                    () => {
+                        logTimeRanges(_sourceBuffer.buffered);
+                    });
             });
-        });
     } else {
         console.error('Unsupported MIME type or codec: ', CODEC_MIME_TYPE);
     }
@@ -82,31 +102,32 @@ function initMediaSource() {
 
 function initializeBuffering(scheme, host, path, sessionInfoHandler, currentBitRateHandler) {
     if (baseURL && sessionId) {
-        buffer(baseURL, sessionId, function() {
-            initSessionAndBeginBuffering(scheme, host, path, sessionInfoHandler, currentBitRateHandler);
-        });
+        buffer(baseURL, sessionId, currentBitRateHandler,//
+            () => {
+                initSessionAndBeginBuffering(scheme, host, path, sessionInfoHandler, currentBitRateHandler);
+            });
     } else {
         initSessionAndBeginBuffering(scheme, host, path, sessionInfoHandler, currentBitRateHandler);
     }
 }
 
 function initSessionAndBeginBuffering(scheme, host, path, sessionInfoHandler, currentBitRateHandler) {
-    createSession(scheme, host, path, (baseURLVal, sessionId) =>{
-        sessionInfoHandler(baseURLVal, sessionId);
-        buffer(baseURLVal, sessionId, currentBitRateHandler,
-            () => {
-                alert("Could not retrieve chunks from [baseURLVal: " + baseURLVal +
-                    ", sessionId: " + sessionId +
-                    "]");
-            });
-    });
+    createSession(scheme, host, path,// 
+        (baseURLVal, sessionId) => {
+            sessionInfoHandler(baseURLVal, sessionId);
+            buffer(baseURLVal, sessionId, currentBitRateHandler,//
+                () => {
+                    alert("Could not retrieve chunks from [baseURLVal: " + baseURLVal +
+                        ", sessionId: " + sessionId + "]");
+                });
+        });
 }
 
 function buffer(baseURLVal, sessionId, currentBitRateHandler, errorCallback) {
     var init = {
         method : 'GET',
         headers : {
-            'Accept' : acceptMimeType
+            'Accept' : ACCEPTED_MIME_TYPE
         }
     }
     var url = baseURLVal + '?sessionId=' + sessionId;
@@ -117,8 +138,8 @@ function buffer(baseURLVal, sessionId, currentBitRateHandler, errorCallback) {
                 // console.info("received chunk...");
                 var delay = calculateBufferSize() * 1000;
                 delay = delay.toFixed(0);
-                console.info("delay: " + delay);
-                sourceBuffer.appendBuffer(chunk);
+                // console.info("delay: " + delay);
+                _sourceBuffer.appendBuffer(chunk);
                 var url = headers.get(ARAICYP_HEADER_ITEM_URL);
                 if (typeof url !== undefined && url != null) {
                     setTimeout(() => {
@@ -129,7 +150,7 @@ function buffer(baseURLVal, sessionId, currentBitRateHandler, errorCallback) {
                 if (typeof bitRate !== undefined && bitRate != null) {
                     currentBitRateHandler(bitRate);
                 }
-                if (stopped == false) {
+                if (_stopped == false) {
                     buffer(baseURLVal, sessionId, currentBitRateHandler, errorCallback);
                 }
             } else {
