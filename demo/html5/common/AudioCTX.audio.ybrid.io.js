@@ -9,6 +9,8 @@ io.ybrid.audio = io.ybrid.audio || {};
  */
 io.ybrid.audio.AudioCTX = function () {
 
+    const ARAICYP_HEADER_ITEM_URL = 'AR-Meta-Item-URL';
+    const ARAICYP_HEADER_CURRENT_BITRATE = 'AR-CTRL-Current-Bit-Rate';
     const ACCEPTED_MIME_TYPE = 'application/x-ybrid-discrete';
     const CODEC_MIME_TYPE = 'audio/mpeg';
 
