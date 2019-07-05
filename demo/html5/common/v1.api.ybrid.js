@@ -24,8 +24,8 @@ function createSession(schemeVal, hostVal, pathVal, callback) {
     fetchJson(url, function(jsonObj) {
         sessionId = jsonObj.sessionId;
         baseURL = createBaseURL(scheme, jsonObj.host, path);
-        console.info("created new session with [id: " + sessionId
-                + ", new base URL: " + baseURL + "].");
+        // console.info("created new session with [id: " + sessionId
+        // + ", new base URL: " + baseURL + "].");
         callback(baseURL, sessionId);
     });
 }
