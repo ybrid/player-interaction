@@ -142,12 +142,12 @@ io.ybrid.audio.AudioCTX = function () {
 
     function _initSessionAndBeginBuffering(scheme, host, path, sessionInfoHandler, currentBitRateHandler) {
         ybridCtrl.createSession(scheme, host, path,// 
-            (baseURLVal, sessionId) => {
-                sessionInfoHandler(baseURLVal, sessionId);
-                _buffer(baseURLVal, sessionId, currentBitRateHandler,//
+            (createSessionResponse) => {
+                sessionInfoHandler(createSessionResponse);
+                _buffer(createSessionResponse.baseURL, createSessionResponse.sessionId, currentBitRateHandler,//
                     () => {
-                        alert("Could not retrieve chunks from [baseURLVal: " + baseURLVal +
-                            ", sessionId: " + sessionId + "]");
+                        alert("Could not retrieve chunks from [baseURLVal: " + createSessionResponse.baseURL +
+                            ", sessionId: " + createSessionResponse.sessionId + "]");
                     });
             });
     }

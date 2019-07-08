@@ -11,7 +11,7 @@ var stopped = true;
 
 /**
  * @param {Object}
- *            swapInfo
+ *                swapInfo
  * 
  */
 function handleSwapInfo(swapInfo) {
@@ -26,7 +26,7 @@ function handleSwapInfo(swapInfo) {
 
 /**
  * @param {String}
- *            url
+ *                url
  */
 function handleItemMetaURL(url) {
     var xmlhttp = new XMLHttpRequest();
@@ -61,7 +61,7 @@ function handleItemMetaURL(url) {
 
 /**
  * @param {Object}
- *            windResult
+ *                windResult
  */
 function handleWindResult(windResult) {
     console.info("wind result [totalOffset: " + windResult.totalOffset
@@ -91,8 +91,8 @@ function togglePlay() {
             audioCtx.startAudio(//
                     () => {
                     },//
-                    (baseURLVal, sessionId) => {
-                        console.info("created session [id: " + sessionId + ", baseURL: " + baseURLVal + "]");
+                    (createSessionResponse) => {
+                        console.info("created session [id: " + createSessionResponse.sessionId + ", baseURL: " + createSessionResponse.baseURL + "]");
                     }, 
                     (currentBitRate) => {
                         console.info("Current bit rate: " + currentBitRate);
@@ -159,48 +159,82 @@ function disableCTRLButton(button) {
     button.onclick = false;
 }
 
+
+function setMaxBitRate(bitRate){
+    ybridCtrl.setMaxBitRate(bitRate,
+            (result) => {
+                console.info("set-max-bit-rate response [maxBitRate: "
+                        + result.maxBitRate + "].");
+            },
+            (statusCode, message) => {
+            });
+}
+
 function swapButtonClicked() {
-    ybridCtrl.swap();
+    ybridCtrl.swap(
+            (result) => {
+                console.info("swap response [swapWasSuccessfull: "
+                        + result.swapWasSuccessfull + ", swapsLeft: "
+                        + result.swapsLeft + ", nextSwapReturnsToMain: "
+                        + result.nextSwapReturnsToMain + "].");
+            },
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function rewindButtonClicked() {
-    ybridCtrl.wind(-60000);
+    ybridCtrl.wind(-60000, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function windToButtonClicked(requestedTimestamp) {
-    ybridCtrl.windTo(requestedTimestamp);
+    ybridCtrl.windTo(requestedTimestamp, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function backToNowButtonClicked() {
-    ybridCtrl.backToNow();
+    ybridCtrl.backToNow(handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function fastForwardButtonClicked() {
-    ybridCtrl.wind(60000);
+    ybridCtrl.wind(60000, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function skipBackwardsTypedButtonClicked(requestedItemType) {
-    ybridCtrl.skipBackwards(requestedItemType);
+    ybridCtrl.skipBackwards(requestedItemType, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function skipForwardsTypedButtonClicked(requestedItemType) {
-    ybridCtrl.skipForwards(requestedItemType);
+    ybridCtrl.skipForwards(requestedItemType, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function skipBackwardsButtonClicked() {
-    ybridCtrl.skipBackwards();
+    ybridCtrl.skipBackwards(handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function skipForwardsButtonClicked() {
-    ybridCtrl.skipForwards();
+    ybridCtrl.skipForwards(handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
-

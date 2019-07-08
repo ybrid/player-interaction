@@ -130,9 +130,9 @@ function togglePlay() {
                     (time, bufferSize) => {
                         pushBufferPlotItem(bufferSize);
                     },//
-                    (baseURLVal, sessionId) => {
-                        var result = "sessionId:\t"+sessionId + "\nbase URL:\t"+baseURLVal;
-                        document.getElementById("session-area").innerHTML = result;
+                    (createSessionResponse) => {
+                        var niceJson = JSON.stringify(createSessionResponse, undefined, 4);
+                        document.getElementById("session-area").innerHTML = niceJson;
                     }, 
                     (currentBitRate) => {
                         pushBandwidthPlotItem(currentBitRate);
@@ -193,47 +193,82 @@ function disableCTRLButton(button) {
     button.onclick = false;
 }
 
+
+function setMaxBitRate(bitRate){
+    ybridCtrl.setMaxBitRate(bitRate,
+            (result) => {
+                console.info("set-max-bit-rate response [maxBitRate: "
+                        + result.maxBitRate + "].");
+            },
+            (statusCode, message) => {
+            });
+}
+
 function swapButtonClicked() {
-    ybridCtrl.swap();
+    ybridCtrl.swap(
+            (result) => {
+                console.info("swap response [swapWasSuccessfull: "
+                        + result.swapWasSuccessfull + ", swapsLeft: "
+                        + result.swapsLeft + ", nextSwapReturnsToMain: "
+                        + result.nextSwapReturnsToMain + "].");
+            },
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function rewindButtonClicked() {
-    ybridCtrl.wind(-60000);
+    ybridCtrl.wind(-60000, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function windToButtonClicked(requestedTimestamp) {
-    ybridCtrl.windTo(requestedTimestamp);
+    ybridCtrl.windTo(requestedTimestamp, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function backToNowButtonClicked() {
-    ybridCtrl.backToNow();
+    ybridCtrl.backToNow(handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function fastForwardButtonClicked() {
-    ybridCtrl.wind(60000);
+    ybridCtrl.wind(60000, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function skipBackwardsTypedButtonClicked(requestedItemType) {
-    ybridCtrl.skipBackwards(requestedItemType);
+    ybridCtrl.skipBackwards(requestedItemType, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function skipForwardsTypedButtonClicked(requestedItemType) {
-    ybridCtrl.skipForwards(requestedItemType);
+    ybridCtrl.skipForwards(requestedItemType, handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function skipBackwardsButtonClicked() {
-    ybridCtrl.skipBackwards();
+    ybridCtrl.skipBackwards(handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 
 function skipForwardsButtonClicked() {
-    ybridCtrl.skipForwards();
+    ybridCtrl.skipForwards(handleWindResult,
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }

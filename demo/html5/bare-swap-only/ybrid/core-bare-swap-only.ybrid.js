@@ -70,8 +70,8 @@ function togglePlay() {
             audioCtx.startAudio(//
                     () => {
                     },//
-                    (baseURLVal, sessionId) => {
-                        console.info("created session [id: " + sessionId + ", baseURL: " + baseURLVal + "]");
+                    (createSessionResponse) => {
+                        console.info("created session [id: " + createSessionResponse.sessionId + ", baseURL: " + createSessionResponse.baseURL + "]");
                     }, 
                     (currentBitRate) => {
                         console.info("Current bit rate: " + currentBitRate);
@@ -120,8 +120,27 @@ function disableCTRLButton(button) {
     button.onclick = false;
 }
 
+
+function setMaxBitRate(bitRate){
+    ybridCtrl.setMaxBitRate(bitRate,
+            (result) => {
+                console.info("set-max-bit-rate response [maxBitRate: "
+                        + result.maxBitRate + "].");
+            },
+            (statusCode, message) => {
+            });
+}
+
 function swapButtonClicked() {
-    ybridCtrl.swap();
+    ybridCtrl.swap(
+            (result) => {
+                console.info("swap response [swapWasSuccessfull: "
+                        + result.swapWasSuccessfull + ", swapsLeft: "
+                        + result.swapsLeft + ", nextSwapReturnsToMain: "
+                        + result.nextSwapReturnsToMain + "].");
+            },
+            (statusCode, message) => {
+            });
     spinningWheelOn();
 }
 

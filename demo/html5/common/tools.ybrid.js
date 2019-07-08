@@ -44,7 +44,7 @@ function fetchJsonXHR(url, callback){
  * @param {String}
  *            url
  * @param {Function}
- *            callback - callback function for retrieving arraybuffer object
+ *            callback - callback function for retrieving the array buffer object
  */
 function fetchArrayBuffer(url, callback, init) {
     try {
