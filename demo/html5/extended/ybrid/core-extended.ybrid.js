@@ -4,14 +4,14 @@
  * @author Sebastian A. Weiß (C) 2018 nacamar GmbH
  */
 
-var ybridCtrl = io.ybrid.ctrl.v1.YbridCTRL();
+var ybridCtrl = io.ybrid.ctrl.v2.YbridCTRL();
 var audioCtx = io.ybrid.audio.AudioCTX();
 
 var stopped = true;
 
 /**
  * @param {Object}
- *            swapInfo
+ *                swapInfo
  * 
  */
 function handleSwapInfo(swapInfo) {
@@ -27,7 +27,7 @@ function handleSwapInfo(swapInfo) {
 
 /**
  * @param {String}
- *            url
+ *                url
  */
 function handleItemMetaURL(url) {
     var xmlhttp = new XMLHttpRequest();
@@ -57,10 +57,10 @@ function handleItemMetaURL(url) {
 
 /**
  * @param {Object}
- *            windResult
+ *                windResult
  */
 function handleWindResult(windResult) {
-    console.info("wind result [totalOffset: " + windResult.totalOffset
+    console.debug("wind result [totalOffset: " + windResult.totalOffset
             + ", effectiveWindDuration: " + windResult.effectiveWindDuration
             + "].");
     var niceJson = JSON.stringify(windResult, undefined, 4);
@@ -205,7 +205,7 @@ function setMaxBitRate(bitRate){
 }
 
 function swapButtonClicked() {
-    ybridCtrl.swap(
+    ybridCtrl.playoutSwap(
             (result) => {
                 console.info("swap response [swapWasSuccessfull: "
                         + result.swapWasSuccessfull + ", swapsLeft: "
@@ -218,56 +218,56 @@ function swapButtonClicked() {
 }
 
 function rewindButtonClicked() {
-    ybridCtrl.wind(-60000, handleWindResult,
+    ybridCtrl.playoutWind(-60000, handleWindResult,
             (statusCode, message) => {
             });
     spinningWheelOn();
 }
 
 function windToButtonClicked(requestedTimestamp) {
-    ybridCtrl.windTo(requestedTimestamp, handleWindResult,
+    ybridCtrl.playoutWindTo(requestedTimestamp, handleWindResult,
             (statusCode, message) => {
             });
     spinningWheelOn();
 }
 
 function backToNowButtonClicked() {
-    ybridCtrl.backToNow(handleWindResult,
+    ybridCtrl.playoutWindBack2Live(handleWindResult,
             (statusCode, message) => {
             });
     spinningWheelOn();
 }
 
 function fastForwardButtonClicked() {
-    ybridCtrl.wind(60000, handleWindResult,
+    ybridCtrl.playoutWind(60000, handleWindResult,
             (statusCode, message) => {
             });
     spinningWheelOn();
 }
 
 function skipBackwardsTypedButtonClicked(requestedItemType) {
-    ybridCtrl.skipBackwards(requestedItemType, handleWindResult,
+    ybridCtrl.playoutSkipBackwards(requestedItemType, handleWindResult,
             (statusCode, message) => {
             });
     spinningWheelOn();
 }
 
 function skipForwardsTypedButtonClicked(requestedItemType) {
-    ybridCtrl.skipForwards(requestedItemType, handleWindResult,
+    ybridCtrl.playoutSkipForwards(requestedItemType, handleWindResult,
             (statusCode, message) => {
             });
     spinningWheelOn();
 }
 
 function skipBackwardsButtonClicked() {
-    ybridCtrl.skipBackwards(handleWindResult,
+    ybridCtrl.playoutSkipBackwards(null, handleWindResult,
             (statusCode, message) => {
             });
     spinningWheelOn();
 }
 
 function skipForwardsButtonClicked() {
-    ybridCtrl.skipForwards(handleWindResult,
+    ybridCtrl.playoutSkipForwards(null, handleWindResult,
             (statusCode, message) => {
             });
     spinningWheelOn();
