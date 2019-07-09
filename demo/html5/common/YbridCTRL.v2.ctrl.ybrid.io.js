@@ -31,15 +31,10 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
         playoutSwapInfo: playoutSwapInfo,
         
         // public function interface due to compatibility with v1
-        createSession: sessionCreate
-//        setMaxBitRate: setMaxBitRate,
-//        wind: playoutWind,
-//        windTo: playoutWindTo,
-//        backToNow: playoutWindBack2Live,
-//        skipBackwards: playoutSkipBackwards,
-//        skipForwards: playoutSkipForwards,
-//        swap: playoutSwap,
-//        swapInfo: playoutSwapInfo,
+        createSession: sessionCreate,
+        setMaxBitRate: setMaxBitRate,
+        swap: playoutSwap,
+        swapInfo: playoutSwapInfo
     }
     
     function _updateBaseURLs(scheme, host, path){

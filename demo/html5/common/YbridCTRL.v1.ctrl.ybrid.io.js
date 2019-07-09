@@ -16,13 +16,9 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
         baseURL: null,
         commandBaseURL: null,
         sessionId: null,
+        
         createSession: createSession,
         setMaxBitRate: setMaxBitRate,
-        wind: wind,
-        windTo: windTo,
-        backToNow: backToNow,
-        skipBackwards: skipBackwards,
-        skipForwards: skipForwards,
         swap: swap,
         swapInfo: swapInfo
     }
@@ -36,11 +32,11 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
      * createSession.
      * 
      * @param {String}
-     *            schemeVal
+     *                schemeVal
      * @param {String}
-     *            hostVal
+     *                hostVal
      * @param {String}
-     *            pathVal
+     *                pathVal
      */
     function createSession(schemeVal, hostVal, pathVal, successHandler, errorHandler) {
         _updateBaseURLs(scheme, host, path);
@@ -71,97 +67,8 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
         var url = instance.commandBaseURL + "set-max-bit-rate?sessionId=" + instance.sessionId
                 + "&value=" + maxBitRateVal;
         fetchJsonXHR(url, successHandler);
-    }
-    
-    /**
-     * wind.
-     * 
-     * @param {Long}
-     *                duration - negative to wind backwards, positive to wind
-     *                forwards. Value in milliseconds.
-     * @param {Function}
-     *                successHandler
-     * @param {Function}
-     *                errorHandler
-     * @link https://github.com/ybrid/player-interaction#wind
-     */
-    function wind(duration, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "wind?duration=" + duration + "&sessionId="
-                + instance.sessionId;
-        fetchJsonXHR(url, successHandler);
-    }
+    }    
 
-    /**
-     * windTo.
-     * 
-     * @param {Long}
-     *                ts - timestamp to wind to, value in milliseconds since
-     *                1.1.1970.
-     * @param {Function}
-     *                successHandler
-     * @param {Function}
-     *                errorHandler
-     * @link https://github.com/ybrid/player-interaction#wind
-     */
-    function windTo(timestamp, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "wind?ts=" + timestamp + "&sessionId="
-                + instance.sessionId;
-        fetchJsonXHR(url, successHandler);
-    }
-
-    /**
-     * backToNow.
-     * 
-     * @param {Function}
-     *                successHandler
-     * @param {Function}
-     *                errorHandler
-     * @link https://github.com/ybrid/player-interaction#back-to-now
-     */
-    function backToNow(successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "back-to-now?sessionId=" + instance.sessionId;
-        fetchJsonXHR(url, successHandler);
-    }
-
-    /**
-     * skipBackwards.
-     * 
-     * @param {String}
-     *                requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
-     *                JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
-     * @param {Function}
-     *                successHandler
-     * @param {Function}
-     *                errorHandler
-     * @link https://github.com/ybrid/player-interaction#skip-backwards
-     */
-    function skipBackwards(requestedItemType, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "skip-backwards?sessionId=" + instance.sessionId;
-        if (requestedItemType) {
-            url += "&requestedItemType=" + requestedItemType;
-        }
-        fetchJsonXHR(url, successHandler);
-    }
-
-    /**
-     * skipForwards.
-     * 
-     * @param {String}
-     *                requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
-     *                JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
-     * @param {Function}
-     *                successHandler
-     * @param {Function}
-     *                errorHandler
-     * @link https://github.com/ybrid/player-interaction#skip-forwards
-     */
-    function skipForwards(requestedItemType, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "skip-forwards?sessionId=" + instance.sessionId;
-        if (requestedItemType) {
-            url += "&requestedItemType=" + requestedItemType;
-        }
-        fetchJsonXHR(url, successHandler);
-    }
 
     /**
      * swap.
