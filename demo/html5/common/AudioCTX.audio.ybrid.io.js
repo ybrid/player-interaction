@@ -51,7 +51,7 @@ io.ybrid.audio.AudioCTX = function () {
     function stopAudio(){
         _stopped = true;
         _audio.pause();
-        console.info("audio stopped");
+        console.info("AudioCTX stopped");
     }
 
     /**
@@ -81,7 +81,7 @@ io.ybrid.audio.AudioCTX = function () {
         _audio.addEventListener('canplay',
             () => {
                 _audio.play();
-                console.info("triggered playing...");
+                console.info("Triggered playing...");
             });
 
         _audio.addEventListener('timeupdate',
@@ -90,7 +90,7 @@ io.ybrid.audio.AudioCTX = function () {
                 if (typeof audioEventListener !== 'undefined') {
                     audioEventListener(_audio.currentTime, bufferSize);
                 }
-                console.info("time pointer: " + _audio.currentTime.toFixed(3)
+                console.debug("time pointer: " + _audio.currentTime.toFixed(3)
                     + ", buffer size: " + bufferSize.toFixed(3));
             });
     }
