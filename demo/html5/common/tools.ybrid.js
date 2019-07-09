@@ -78,7 +78,7 @@ function fetchArrayBuffer(url, callback, init) {
  */
 function logTimeRanges(timeRanges) {
     for (i = 0; i < timeRanges.length; i++) {
-        console.info("time range [index: " + i + ", start: "
+        console.debug("time range [index: " + i + ", start: "
                 + timeRanges.start(i) + ", end: " + timeRanges.end(i) + "]");
     }
 }
