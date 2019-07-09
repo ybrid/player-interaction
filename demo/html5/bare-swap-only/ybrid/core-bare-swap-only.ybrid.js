@@ -71,10 +71,10 @@ function togglePlay() {
                     () => {
                     },//
                     (createSessionResponse) => {
-                        console.info("created session [id: " + createSessionResponse.sessionId + ", baseURL: " + createSessionResponse.baseURL + "]");
+                        console.info("Created session [id: " + createSessionResponse.sessionId + ", baseURL: " + createSessionResponse.baseURL + "]");
                     }, 
                     (currentBitRate) => {
-                        console.info("Current bit rate: " + currentBitRate);
+                        console.debug("Current bit rate: " + currentBitRate);
                     });
         } catch (e) {
             alert(e);
