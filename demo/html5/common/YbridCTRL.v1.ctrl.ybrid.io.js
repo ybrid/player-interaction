@@ -57,8 +57,14 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
     }
     
     /**
+     * setMaxBitRate.
+     * 
      * @param {int}
-     *            maxBitRateVal - maximum bit rate
+     *                maxBitRateVal - maximum bit rate
+     * @param {Function}
+     *                successHandler
+     * @param {Function}
+     *                errorHandler
      * @link https://github.com/ybrid/player-interaction#set-max-bit-rate
      */
     function setMaxBitRate(maxBitRateVal, successHandler, errorHandler) {
@@ -68,9 +74,15 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
     }
     
     /**
+     * wind.
+     * 
      * @param {Long}
-     *            duration - negative to wind backwards, positive to wind
-     *            forwards. Value in milliseconds.
+     *                duration - negative to wind backwards, positive to wind
+     *                forwards. Value in milliseconds.
+     * @param {Function}
+     *                successHandler
+     * @param {Function}
+     *                errorHandler
      * @link https://github.com/ybrid/player-interaction#wind
      */
     function wind(duration, successHandler, errorHandler) {
@@ -80,9 +92,15 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
     }
 
     /**
+     * windTo.
+     * 
      * @param {Long}
-     *            ts - timestamp to wind to, value in milliseconds since
-     *            1.1.1970.
+     *                ts - timestamp to wind to, value in milliseconds since
+     *                1.1.1970.
+     * @param {Function}
+     *                successHandler
+     * @param {Function}
+     *                errorHandler
      * @link https://github.com/ybrid/player-interaction#wind
      */
     function windTo(timestamp, successHandler, errorHandler) {
@@ -92,6 +110,12 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
     }
 
     /**
+     * backToNow.
+     * 
+     * @param {Function}
+     *                successHandler
+     * @param {Function}
+     *                errorHandler
      * @link https://github.com/ybrid/player-interaction#back-to-now
      */
     function backToNow(successHandler, errorHandler) {
@@ -100,9 +124,15 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
     }
 
     /**
+     * skipBackwards.
+     * 
      * @param {String}
-     *            requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
-     *            JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
+     *                requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
+     *                JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
+     * @param {Function}
+     *                successHandler
+     * @param {Function}
+     *                errorHandler
      * @link https://github.com/ybrid/player-interaction#skip-backwards
      */
     function skipBackwards(requestedItemType, successHandler, errorHandler) {
@@ -114,9 +144,15 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
     }
 
     /**
+     * skipForwards.
+     * 
      * @param {String}
-     *            requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
-     *            JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
+     *                requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
+     *                JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
+     * @param {Function}
+     *                successHandler
+     * @param {Function}
+     *                errorHandler
      * @link https://github.com/ybrid/player-interaction#skip-forwards
      */
     function skipForwards(requestedItemType, successHandler, errorHandler) {
@@ -128,6 +164,12 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
     }
 
     /**
+     * swap.
+     * 
+     * @param {Function}
+     *                successHandler
+     * @param {Function}
+     *                errorHandler
      * @link https://github.com/ybrid/player-interaction#swap
      */
     function swap(successHandler, errorHandler) {
@@ -136,6 +178,12 @@ io.ybrid.ctrl.v1.YbridCTRL = function () {
     }
 
     /**
+     * swapInfo.
+     * 
+     * @param {Function}
+     *                successHandler
+     * @param {Function}
+     *                errorHandler
      * @link https://github.com/ybrid/player-interaction#swap-info
      */
     function swapInfo(successHandler, errorHandler) {
