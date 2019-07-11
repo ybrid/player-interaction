@@ -330,11 +330,36 @@ h1 {
 	border: dotted 1px rgb(255, 255, 0);
 }
 
+#column3 #available-services-div {
+    display: grid;
+    grid-template-columns: repeat(4, -webkit-calc((100% - 1px) / 4));
+    grid-template-columns: repeat(4, calc((100% - 1px) / 4));
+    width: -webkit-calc(100% - 1px);
+    width: calc(100% - 1px);
+    height: 200px;
+    /*  background-color: rgb(240, 240, 240); */
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: "Overpass Mono", sans-serif;
+    font-size: 10px;
+    color: #00ff00;
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-bottom: 6px;
+    /*     border: solid 1px rgb(169, 169, 169); */
+    border: dotted 1px rgb(255, 255, 0);
+}
+#column3 #available-services-div .field{
+    background-color: rgba(255, 0, 255, 0.2);
+    background-size: contain;
+    border: solid 1px rgb(0, 0, 0);
+    padding: 5px 5px 5px 5px;
+}
+
 #column3 #log-area {
 	width: -webkit-calc(100% - 5px);
 	width: calc(100% - 5px);
-	height: -webkit-calc(100% - 218px);
-	height: calc(100% - 218px);
+	height: -webkit-calc(100% - 424px);
+	height: calc(100% - 424px);
 	/* 	background-color: rgb(240, 240, 240); */
 	background-color: rgba(0, 0, 0, 0.5);
 	font-family: "Overpass Mono", sans-serif;

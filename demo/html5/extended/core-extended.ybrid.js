@@ -11,7 +11,7 @@ var stopped = true;
 
 /**
  * @param {Object}
- *                swapInfo
+ *            swapInfo
  * 
  */
 function handleSwapInfo(swapInfo) {
@@ -27,7 +27,7 @@ function handleSwapInfo(swapInfo) {
 
 /**
  * @param {String}
- *                url
+ *            url
  */
 function handleItemMetaURL(url) {
     var xmlhttp = new XMLHttpRequest();
@@ -57,7 +57,7 @@ function handleItemMetaURL(url) {
 
 /**
  * @param {Object}
- *                windResult
+ *            windResult
  */
 function handleWindResult(windResult) {
     console.debug("wind result [totalOffset: " + windResult.totalOffset
@@ -133,6 +133,12 @@ function togglePlay() {
                     (createSessionResponse) => {
                         var niceJson = JSON.stringify(createSessionResponse, undefined, 4);
                         document.getElementById("session-area").innerHTML = niceJson;
+                        ybridCtrl.playoutSwapServiceInfo(
+                                (result) => {
+                                    handleSwapServiceInfoResult(result);
+                                },
+                                (statusCode, message, object) => {
+                                });
                     }, 
                     (currentBitRate) => {
                         pushBandwidthPlotItem(currentBitRate);
@@ -148,6 +154,34 @@ function togglePlay() {
         disableCTRLButton(document.getElementById("swap-button"));
         audioCtx.stopAudio();
     }
+}
+
+function handleSwapServiceInfoResult(swapServiceInfo){
+    console.info(swapServiceInfo.availableServices);
+    var maxColumns =  4;
+    var maxRows = 2;
+    var fields = maxColumns * maxRows;
+    
+    var parentDiv = document.getElementById("available-services-div");
+    
+    var width = Math.round(parentDiv.clientWidth / maxColumns);
+    var height = Math.round(parentDiv.clientHeight / maxRows);
+//    debugger
+    
+    for (var i = 0; i < fields && i < swapServiceInfo.availableServices.length; i++) {
+        var field = document.createElement("DIV");
+        var service = swapServiceInfo.availableServices[i];
+        if(service.iconURL){
+            field.style.backgroundImage = "url('" + service.iconURL + "')";
+        } else {
+            field.innerHTML = service.id;
+        }
+        field.style.width = width;
+        field.style.height = height;
+//        debugger
+        field.classList.add("field");
+        parentDiv.appendChild(field);
+     }
 }
 
 function spinningWheelOn() {
