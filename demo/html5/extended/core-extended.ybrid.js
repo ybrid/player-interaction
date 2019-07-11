@@ -195,80 +195,82 @@ function disableCTRLButton(button) {
 
 
 function setMaxBitRate(bitRate){
-    ybridCtrl.setMaxBitRate(bitRate,
+    ybridCtrl.sessionSetMaxBitRate(bitRate,
             (result) => {
                 console.info("set-max-bit-rate response [maxBitRate: "
                         + result.maxBitRate + "].");
             },
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
 }
 
 function swapButtonClicked() {
-    ybridCtrl.playoutSwap(
+    ybridCtrl.playoutSwapItem(
             (result) => {
-                console.info("swap response [swapWasSuccessfull: "
-                        + result.swapWasSuccessfull + ", swapsLeft: "
+                console.info("swap item was successfull, response [swapsLeft: "
                         + result.swapsLeft + ", nextSwapReturnsToMain: "
                         + result.nextSwapReturnsToMain + "].");
             },
-            (statusCode, message) => {
+            (statusCode, message, object) => {
+                console.warn("swap item was unsuccessfull, response [swapsLeft: "
+                        + object.swapsLeft + ", nextSwapReturnsToMain: "
+                        + object.nextSwapReturnsToMain + "].");
             });
     spinningWheelOn();
 }
 
 function rewindButtonClicked() {
     ybridCtrl.playoutWind(-60000, handleWindResult,
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
     spinningWheelOn();
 }
 
 function windToButtonClicked(requestedTimestamp) {
     ybridCtrl.playoutWindTo(requestedTimestamp, handleWindResult,
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
     spinningWheelOn();
 }
 
 function backToNowButtonClicked() {
     ybridCtrl.playoutWindBack2Live(handleWindResult,
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
     spinningWheelOn();
 }
 
 function fastForwardButtonClicked() {
     ybridCtrl.playoutWind(60000, handleWindResult,
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
     spinningWheelOn();
 }
 
 function skipBackwardsTypedButtonClicked(requestedItemType) {
     ybridCtrl.playoutSkipBackwards(requestedItemType, handleWindResult,
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
     spinningWheelOn();
 }
 
 function skipForwardsTypedButtonClicked(requestedItemType) {
     ybridCtrl.playoutSkipForwards(requestedItemType, handleWindResult,
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
     spinningWheelOn();
 }
 
 function skipBackwardsButtonClicked() {
     ybridCtrl.playoutSkipBackwards(null, handleWindResult,
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
     spinningWheelOn();
 }
 
 function skipForwardsButtonClicked() {
     ybridCtrl.playoutSkipForwards(null, handleWindResult,
-            (statusCode, message) => {
+            (statusCode, message, object) => {
             });
     spinningWheelOn();
 }
