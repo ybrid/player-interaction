@@ -21,20 +21,23 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
         sessionCreate: sessionCreate,
         sessionInfo: sessionInfo,
         sessionClose: sessionClose,
+        sessionSetMaxBitRate: sessionSetMaxBitRate,
         
         playoutWind: playoutWind,
         playoutWindTo: playoutWindTo,
-        playoutWindBack2Live: playoutWindBack2Live,
+        playoutWindBackToLive: playoutWindBackToLive,
         playoutSkipBackwards: playoutSkipBackwards,
         playoutSkipForwards: playoutSkipForwards,
-        playoutSwap: playoutSwap,
-        playoutSwapInfo: playoutSwapInfo,
+        playoutSwapItem: playoutSwapItem,
+        playoutSwapItemInfo: playoutSwapItemInfo,
+        playoutSwapService: playoutSwapService,
+        playoutSwapServiceInfo: playoutSwapServiceInfo,
         
         // public function interface due to compatibility with v1
         createSession: sessionCreate,
-        setMaxBitRate: setMaxBitRate,
-        swap: playoutSwap,
-        swapInfo: playoutSwapInfo
+        setMaxBitRate: sessionSetMaxBitRate,
+        swap: playoutSwapItem,
+        swapInfo: playoutSwapItemInfo
     }
     
     function _updateBaseURLs(scheme, host, path){
@@ -53,9 +56,8 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
             if(successHandler){
                 successHandler(response.__responseObject);
             }
-        }
-        if(errorHandler){
-            errorHandler(response.__responseHeader.statusCode, response.__responseHeader.mesage);
+        } else if(errorHandler){
+            errorHandler(response.__responseHeader.statusCode, response.__responseHeader.mesage, response.__responseObject);
         }
     }
     
@@ -71,15 +73,15 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * sessionCreate.
      * 
      * @param {String}
-     *                schemeVal
+     *            schemeVal
      * @param {String}
-     *                hostVal
+     *            hostVal
      * @param {String}
-     *                pathVal
+     *            pathVal
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      */
     function sessionCreate(schemeVal, hostVal, pathVal, successHandler, errorHandler) {
         _updateBaseURLs(scheme, host, path);
@@ -102,9 +104,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * sessionInfo.
      * 
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      */
     function sessionInfo(successHandler, errorHandler){
         var url = instance.commandBaseURL + "session/info?sessionId=" + instance.sessionId;
@@ -115,9 +117,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * sessionClose.
      * 
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      */
     function sessionClose(successHandler, errorHandler){
         var url = instance.commandBaseURL + "session/close?sessionId=" + instance.sessionId;
@@ -125,18 +127,18 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
     }
     
     /**
-     * setMaxBitRate.
+     * sessionSetMaxBitRate.
      * 
      * @param {int}
-     *                maxBitRateVal - maximum bit rate
+     *            maxBitRateVal - maximum bit rate
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      * @link https://github.com/ybrid/player-interaction#set-max-bit-rate
      */
-    function setMaxBitRate(maxBitRateVal, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "set-max-bit-rate?sessionId=" + instance.sessionId
+    function sessionSetMaxBitRate(maxBitRateVal, successHandler, errorHandler) {
+        var url = instance.commandBaseURL + "session/setMaxBitRate?sessionId=" + instance.sessionId
                 + "&value=" + maxBitRateVal;
         _cURL(url, successHandler, errorHandler);
     }
@@ -145,12 +147,12 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * playoutWind.
      * 
      * @param {Long}
-     *                duration - negative to wind backwards, positive to wind
-     *                forwards. Value in milliseconds.
+     *            duration - negative to wind backwards, positive to wind
+     *            forwards. Value in milliseconds.
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      * @link https://github.com/ybrid/player-interaction#wind
      */
     function playoutWind(duration, successHandler, errorHandler) {
@@ -163,12 +165,12 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * playoutWindTo.
      * 
      * @param {Long}
-     *                ts - timestamp to wind to, value in milliseconds since
-     *                1.1.1970.
+     *            ts - timestamp to wind to, value in milliseconds since
+     *            1.1.1970.
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      * @link https://github.com/ybrid/player-interaction#wind
      */
     function playoutWindTo(timestamp, successHandler, errorHandler) {
@@ -178,16 +180,16 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
     }
 
     /**
-     * playoutWindBack2Live.
+     * playoutWindBackToLive.
      * 
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      * @link https://github.com/ybrid/player-interaction#back-to-now
      */
-    function playoutWindBack2Live(successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/wind/back2live?sessionId=" + instance.sessionId;
+    function playoutWindBackToLive(successHandler, errorHandler) {
+        var url = instance.commandBaseURL + "playout/wind/backToLive?sessionId=" + instance.sessionId;
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -195,12 +197,12 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * playoutSkipBackwards.
      * 
      * @param {String}
-     *                requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
-     *                JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
+     *            requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
+     *            JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      * @link https://github.com/ybrid/player-interaction#skip-backwards
      */
     function playoutSkipBackwards(requestedItemType, successHandler, errorHandler) {
@@ -215,12 +217,12 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * playoutSkipForwards.
      * 
      * @param {String}
-     *                requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
-     *                JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
+     *            requestedItemType - null or one of (ADVERTISEMENT | COMEDY |
+     *            JINGLE | MUSIC | NEWS | VOICE | WEATHER | TRAFFIC)
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      * @link https://github.com/ybrid/player-interaction#skip-forwards
      */
     function playoutSkipForwards(requestedItemType, successHandler, errorHandler) {
@@ -232,30 +234,61 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
     }
 
     /**
-     * playoutSwap.
+     * playoutSwapItem.
      * 
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      * @link https://github.com/ybrid/player-interaction#swap
      */
-    function playoutSwap(successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/swap?sessionId=" + instance.sessionId;
+    function playoutSwapItem(successHandler, errorHandler) {
+        var url = instance.commandBaseURL + "playout/swap/item?sessionId=" + instance.sessionId;
         _cURL(url, successHandler, errorHandler);
     }
 
     /**
-     * playoutSwapInfo.
+     * playoutSwapItemInfo.
      * 
      * @param {Function}
-     *                successHandler
+     *            successHandler
      * @param {Function}
-     *                errorHandler
+     *            errorHandler
      * @link https://github.com/ybrid/player-interaction#swap-info
      */
-    function playoutSwapInfo(successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/swap/info?sessionId=" + instance.sessionId;
+    function playoutSwapItemInfo(successHandler, errorHandler) {
+        var url = instance.commandBaseURL + "playout/swap/item/info?sessionId=" + instance.sessionId;
+        _cURL(url, successHandler, errorHandler);
+    }
+
+    /**
+     * playoutSwapService.
+     * 
+     * @param {String}
+     *            serviceId
+     * @param {Function}
+     *            successHandler
+     * @param {Function}
+     *            errorHandler
+     * @link https://github.com/ybrid/player-interaction#swap
+     */
+    function playoutSwapService(serviceId, successHandler, errorHandler) {
+        var url = instance.commandBaseURL + "playout/swap/service?sessionId=" + instance.sessionId 
+            + "&serviceId=" + serviceId;
+        _cURL(url, successHandler, errorHandler);
+    }
+
+    /**
+     * playoutSwapServiceInfo.
+     * 
+     * @param {Function}
+     *            successHandler
+     * @param {Function}
+     *            errorHandler
+     * @link https://github.com/ybrid/player-interaction#swap-info
+     */
+    function playoutSwapServiceInfo(successHandler, errorHandler) {
+        var url = instance.commandBaseURL + "playout/swap/service/info?sessionId=" + instance.sessionId;
         _cURL(url, successHandler, errorHandler);
     }
 
