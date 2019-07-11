@@ -198,7 +198,7 @@ function windToButtonClicked(requestedTimestamp) {
 }
 
 function backToNowButtonClicked() {
-    ybridCtrl.playoutWindBack2Live(handleWindResult,
+    ybridCtrl.playoutWindBackToLive(handleWindResult,
             (statusCode, message, object) => {
             });
     spinningWheelOn();
