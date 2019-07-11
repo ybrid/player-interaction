@@ -158,27 +158,28 @@ function togglePlay() {
 
 function handleSwapServiceInfoResult(swapServiceInfo){
     console.info(swapServiceInfo.availableServices);
+    var parentDiv = document.getElementById("available-services-div");
+    while (parentDiv.firstChild) {
+        parentDiv.removeChild(parentDiv.firstChild);
+    }
     var maxColumns =  4;
     var maxRows = 2;
     var fields = maxColumns * maxRows;
-    
-    var parentDiv = document.getElementById("available-services-div");
-    
-    var width = Math.round(parentDiv.clientWidth / maxColumns);
-    var height = Math.round(parentDiv.clientHeight / maxRows);
-//    debugger
-    
     for (var i = 0; i < fields && i < swapServiceInfo.availableServices.length; i++) {
         var field = document.createElement("DIV");
         var service = swapServiceInfo.availableServices[i];
         if(service.iconURL){
             field.style.backgroundImage = "url('" + service.iconURL + "')";
-        } else {
-            field.innerHTML = service.id;
         }
-        field.style.width = width;
-        field.style.height = height;
-//        debugger
+        field.innerHTML = service.id;
+        field.onclick = function() {
+            ybridCtrl.playoutSwapService(service.id,
+                    (result) => {
+                        handleSwapServiceInfoResult(result);
+                    },
+                    (statusCode, message, object) => {
+                    });
+        };
         field.classList.add("field");
         parentDiv.appendChild(field);
      }

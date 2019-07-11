@@ -351,10 +351,19 @@ h1 {
 #column3 #available-services-div .field{
     background-color: rgba(255, 0, 255, 0.2);
     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; 
     border: solid 1px rgb(0, 0, 0);
     padding: 5px 5px 5px 5px;
 }
-
+#column3 #available-services-div .field:hover { 
+    background-color: rgba(255, 255, 0, 0.2);
+    border: dotted 1px rgb(255, 0, 255);
+}
+#column3 #available-services-div .field:active { 
+    background-color: rgba(0, 255, 255, 0.6);
+    border: dotted 1px rgb(255, 0, 255);
+}
 #column3 #log-area {
 	width: -webkit-calc(100% - 5px);
 	width: calc(100% - 5px);
