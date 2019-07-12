@@ -116,6 +116,8 @@ function initConsole() {
     console.error = console.debug = console.info = console.log;
 }
 
+var servicesKnown = false;
+
 function togglePlay() {
     var playButton = document.getElementById("play-button");
     if (stopped == true) {
@@ -129,16 +131,19 @@ function togglePlay() {
             audioCtx.startAudio(//
                     (time, bufferSize) => {
                         pushBufferPlotItem(bufferSize);
+                        if(!servicesKnown){
+                            ybridCtrl.playoutSwapServiceInfo(
+                                    (result) => {
+                                        handleSwapServiceInfoResult(result);
+                                    },
+                                    (statusCode, message, object) => {
+                                    });
+                            servicesKnown = true;
+                        }
                     },//
                     (createSessionResponse) => {
                         var niceJson = JSON.stringify(createSessionResponse, undefined, 4);
                         document.getElementById("session-area").innerHTML = niceJson;
-                        ybridCtrl.playoutSwapServiceInfo(
-                                (result) => {
-                                    handleSwapServiceInfoResult(result);
-                                },
-                                (statusCode, message, object) => {
-                                });
                     }, 
                     (currentBitRate) => {
                         pushBandwidthPlotItem(currentBitRate);
@@ -148,6 +153,7 @@ function togglePlay() {
         }
     } else {
         stopped = true;
+        servicesKnown = false;
         playButton.classList.remove("fa-pause");
         playButton.classList.add("fa-play");
         disableAllCTRL();
@@ -158,31 +164,52 @@ function togglePlay() {
 
 function handleSwapServiceInfoResult(swapServiceInfo){
     console.info(swapServiceInfo.availableServices);
+
+    if(swapServiceInfo.activeService){
+        var activeServiceDiv = document.getElementById("active-service-div");
+        if(swapServiceInfo.activeService.iconURL){
+            activeServiceDiv.style.backgroundImage = "url('" + swapServiceInfo.activeService.iconURL + "')";
+        }else{
+            activeServiceDiv.style.backgroundImage = "none";
+        }
+        activeServiceDiv.innerHTML = swapServiceInfo.activeService.id;
+    }
+    
     var parentDiv = document.getElementById("available-services-div");
     while (parentDiv.firstChild) {
         parentDiv.removeChild(parentDiv.firstChild);
     }
-    var maxColumns =  4;
-    var maxRows = 2;
+    var maxColumns =  5;
+    var maxRows = 1;
     var fields = maxColumns * maxRows;
-    for (var i = 0; i < fields && i < swapServiceInfo.availableServices.length; i++) {
-        var field = document.createElement("DIV");
+    for (var i = 0; i < swapServiceInfo.availableServices.length; i++) {
         var service = swapServiceInfo.availableServices[i];
+        if(swapServiceInfo.activeService && (service.id === swapServiceInfo.activeService.id)){
+            continue;
+        }
+        
+        var field = document.createElement("DIV");
         if(service.iconURL){
             field.style.backgroundImage = "url('" + service.iconURL + "')";
         }
         field.innerHTML = service.id;
-        field.onclick = function() {
-            ybridCtrl.playoutSwapService(service.id,
-                    (result) => {
-                        handleSwapServiceInfoResult(result);
-                    },
-                    (statusCode, message, object) => {
-                    });
-        };
+        field.addEventListener("click", createOnClick(service.id), false);
+        
         field.classList.add("field");
         parentDiv.appendChild(field);
      }
+}
+
+function createOnClick(serviceId){
+    return function() {
+        ybridCtrl.playoutSwapService(serviceId,
+                (result) => {
+                    handleSwapServiceInfoResult(result);
+                },
+                (statusCode, message, object) => {
+                });
+        spinningWheelOn();
+    };
 }
 
 function spinningWheelOn() {
