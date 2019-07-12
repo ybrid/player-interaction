@@ -11,7 +11,30 @@ io.ybrid.ctrl.v2 = io.ybrid.ctrl.v2 || {};
 io.ybrid.ctrl.v2.YbridCTRL = function () {
 
     const PATH_BASE = "/ctrl/v2/";
-
+    
+    const COMMAND__SESSION_CREATE = "session/create";
+    const COMMAND__SESSION_CLOSE = "session/close";
+    const COMMAND__SESSION_INFO = "session/info";
+    const COMMAND__SESSION_SET_MAX_BIT_RATE = "session/set-max-bit-rate";
+    
+    const COMMAND__PLAYOUT_SWAP_ITEM = "playout/swap/item";
+    const COMMAND__PLAYOUT_SWAP_ITEM_INFO = "playout/swap/item/info";
+    const COMMAND__PLAYOUT_SWAP_SERVICE = "playout/swap/service";
+    const COMMAND__PLAYOUT_SWAP_SERVICE_INFO = "playout/swap/service/info";
+    
+    const COMMAND__PLAYOUT_WIND = "playout/wind";
+    const COMMAND__PLAYOUT_WIND_BACK_TO_LIVE = "playout/wind/back-to-live";
+    const COMMAND__PLAYOUT_SKIP_FORWARDS = "playout/skip/forwards";
+    const COMMAND__PLAYOUT_SKIP_BACKWARDS = "playout/skip/backwards";
+    
+    
+    const PARAM__SESSION_ID = "session-id";
+    const PARAM__VALUE = "value";
+    const PARAM__DURATION = "duration";
+    const PARAM__TIMESTAMP = "ts";
+    const PARAM__ITEM_TYPE = "item-type";
+    const PARAM__SERVICE_ID = "service-id";
+    
     var instance = {
         baseURL: null,
         commandBaseURL: null,
@@ -69,6 +92,23 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
             });
     }
     
+    function _createCommandURL(command, parameters){
+        var url = instance.commandBaseURL + command;
+        if(parameters){
+            var start = true;
+            for(key in parameters){
+                if(start){
+                    url += "?";
+                    start = false;
+                } else {
+                    url += "&";
+                }
+                url += key + "=" + parameters[key];
+            }
+        }
+        return url;
+    }
+    
     /**
      * sessionCreate.
      * 
@@ -85,7 +125,7 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      */
     function sessionCreate(schemeVal, hostVal, pathVal, successHandler, errorHandler) {
         _updateBaseURLs(scheme, host, path);
-        var url = instance.commandBaseURL + "session/create";
+        let url = _createCommandURL(COMMAND__SESSION_CREATE, {});
         // console.info(url);
         _cURL(url,
             (result) => {
@@ -109,7 +149,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      *            errorHandler
      */
     function sessionInfo(successHandler, errorHandler){
-        var url = instance.commandBaseURL + "session/info?sessionId=" + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        let url = _createCommandURL(COMMAND__SESSION_INFO, parameters);
         _cURL(url, successHandler, errorHandler);
     }
     
@@ -122,7 +164,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      *            errorHandler
      */
     function sessionClose(successHandler, errorHandler){
-        var url = instance.commandBaseURL + "session/close?sessionId=" + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        let url = _createCommandURL(COMMAND__SESSION_CLOSE, parameters);
         _cURL(url, successHandler, errorHandler);
     }
     
@@ -138,8 +182,10 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#set-max-bit-rate
      */
     function sessionSetMaxBitRate(maxBitRateVal, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "session/setMaxBitRate?sessionId=" + instance.sessionId
-                + "&value=" + maxBitRateVal;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        parameters[PARAM__VALUE] = maxBitRateVal;
+        let url = _createCommandURL(COMMAND__SESSION_SET_MAX_BIT_RATE, parameters);
         _cURL(url, successHandler, errorHandler);
     }
     
@@ -156,8 +202,10 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#wind
      */
     function playoutWind(duration, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/wind?duration=" + duration + "&sessionId="
-                + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        parameters[PARAM__DURATION] = duration;
+        let url = _createCommandURL(COMMAND__PLAYOUT_WIND, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -174,8 +222,10 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#wind
      */
     function playoutWindTo(timestamp, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/wind?ts=" + timestamp + "&sessionId="
-                + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        parameters[PARAM__TIMESTAMP] = timestamp;
+        let url = _createCommandURL(COMMAND__PLAYOUT_WIND, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -189,7 +239,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#back-to-now
      */
     function playoutWindBackToLive(successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/wind/backToLive?sessionId=" + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        let url = _createCommandURL(COMMAND__PLAYOUT_WIND_BACK_TO_LIVE, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -206,10 +258,12 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#skip-backwards
      */
     function playoutSkipBackwards(requestedItemType, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/skip/backwards?sessionId=" + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
         if (requestedItemType) {
-            url += "&requestedItemType=" + requestedItemType;
+            parameters[PARAM__ITEM_TYPE] = requestedItemType;
         }
+        let url = _createCommandURL(COMMAND__PLAYOUT_SKIP_BACKWARDS, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -226,10 +280,12 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#skip-forwards
      */
     function playoutSkipForwards(requestedItemType, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/skip/forwards?sessionId=" + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
         if (requestedItemType) {
-            url += "&requestedItemType=" + requestedItemType;
+            parameters[PARAM__ITEM_TYPE] = requestedItemType;
         }
+        let url = _createCommandURL(COMMAND__PLAYOUT_SKIP_FORWARDS, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -243,7 +299,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#swap
      */
     function playoutSwapItem(successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/swap/item?sessionId=" + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        let url = _createCommandURL(COMMAND__PLAYOUT_SWAP_ITEM, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -257,7 +315,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#swap-info
      */
     function playoutSwapItemInfo(successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/swap/item/info?sessionId=" + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        let url = _createCommandURL(COMMAND__PLAYOUT_SWAP_ITEM_INFO, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -273,8 +333,10 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#swap
      */
     function playoutSwapService(serviceId, successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/swap/service?sessionId=" + instance.sessionId 
-            + "&serviceId=" + serviceId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        parameters[PARAM__SERVICE_ID] = serviceId;
+        let url = _createCommandURL(COMMAND__PLAYOUT_SWAP_SERVICE, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
@@ -288,7 +350,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      * @link https://github.com/ybrid/player-interaction#swap-info
      */
     function playoutSwapServiceInfo(successHandler, errorHandler) {
-        var url = instance.commandBaseURL + "playout/swap/service/info?sessionId=" + instance.sessionId;
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        let url = _createCommandURL(COMMAND__PLAYOUT_SWAP_SERVICE_INFO, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
