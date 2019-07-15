@@ -165,14 +165,20 @@ function togglePlay() {
 function handleSwapServiceInfoResult(swapServiceInfo){
     console.info(swapServiceInfo.availableServices);
 
-    if(swapServiceInfo.activeService){
+    if(swapServiceInfo.activeServiceId){
         var activeServiceDiv = document.getElementById("active-service-div");
-        if(swapServiceInfo.activeService.iconURL){
-            activeServiceDiv.style.backgroundImage = "url('" + swapServiceInfo.activeService.iconURL + "')";
-        }else{
-            activeServiceDiv.style.backgroundImage = "none";
-        }
-        activeServiceDiv.innerHTML = swapServiceInfo.activeService.id;
+        swapServiceInfo.availableServices.forEach(
+                (service)=>{
+                    if(service.id === swapServiceInfo.activeServiceId){
+                        if(service.iconURL){
+                            activeServiceDiv.style.backgroundImage = "url('" + service.iconURL + "')";
+                        }else{
+                            activeServiceDiv.style.backgroundImage = "none";
+                        }
+                    }
+                    
+                });
+        activeServiceDiv.innerHTML = swapServiceInfo.activeServiceId;
     }
     
     var parentDiv = document.getElementById("available-services-div");
@@ -184,7 +190,7 @@ function handleSwapServiceInfoResult(swapServiceInfo){
     var fields = maxColumns * maxRows;
     for (var i = 0; i < swapServiceInfo.availableServices.length; i++) {
         var service = swapServiceInfo.availableServices[i];
-        if(swapServiceInfo.activeService && (service.id === swapServiceInfo.activeService.id)){
+        if(swapServiceInfo.activeServiceId && (service.id === swapServiceInfo.activeServiceId)){
             continue;
         }
         
