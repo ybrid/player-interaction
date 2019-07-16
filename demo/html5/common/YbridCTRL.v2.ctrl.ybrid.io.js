@@ -129,7 +129,7 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
         // console.info(url);
         _cURL(url,
             (result) => {
-                instance.sessionId = result.sessionId;
+                instance.sessionId = result.id;
                 _updateBaseURLs(scheme, result.host, path);
                 // console.info("created new session with [id: " + sessionId
                 // + ", new base URL: " + baseURL + "].");
