@@ -144,10 +144,10 @@ io.ybrid.audio.AudioCTX = function () {
         ybridCtrl.createSession(scheme, host, path,// 
             (result) => {
                 sessionInfoHandler(result);
-                _buffer(result.baseURL, result.sessionId, currentBitRateHandler,//
+                _buffer(ybridCtrl.baseURL, ybridCtrl.sessionId, currentBitRateHandler,//
                     () => {
-                        alert("Could not retrieve chunks from [baseURLVal: " + result.baseURL +
-                            ", sessionId: " + result.sessionId + "]");
+                        alert("Could not retrieve chunks from [baseURLVal: " + ybridCtrl.baseURL +
+                            ", sessionId: " + ybridCtrl.sessionId + "]");
                     });
             },
             (statusCode, message, object) => {
