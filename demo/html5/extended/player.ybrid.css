@@ -303,7 +303,7 @@ h1 {
 #column1 #session-area {
     width: -webkit-calc(100% - 5px);
     width: calc(100% - 5px);
-    height: 70px;
+    height: 250px;
     /*  background-color: rgb(240, 240, 240); */
     background-color: rgba(0, 0, 0, 0.5);
     font-family: "Overpass Mono", sans-serif;
@@ -317,7 +317,7 @@ h1 {
 #column1 #wind-result-area {
     width: -webkit-calc(100% - 5px);
     width: calc(100% - 5px);
-    height: 280px;
+    height: 250px;
     /*  background-color: rgb(240, 240, 240); */
     background-color: rgba(0, 0, 0, 0.5);
     font-family: "Overpass Mono", sans-serif;
@@ -331,8 +331,8 @@ h1 {
 #column1 #meta-area-2 {
 	width: -webkit-calc(100% - 5px);
 	width: calc(100% - 5px);
-	height: -webkit-calc(100% - 390px);
-	height: calc(100% - 390px);
+	height: -webkit-calc(100% - 560px);
+	height: calc(100% - 560px);
 	/* 	background-color: rgb(240, 240, 240); */
 	background-color: rgba(0, 0, 0, 0.5);
 	font-family: "Overpass Mono", sans-serif;
