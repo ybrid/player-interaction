@@ -7,7 +7,7 @@
 	list-style-type: none;
 	margin: 0;
 	margin: 0 0 0 1px;
-	border-left: 1px dotted #ccc;
+	border-left: 1px dotted #880;
 	padding-left: 2em;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .json-viewer a.list-link:before {
-    color: #aa0;
+    color: #880;
 /*     color: #aaa; */
 	content: "\25BC";
 	position: absolute;
