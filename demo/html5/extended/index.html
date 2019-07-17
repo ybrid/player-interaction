@@ -21,6 +21,8 @@
 <script type="text/javascript" src="plot/PlotDataSet.ybrid.js"></script>
 <script type="text/javascript" src="plot/plot.ybrid.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="lib/json-viewer.js"></script>
+<link rel="stylesheet" href="lib/json-viewer.css">
 <script type="text/javascript">
     window.addEventListener('load', function() {
         initConsole();
@@ -40,9 +42,9 @@
     </div>
     <div id="main">
         <div id="column1">
-            <textarea id="session-area"></textarea>
-            <textarea id="wind-result-area"></textarea>
-            <textarea id="meta-area-2"></textarea>
+            <div id="session-area"></div>
+            <div id="wind-result-area"></div>
+            <div id="meta-area-2"></div>
         </div>
         <img id="logo-in-column-2" src="http://www.ybrid.io/ydemo/img/ybrid_colored.png" />
         <div id="column2">
@@ -65,14 +67,12 @@
             <form>
                 <p>
                     Select max. bit rate <input type="radio" id="contactChoice1" name="bitRateSelector" value="32000"
-                        onclick="setMaxBitRate(bitRateSelector.value)"> <label
-                        for="contactChoice1">32 kbps</label> <input type="radio" id="contactChoice2"
-                        name="bitRateSelector" value="80000"
-                        onclick="setMaxBitRate(bitRateSelector.value)"> <label
-                        for="contactChoice2">80 kbps</label> <input type="radio" id="contactChoice3"
-                        name="bitRateSelector" value="192000"
-                        onclick="setMaxBitRate(bitRateSelector.value)"> <label
-                        for="contactChoice3">192 kbps</label>
+                        onclick="setMaxBitRate(bitRateSelector.value)"> <label for="contactChoice1">32
+                        kbps</label> <input type="radio" id="contactChoice2" name="bitRateSelector" value="80000"
+                        onclick="setMaxBitRate(bitRateSelector.value)"> <label for="contactChoice2">80
+                        kbps</label> <input type="radio" id="contactChoice3" name="bitRateSelector" value="192000"
+                        onclick="setMaxBitRate(bitRateSelector.value)"> <label for="contactChoice3">192
+                        kbps</label>
                 </p>
                 <p>
                     Backwards to next <select name="requestedItemTypeBackwards">
@@ -84,8 +84,8 @@
                         <option value="JINGLE">JINGLE</option>
                         <option value="VOICE">VOICE</option>
                         <option value="ADVERTISEMENT">ADVERTISEMENT</option>
-                    </select>
-                    <input type="button" value="Skip" onclick="skipBackwardsTypedButtonClicked(requestedItemTypeBackwards.value)"/>
+                    </select> <input type="button" value="Skip"
+                        onclick="skipBackwardsTypedButtonClicked(requestedItemTypeBackwards.value)" />
                 </p>
                 <p>
                     Forwards to next <select name="requestedItemTypeForwards">
@@ -97,12 +97,12 @@
                         <option value="JINGLE">JINGLE</option>
                         <option value="VOICE">VOICE</option>
                         <option value="ADVERTISEMENT">ADVERTISEMENT</option>
-                    </select>
-                    <input type="button" value="Skip" onclick="skipForwardsTypedButtonClicked(requestedItemTypeForwards.value)"/>
+                    </select> <input type="button" value="Skip"
+                        onclick="skipForwardsTypedButtonClicked(requestedItemTypeForwards.value)" />
                 </p>
                 <p>
-                    Wind to timestamp <input type="text" name="requestedTimestamp"/>&nbsp;
-                    <input type="button" value="Wind" onclick="windToButtonClicked(requestedTimestamp.value)"/>
+                    Wind to timestamp <input type="text" name="requestedTimestamp" />&nbsp; <input type="button"
+                        value="Wind" onclick="windToButtonClicked(requestedTimestamp.value)" />
                 </p>
             </form>
         </div>

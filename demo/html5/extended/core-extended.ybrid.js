@@ -10,9 +10,24 @@ var audioCtx = io.ybrid.audio.AudioCTX();
 var stopped = true;
 
 /**
+ * showJson.
+ * 
+ * @param jsonObj
+ * @param div
+ * @param level
+ */
+function showJson(jsonObj, div, level){
+    clearDiv(div);
+    var level = level || 1;
+    var jsonViewer = new JSONViewer();
+    div.appendChild(jsonViewer.getContainer());
+    jsonViewer.showJSON(jsonObj, -1, level);
+}
+
+
+/**
  * @param {Object}
  *            swapInfo
- * 
  */
 function handleSwapInfo(swapInfo) {
     var swapButton = document.getElementById("swap-button");
@@ -30,29 +45,30 @@ function handleSwapInfo(swapInfo) {
  *            url
  */
 function handleItemMetaURL(url) {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (((this.readyState == 4)) && ((this.status == 200))) {
-            var result = JSON.parse(this.responseText);
-            var niceJson = JSON.stringify(result, undefined, 4);
-            document.getElementById("meta-area-2").innerHTML = niceJson;
-            if (typeof result.currentItem.companions !== 'undefined') {
-                if (typeof result.currentItem.companions[0] !== 'undefined') {
-                    // SEBASTIAN select most appropriate companion
-                    var companion = result.currentItem.companions[0];
-                    showCompanionAd(companion.staticResourceURL,
-                            companion.altText, companion.onClickThroughURL);
+    fetchJson(url, 
+            (meta) => {
+                showItemMeta(meta);
+                if (typeof meta.currentItem.companions !== 'undefined') {
+                    if (typeof meta.currentItem.companions[0] !== 'undefined') {
+                        // SEBASTIAN select most appropriate companion
+                        var companion = meta.currentItem.companions[0];
+                        showCompanionAd(companion.staticResourceURL,
+                                companion.altText, companion.onClickThroughURL);
+                    } else {
+                        hideCompanionAd();
+                    }
                 } else {
                     hideCompanionAd();
                 }
-            } else {
-                hideCompanionAd();
-            }
-            handleSwapInfo(result.swapInfo);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+                handleSwapInfo(meta.swapInfo);
+            });
+}
+
+function showItemMeta(itemMeta){
+    var div = document.getElementById("meta-area-2");
+    showJson(itemMeta, div, 2);
+// var niceJson = JSON.stringify(itemMeta, undefined, 4);
+// document.getElementById("meta-area-2").innerHTML = niceJson;
 }
 
 /**
@@ -63,8 +79,7 @@ function handleWindResult(windResult) {
     console.debug("wind result [totalOffset: " + windResult.totalOffset
             + ", effectiveWindDuration: " + windResult.effectiveWindDuration
             + "].");
-    var niceJson = JSON.stringify(windResult, undefined, 4);
-    document.getElementById("wind-result-area").innerHTML = niceJson;
+    showWindResult(windResult);
     if (windResult.windRequestWasSuccessfull) {
         var backToNowButton = document.getElementById("back-to-now-button");
         if (windResult.totalOffset == 0) {
@@ -73,6 +88,13 @@ function handleWindResult(windResult) {
             enableCTRLButton(backToNowButton, backToNowButtonClicked)
         }
     }
+}
+
+function showWindResult(windResult){
+    var div = document.getElementById("wind-result-area");
+    showJson(windResult, div);
+// var niceJson = JSON.stringify(windResult, undefined, 4);
+// document.getElementById("wind-result-area").innerHTML = niceJson;
 }
 
 /**
@@ -141,10 +163,7 @@ function togglePlay() {
                             servicesKnown = true;
                         }
                     },//
-                    (createSessionResponse) => {
-                        var niceJson = JSON.stringify(createSessionResponse, undefined, 4);
-                        document.getElementById("session-area").innerHTML = niceJson;
-                    }, 
+                    showSessionInfo, 
                     (currentBitRate) => {
                         pushBandwidthPlotItem(currentBitRate);
                     });
@@ -160,6 +179,13 @@ function togglePlay() {
         disableCTRLButton(document.getElementById("swap-button"));
         audioCtx.stopAudio();
     }
+}
+
+function showSessionInfo(sessionInfo){
+    var div = document.getElementById("session-area");
+    showJson(sessionInfo, div);
+// var niceJson = JSON.stringify(createSessionResponse, undefined, 4);
+// innerHTML = niceJson;
 }
 
 function handleSwapServiceInfoResult(swapServiceInfo){
@@ -182,9 +208,8 @@ function handleSwapServiceInfoResult(swapServiceInfo){
     }
     
     var parentDiv = document.getElementById("available-services-div");
-    while (parentDiv.firstChild) {
-        parentDiv.removeChild(parentDiv.firstChild);
-    }
+    clearDiv(parentDiv);
+
     var maxColumns =  5;
     var maxRows = 1;
     var fields = maxColumns * maxRows;
