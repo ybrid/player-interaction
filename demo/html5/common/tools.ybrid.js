@@ -44,7 +44,8 @@ function fetchJsonXHR(url, callback){
  * @param {String}
  *            url
  * @param {Function}
- *            callback - callback function for retrieving the array buffer object
+ *            callback - callback function for retrieving the array buffer
+ *            object
  */
 function fetchArrayBuffer(url, callback, init) {
     try {
@@ -83,3 +84,13 @@ function logTimeRanges(timeRanges) {
     }
 }
 
+/**
+ * clearDiv.
+ * 
+ * @param parentDiv
+ */
+function clearDiv(parentDiv){
+    while (parentDiv.firstChild) {
+        parentDiv.removeChild(parentDiv.firstChild);
+    }
+}
