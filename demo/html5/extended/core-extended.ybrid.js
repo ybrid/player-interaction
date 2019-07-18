@@ -235,7 +235,7 @@ function createOnClick(serviceId){
     return function() {
         ybridCtrl.playoutSwapService(serviceId,
                 (result) => {
-                    handleSwapServiceInfoResult(result);
+                    handleSwapServiceInfoResult(result.bouquet);
                 },
                 (statusCode, message, object) => {
                 });
