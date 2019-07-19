@@ -27,13 +27,13 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
     const COMMAND__PLAYOUT_SKIP_FORWARDS = "playout/skip/forwards";
     const COMMAND__PLAYOUT_SKIP_BACKWARDS = "playout/skip/backwards";
     
-    
-    const PARAM__SESSION_ID = "session-id";
-    const PARAM__VALUE = "value";
     const PARAM__DURATION = "duration";
-    const PARAM__TIMESTAMP = "ts";
     const PARAM__ITEM_TYPE = "item-type";
+    const PARAM__MAX_BIT_RATE = "max-bit-rate";
     const PARAM__SERVICE_ID = "service-id";
+    const PARAM__SESSION_ID = "session-id";
+    const PARAM__TIMESTAMP = "ts";
+    const PARAM__VALUE = "value";
     
     var instance = {
         baseURL: null,
@@ -125,7 +125,9 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
      */
     function sessionCreate(schemeVal, hostVal, pathVal, successHandler, errorHandler) {
         _updateBaseURLs(scheme, host, path);
-        let url = _createCommandURL(COMMAND__SESSION_CREATE, {});
+        let parameters = {};
+        // parameters[PARAM__MAX_BIT_RATE] = 128000;
+        let url = _createCommandURL(COMMAND__SESSION_CREATE, parameters);
         // console.info(url);
         _cURL(url,
             (result) => {
