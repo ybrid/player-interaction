@@ -11,7 +11,7 @@ for your own development.
 
 Language | Link | Description |   |   |   |   |   |   |
 --- | --- | --- | :---: | :---: | :---: | :---: | :---: | :---: 
-|   |   |   | Chrome | Edge | Firefox | Internet Explorer | Opera | Safari
+   |   |   | Chrome | Edge | Firefox | Internet Explorer | Opera | Safari
 HTML5/Javascript | [**Bare HTML Player**](demo/html5/bare)  | Bare player only containing the really necessary components. | ✓ | (✓) | ✓ | - | - | - |
 HTML5/Javascript | [**Bare HTML Swap Only Player**](demo/html5/bare-swap-only)  | Even less functionality than bare player has, only able to swap. | ✓ | (✓) | ✓ | - | - | - |
 HTML5/Javascript | [**Extended HTML Player**](demo/html5/extended)  | A beautiful and colorful player with a console, several plots and showing current meta data jsons. | ✓ | (✓) | ✓ | - | - | - |
