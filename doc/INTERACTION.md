@@ -382,7 +382,7 @@ Status 200 OK
 ```json
 {
     "swapsLeft": <number-of-swaps-left>,
-    "swapWasSuccessFull": <swap-was-successfull-flag>,
+    "swapWasSuccessful": <swap-was-successful-flag>,
     "nextSwapReturnsToMain": <next-swap-returns-to-main>
 }
 ```
@@ -392,7 +392,7 @@ number-of-swaps-left =      1*DIGIT, number of possible swaps left after last op
                             original item. Value can be used e.g. to disable the swap button if no more swap 
                             is left.
                             In case of value -1 the number of swaps left is unknown or unlimited.
-swap-was-successfull-flag = bool, value is true if last swap request could sucessfully be processed.
+swap-was-successful-flag =  bool, value is true if last swap request could sucessfully be processed.
 next-swap-returns-to-main = bool, value is true if next swap returns to main content.
 ```
 
@@ -400,7 +400,7 @@ next-swap-returns-to-main = bool, value is true if next swap returns to main con
 ```json
 {
     "swapsLeft": 2,
-    "swapWasSuccessFull": true,
+    "swapWasSuccessful": true,
     "nextSwapReturnsToMain": false
 }
 ```
