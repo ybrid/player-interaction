@@ -9,7 +9,6 @@ This document specifies how clients, or more specific players, interact with **Y
   * [**Limited Pre-Stream Ad Insertion Control**](#limited-pre-stream-ad-insertion-control)
   * [**Instream Meta Data**](#instream-meta-data)
     * [**Icecast**](#icecast)
-* [**Credentials**](#credentials)
 
 ## Introduction
 The simplest form of service player interaction is just to request a stream. In that case the stream will be 
