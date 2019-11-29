@@ -80,13 +80,11 @@ function handleWindResult(windResult) {
             + ", effectiveWindDuration: " + windResult.effectiveWindDuration
             + "].");
     showWindResult(windResult);
-    if (windResult.windRequestWasSuccessfull) {
-        var backToNowButton = document.getElementById("back-to-now-button");
-        if (windResult.totalOffset == 0) {
-            disableCTRLButton(backToNowButton);
-        } else {
-            enableCTRLButton(backToNowButton, backToNowButtonClicked)
-        }
+    var backToNowButton = document.getElementById("back-to-now-button");
+    if (windResult.totalOffset == 0) {
+        disableCTRLButton(backToNowButton);
+    } else {
+        enableCTRLButton(backToNowButton, backToNowButtonClicked)
     }
 }
 
