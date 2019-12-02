@@ -1,5 +1,5 @@
 # player-interaction
-This project contains the documentation and also example code on how to interact with YBRID® from a player's 
+This project contains the documentation and also example code on how to interact with Ybrid® from a player's 
 perspective.
 
 ## Documentation
@@ -21,4 +21,4 @@ HTML5/Javascript | [**Extended HTML Player**](demo/html5/extended)  | A beautifu
 @sebastian-weiss
 
 ### Copyright
-YBRID®, a Hybrid Dynamic Live Audio Technology developed by nacamar GmbH 2017-2019
+Ybrid®, a Hybrid Dynamic Live Audio Technology developed by nacamar GmbH 2017-2019
