@@ -45,8 +45,16 @@ function handleItemMetaURL(url) {
             } else {
                 hideCompanionAd();
             }
-            document.getElementById("artist").innerHTML = result.currentItem.artist;
-            document.getElementById("title").innerHTML = result.currentItem.title;
+            if(result.currentItem.artist){
+                document.getElementById("artist").style.display = "block";
+                document.getElementById("artist-title-dash").style.display = "block";
+                document.getElementById("artist").innerHTML = result.currentItem.artist;
+                document.getElementById("title").innerHTML = result.currentItem.title;
+            }else{
+                document.getElementById("artist").style.display = "none";
+                document.getElementById("artist-title-dash").style.display = "none";
+                document.getElementById("title").innerHTML = result.currentItem.title;
+            }
             if (result.timeToNextItemMillis > -1) {
                 var secs = result.timeToNextItemMillis / 1000
                 document.getElementById("ttni").innerHTML = secs.toFixed(1)

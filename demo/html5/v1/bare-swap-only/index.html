@@ -22,11 +22,13 @@
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
-        <h2>YBRID<sup>®</sup></h2>
+        <h2>
+            YBRID<sup>®</sup>
+        </h2>
         <h3>Hybrid&nbsp;Dynamic&nbsp;Live&nbsp;Audio Demonstration&nbsp;Client</h3>
         <p>&nbsp;</p>
         <p>
-            <span id="artist"></span>&nbsp;&mdash;&nbsp;<span id="title"></span>
+            <span id="artist"></span><span id="artist-title-dash">&nbsp;&mdash;&nbsp;</span><span id="title"></span>
         </p>
         <p>
             Time to next item:&nbsp;<span id="ttni"></span>&nbsp;&mdash;&nbsp;Offset to now:&nbsp;<span id="otn"></span>
@@ -34,19 +36,17 @@
         <p>&nbsp;</p>
         <p class="control">
             <audio></audio>
-            <i id="play-button" class="fas fa-play audioElement" onclick="togglePlay()" onmouseover=""></i> &nbsp; 
-            <i id="swap-button" class="fas fa-sync audioElementDisabled" onclick=""></i>
+            <i id="play-button" class="fas fa-play audioElement" onclick="togglePlay()" onmouseover=""></i> &nbsp; <i
+                id="swap-button" class="fas fa-sync audioElementDisabled" onclick=""></i>
         </p>
         <form>
             <p>
                 Select max. bit rate <input type="radio" id="contactChoice1" name="bitRateSelector" value="32000"
-                    onclick="setMaxBitRate(bitRateSelector.value)"> <label
-                    for="contactChoice1">32 kbps</label> <input type="radio" id="contactChoice2" name="bitRateSelector"
-                    value="80000" onclick="setMaxBitRate(bitRateSelector.value)">
-                <label for="contactChoice2">80 kbps</label> <input type="radio" id="contactChoice3"
-                    name="bitRateSelector" value="192000"
-                    onclick="setMaxBitRate(bitRateSelector.value)"> <label
-                    for="contactChoice3">192 kbps</label>
+                    onclick="setMaxBitRate(bitRateSelector.value)"> <label for="contactChoice1">32 kbps</label>
+                <input type="radio" id="contactChoice2" name="bitRateSelector" value="80000"
+                    onclick="setMaxBitRate(bitRateSelector.value)"> <label for="contactChoice2">80 kbps</label>
+                <input type="radio" id="contactChoice3" name="bitRateSelector" value="192000"
+                    onclick="setMaxBitRate(bitRateSelector.value)"> <label for="contactChoice3">192 kbps</label>
             </p>
         </form>
     </div>
