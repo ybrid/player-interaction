@@ -80,7 +80,6 @@ function handleWindResult(windResult) {
             + ", effectiveWindDuration: " + windResult.effectiveWindDuration
             + "].");
     showWindResult(windResult);
-    if (windResult.windRequestWasSuccessfull) {
         var backToNowButton = document.getElementById("back-to-now-button");
         if (windResult.totalOffset == 0) {
             disableCTRLButton(backToNowButton);
@@ -88,7 +87,6 @@ function handleWindResult(windResult) {
             enableCTRLButton(backToNowButton, backToNowButtonClicked)
         }
     }
-}
 
 function showWindResult(windResult){
     var div = document.getElementById("wind-result-area");
