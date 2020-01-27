@@ -312,7 +312,7 @@ h1 {
     margin-bottom: 6px;
     /*     border: solid 1px rgb(169, 169, 169); */
     border: dotted 1px rgb(255, 255, 0);
-    overflow: hidden;
+    overflow: scroll;
 }
 
 #column1 #wind-result-area {
@@ -327,7 +327,7 @@ h1 {
     margin-bottom: 6px;
     /*     border: solid 1px rgb(169, 169, 169); */
     border: dotted 1px rgb(255, 255, 0);
-    overflow: hidden;
+    overflow: scroll;
 }
 
 #column1 #meta-area-2 {
@@ -342,7 +342,7 @@ h1 {
 	color: #00ff00;
 	/*     border: solid 1px rgb(169, 169, 169); */
 	border: dotted 1px rgb(255, 255, 0);
-    overflow: hidden;
+    overflow: scroll;
 }
 
 #column3 {
