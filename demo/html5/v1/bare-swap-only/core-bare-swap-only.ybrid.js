@@ -46,13 +46,13 @@ function handleItemMetaURL(url) {
                 hideCompanionAd();
             }
             if(result.currentItem.artist){
-                document.getElementById("artist-title").innerHTML = result.currentItem.artist + "&nbsp;&mdash;&nbsp;" + result.currentItem.title;
+                document.getElementById("artist-title").textContent = result.currentItem.artist + " \u{2014} " + result.currentItem.title;
             }else{
-                document.getElementById("artist-title").innerHTML = result.currentItem.title;
+                document.getElementById("artist-title").textContent = result.currentItem.title;
             }
             if (result.timeToNextItemMillis > -1) {
                 var secs = result.timeToNextItemMillis / 1000
-                document.getElementById("ttni").innerHTML = secs.toFixed(1)
+                document.getElementById("ttni").textContent = secs.toFixed(1)
                         + " sec.";
             }
             handleSwapInfo(result.swapInfo);
