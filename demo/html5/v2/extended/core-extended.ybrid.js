@@ -112,7 +112,7 @@ function initConsole() {
 
     console.log = function(message) {
         console.olog(message);
-        var txt = document.getElementById("log-area").innerHTML;
+        var txt = document.getElementById("log-area").textContent;
         var lines = txt.split("\n");
         if (lines.length > 250) {
             txt = '';
@@ -128,7 +128,7 @@ function initConsole() {
             }
         }
         txt += message + "\n";
-        document.getElementById("log-area").innerHTML = txt;
+        document.getElementById("log-area").textContent = txt;
         document.getElementById("log-area").scrollTop = document
                 .getElementById("log-area").scrollHeight
     };
@@ -202,7 +202,7 @@ function handleSwapServiceInfoResult(swapServiceInfo){
                     }
                     
                 });
-        activeServiceDiv.innerHTML = swapServiceInfo.activeServiceId;
+        activeServiceDiv.textContent = swapServiceInfo.activeServiceId;
     }
     
     var parentDiv = document.getElementById("available-services-div");
@@ -221,7 +221,7 @@ function handleSwapServiceInfoResult(swapServiceInfo){
         if(service.iconURL){
             field.style.backgroundImage = "url('" + service.iconURL + "')";
         }
-        field.innerHTML = service.id;
+        field.textContent = service.id;
         field.addEventListener("click", createOnClick(service.id), false);
         
         field.classList.add("field");

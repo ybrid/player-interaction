@@ -18,7 +18,7 @@ h1, h2, h3 {
 	/* 	font-family: "Montserrat", sans-serif; */
 	font-weight: 400;
 	text-align: center;
-	margin-top: 0px;
+	margin-top: 0;
 	margin-bottom: 0.5em;
 }
 
@@ -46,6 +46,7 @@ h1 {
 
 ::-webkit-scrollbar {
 	width: 6px;
+	height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -122,7 +123,7 @@ h1 {
 	left: calc(50% - 45px);
 	/*     border: 6px solid rgba(0, 0, 0, 0); */
 	/*     border-radius: 50%; */
-	/* /*     border-top: 6px solid rgb(239, 121, 24); */ */
+	/* /x*     border-top: 6px solid rgb(239, 121, 24); *x/ */
 	/*     border-top: 6px solid rgba(255, 0, 255, 1.0); */
 	/*     border-bottom: 6px solid rgba(0, 0, 0, 0); */
 	color: #000;
@@ -189,8 +190,8 @@ h1 {
 
 #main {
 	position: fixed;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	height: 100%;
 	width: 100%;
 	background-image:
@@ -223,7 +224,6 @@ h1 {
 	height: -webkit-calc(100% - 170px);
 	height: calc(100% - 170px);
 	top: 280px;
-	top: 280px;
 	left: -webkit-calc(33% + 29px);
 	left: calc(33% + 29px);
 	text-align: left;
@@ -238,21 +238,19 @@ h1 {
 	width: calc(33% - 176px);
  */
 	width: 200px;
-	width: 200px;
-	left: -webkit-calc(33% + (( 33% - 200px)/2));
-	left: calc(33% + (( 33% - 200px)/2));
+	left: -webkit-calc(33% + ((33% - 200px)/2));
+	left: calc(33% + ((33% - 200px)/2));
 }
 
 #column2 #active-service-div {
-    width: -webkit-calc(100% -1px);
-    width: calc(100% -1px);
+    width: -webkit-calc(100% - 1px);
+    width: calc(100% - 1px);
     height: 100px;
-    font-size: 10px;
     font-family: "Overpass Mono", sans-serif;
     font-size: 10px;
     color: #00ff00;
     padding: 5px 5px 5px 5px;
-    margin-right: 0px;
+    margin-right: 0;
     margin-bottom: 6px;
     /*     border: solid 1px rgb(169, 169, 169); */
     border: dotted 1px rgb(255, 255, 0);
@@ -276,8 +274,8 @@ h1 {
     font-family: "Overpass Mono", sans-serif;
     font-size: 10px;
     color: #00ff00;
-    padding-right: 0px;
-    margin-right: 0px;
+    padding-right: 0;
+    margin-right: 0;
     margin-bottom: 6px;
     /*     border: solid 1px rgb(169, 169, 169); */
     border: dotted 1px rgb(255, 255, 0);
@@ -312,7 +310,7 @@ h1 {
     margin-bottom: 6px;
     /*     border: solid 1px rgb(169, 169, 169); */
     border: dotted 1px rgb(255, 255, 0);
-    overflow: hidden;
+    overflow: scroll;
 }
 
 #column1 #wind-result-area {
@@ -327,7 +325,7 @@ h1 {
     margin-bottom: 6px;
     /*     border: solid 1px rgb(169, 169, 169); */
     border: dotted 1px rgb(255, 255, 0);
-    overflow: hidden;
+    overflow: scroll;
 }
 
 #column1 #meta-area-2 {
@@ -342,7 +340,7 @@ h1 {
 	color: #00ff00;
 	/*     border: solid 1px rgb(169, 169, 169); */
 	border: dotted 1px rgb(255, 255, 0);
-    overflow: hidden;
+    overflow: scroll;
 }
 
 #column3 {
@@ -363,28 +361,28 @@ h1 {
 }
 
 #column3 #bandwidth-plot {
-	width: -webkit-calc(100% -1px);
-	width: calc(100% -1px);
+	width: -webkit-calc(100% - 1px);
+	width: calc(100% - 1px);
 	height: 98px;
 	background-color: rgba(0, 0, 0, 0);
 	font-size: 10px;
 	color: black;
-	padding-right: 0px;
-	margin-right: 0px;
+	padding-right: 0;
+	margin-right: 0;
 	margin-bottom: 6px;
 	/*     border: solid 1px rgb(169, 169, 169); */
 	border: dotted 1px rgb(255, 255, 0);
 }
 
 #column3 #buffer-plot {
-	width: -webkit-calc(100% -1px);
-	width: calc(100% -1px);
+	width: -webkit-calc(100% - 1px);
+	width: calc(100% - 1px);
 	height: 98px;
 	background-color: rgba(0, 0, 0, 0);
 	font-size: 10px;
 	color: black;
-	padding-right: 0px;
-	margin-right: 0px;
+	padding-right: 0;
+	margin-right: 0;
 	margin-bottom: 6px;
 	/*     border: solid 1px rgb(169, 169, 169); */
 	border: dotted 1px rgb(255, 255, 0);
@@ -411,8 +409,8 @@ h1 {
 	position: fixed;
 	width: 100%;
 	height: 50px;
-	top: -webkit-calc(100% -50px);
-	top: calc(100% -50px);
+	top: -webkit-calc(100% - 50px);
+	top: calc(100% - 50px);
 	left: 0;
 	right: 0;
 	bottom: 0;
