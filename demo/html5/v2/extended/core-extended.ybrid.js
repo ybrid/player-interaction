@@ -31,12 +31,15 @@ function showJson(jsonObj, div, level){
  */
 function handleSwapInfo(swapInfo) {
     var swapButton = document.getElementById("swap-button");
+    var back2MainButton = document.getElementById("back-to-main-button");
     if (swapInfo.swapsLeft == 0) {
         // swapButton.classList.remove('fa-spin');
         disableCTRLButton(swapButton);
+        disableCTRLButton(back2MainButton)
     } else {
         // swapButton.classList.add('fa-spin');
         enableCTRLButton(swapButton, swapButtonClicked)
+        enableCTRLButton(back2MainButton, backToMainButtonClicked)
     }
 }
 
@@ -261,6 +264,7 @@ function disableAllCTRL(){
     disableCTRLButton(document.getElementById("skip-backwards-button"));
     disableCTRLButton(document.getElementById("rewind-button"));
     disableCTRLButton(document.getElementById("back-to-now-button"));
+    disableCTRLButton(document.getElementById("back-to-main-button"));
     disableCTRLButton(document.getElementById("fast-forward-button"));
     disableCTRLButton(document.getElementById("skip-forwards-button"));
 }
@@ -326,6 +330,13 @@ function windToButtonClicked(requestedTimestamp) {
 
 function backToNowButtonClicked() {
     ybridCtrl.playoutWindBackToLive(handleWindResult,
+            (statusCode, message, object) => {
+            });
+    spinningWheelOn();
+}
+
+function backToMainButtonClicked() {
+    ybridCtrl.playoutBackToMain(handleWindResult,
             (statusCode, message, object) => {
             });
     spinningWheelOn();

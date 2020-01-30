@@ -17,6 +17,8 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
     const COMMAND__SESSION_INFO = "session/info";
     const COMMAND__SESSION_SET_MAX_BIT_RATE = "session/set-max-bit-rate";
     
+    const COMMAND__PLAYOUT_BACK_TO_MAIN = "playout/back-to-main";
+
     const COMMAND__PLAYOUT_SWAP_ITEM = "playout/swap/item";
     const COMMAND__PLAYOUT_SWAP_ITEM_INFO = "playout/swap/item/info";
     const COMMAND__PLAYOUT_SWAP_SERVICE = "playout/swap/service";
@@ -46,6 +48,7 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
         sessionClose: sessionClose,
         sessionSetMaxBitRate: sessionSetMaxBitRate,
         
+        playoutBackToMain: playoutBackToMain,
         playoutWind: playoutWind,
         playoutWindTo: playoutWindTo,
         playoutWindBackToLive: playoutWindBackToLive,
@@ -244,6 +247,22 @@ io.ybrid.ctrl.v2.YbridCTRL = function () {
         let parameters = {};
         parameters[PARAM__SESSION_ID] = instance.sessionId;
         let url = _createCommandURL(COMMAND__PLAYOUT_WIND_BACK_TO_LIVE, parameters);
+        _cURL(url, successHandler, errorHandler);
+    }
+
+    /**
+     * playoutBackToMain.
+     * 
+     * @param {Function}
+     *            successHandler
+     * @param {Function}
+     *            errorHandler
+     * @link https://github.com/ybrid/player-interaction#back-to-main
+     */
+    function playoutBackToMain(successHandler, errorHandler) {
+        let parameters = {};
+        parameters[PARAM__SESSION_ID] = instance.sessionId;
+        let url = _createCommandURL(COMMAND__PLAYOUT_BACK_TO_MAIN, parameters);
         _cURL(url, successHandler, errorHandler);
     }
 
