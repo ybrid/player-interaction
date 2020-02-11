@@ -5,12 +5,16 @@
  */
 
 const maxPlotItems = 200;
-const maxPlotTimeRangeMillis = 60000;
+const maxPlotTimeRangeMillis = 120000;
+
 const bandwidthPlotId = 'bandwidth-plot';
 var bandwidthPlotter;
 
 const bufferPlotId = 'buffer-plot';
 var bufferPlotter;
+
+const avgLevelPlotId = 'level-plot';
+var levelPlotter;
 
 const plotFont = '"Montserrat", sans-serif';
 const plotGridColor = 'rgba(0.5, 0.5, 0.5, 0.7)';
@@ -19,6 +23,8 @@ const paperBackground = 'rgba(0, 0, 0, 0.5)';
 
 var bandwidthDS = new PlotDataSet();
 var bufferDS = new PlotDataSet();
+var levelDS = new PlotDataSet();
+var lastLevelTS = 0;
 
 function pushTimelineUntilNow(dataSet, length, value) {
     now = Date.now();
@@ -36,13 +42,19 @@ function initPlots() {
     bufferPlotter = document.getElementById(bufferPlotId);
     initPlot(bufferPlotter, bufferDS, 'Playout Buffer', 'Seconds', 0, 5,
             'spline', true, 2);
+
+    levelPlotter = document.getElementById(avgLevelPlotId);
+    initPlot(levelPlotter, levelDS, 'Volume', 'Level', -0.04, 0.04,
+            'spline', false, 0.02);
 }
 
 function initPlotLines() {
     pushTimelineUntilNow(bandwidthDS, maxPlotItems, 0)
     pushTimelineUntilNow(bufferDS, maxPlotItems, 0)
+    pushTimelineUntilNow(levelDS, maxPlotItems, 0)
     updatePlot(bandwidthPlotter, bandwidthDS);
     updatePlot(bufferPlotter, bufferDS);
+    updatePlot(levelPlotter, levelDS);
 }
 
 function pushBandwidthPlotItem(item) {
@@ -65,6 +77,33 @@ function pushBufferPlotItem(item) {
     updatePlot(bufferPlotter, bufferDS);
 }
 
+function pushLevelPlotItem(levels) {
+    now = Date.now();
+    if(lastLevelTS == 0){
+        lastLevelTS = now;
+        return;
+    }
+    range = now - lastLevelTS;
+    delta = Math.round(range / levels.length);
+    deltaHalf = Math.round(delta / 2);
+    ts = lastLevelTS;
+    for(value of levels){
+        level = parseFloat(value).toFixed(5);
+        ts += deltaHalf;
+        levelDS.pushTuple(ts, level);
+        negativeLevel = level * -1;
+        ts += deltaHalf;
+        levelDS.pushTuple(ts, negativeLevel);
+    }
+    lastLevelTS = ts;
+    
+    minimumT = now - maxPlotTimeRangeMillis;
+    while (levelDS.getXData()[0] < minimumT) {
+        levelDS.shiftTuple();
+    }
+    updatePlot(levelPlotter, levelDS);
+}
+
 function updatePlot(plotter, dataSet){
     Plotly.update(plotter, {
         x: [dataSet.getXData()],
@@ -78,7 +117,6 @@ function updatePlotBars(plotter, dataSet, minY = 0){
         y: [dataSet.getYData().map( x => x - minY)]
    });
 }
-
 function initPlot(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
         shapeVal, filled, dtickVal) {
     fillVal = 'none';
@@ -92,9 +130,9 @@ function initPlot(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
         y : dataSet.getYData(), // clone to trigger reactive update
         mode : modeVal,
         fill : fillVal,
-        fillcolor : 'rgba(0, 1.0, 0, 0.6)',
+        fillcolor : 'rgba(0, 1.0, 1.0, 0.2)',
         line : {
-            color : '#0f0',
+            color : '#0ff',
             width : 1.0,
             shape : shapeVal
         }

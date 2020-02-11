@@ -5,12 +5,14 @@ io.ybrid.audio = io.ybrid.audio || {};
 /**
  * AudioCTX.audio.ybrid.io.js
  * 
- * @author Sebastian A. Weiß (C) 2019 nacamar GmbH
+ * @author Sebastian A. Weiß (C) 2019-2020 nacamar GmbH
  */
 io.ybrid.audio.AudioCTX = function () {
 
     const ARAICYP_HEADER_ITEM_URL = 'AR-Meta-Item-URL';
     const ARAICYP_HEADER_CURRENT_BITRATE = 'AR-CTRL-Current-Bit-Rate';
+    const ARAICYP_HEADER_CURRENT_AVG_LEVEL = 'AR-CTRL-Current-Average-Level';
+    
     const ACCEPTED_MIME_TYPE = 'application/x-ybrid-discrete';
     const CODEC_MIME_TYPE = 'audio/mpeg';
 
@@ -179,7 +181,15 @@ io.ybrid.audio.AudioCTX = function () {
                     }
                     var bitRate = headers.get(ARAICYP_HEADER_CURRENT_BITRATE);
                     if (typeof bitRate !== undefined && bitRate != null) {
-                        currentBitRateHandler(bitRate);
+                        setTimeout(() => {
+                            currentBitRateHandler(bitRate);
+                        }, delay);
+                    }
+                    var avgLevel = headers.get(ARAICYP_HEADER_CURRENT_AVG_LEVEL);
+                    if (typeof avgLevel !== undefined && avgLevel != null) {
+                        setTimeout(() => {
+                            handleAvgLevel(avgLevel);
+                        }, delay);
                     }
                     if (_stopped == false) {
                         _buffer(baseURLVal, sessionId, currentBitRateHandler, errorCallback);

@@ -67,6 +67,11 @@ function handleItemMetaURL(url) {
             });
 }
 
+function handleAvgLevel(level) {
+    var levels = level.split(", ");
+    pushLevelPlotItem(levels);
+}
+
 function showItemMeta(itemMeta){
     var div = document.getElementById("meta-area-2");
     showJson(itemMeta, div, 2);

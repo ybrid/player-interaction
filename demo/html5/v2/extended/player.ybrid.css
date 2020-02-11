@@ -360,39 +360,34 @@ h1 {
 	z-index: 0;
 }
 
+.plot {
+    width: -webkit-calc(100% - 1px);
+    width: calc(100% - 1px);
+    height: 98px;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 10px;
+    color: black;
+    padding-right: 0;
+    margin-right: 0;
+    margin-bottom: 6px;
+    /*     border: solid 1px rgb(169, 169, 169); */
+    border: dotted 1px rgb(255, 255, 0);
+}
+
 #column3 #bandwidth-plot {
-	width: -webkit-calc(100% - 1px);
-	width: calc(100% - 1px);
-	height: 98px;
-	background-color: rgba(0, 0, 0, 0);
-	font-size: 10px;
-	color: black;
-	padding-right: 0;
-	margin-right: 0;
-	margin-bottom: 6px;
-	/*     border: solid 1px rgb(169, 169, 169); */
-	border: dotted 1px rgb(255, 255, 0);
 }
 
 #column3 #buffer-plot {
-	width: -webkit-calc(100% - 1px);
-	width: calc(100% - 1px);
-	height: 98px;
-	background-color: rgba(0, 0, 0, 0);
-	font-size: 10px;
-	color: black;
-	padding-right: 0;
-	margin-right: 0;
-	margin-bottom: 6px;
-	/*     border: solid 1px rgb(169, 169, 169); */
-	border: dotted 1px rgb(255, 255, 0);
+}
+
+#column3 #level-plot {
 }
 
 #column3 #log-area {
 	width: -webkit-calc(100% - 5px);
 	width: calc(100% - 5px);
-	height: -webkit-calc(100% - 224px);
-	height: calc(100% - 224px);
+	height: -webkit-calc(100% - 336px);
+	height: calc(100% - 336px);
 	/* 	background-color: rgb(240, 240, 240); */
 	background-color: rgba(0, 0, 0, 0.5);
 	font-family: "Overpass Mono", sans-serif;
