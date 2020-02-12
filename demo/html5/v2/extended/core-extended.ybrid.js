@@ -67,9 +67,10 @@ function handleItemMetaURL(url) {
             });
 }
 
-function handleAvgLevel(level) {
-    var levels = level.split(", ");
-    pushLevelPlotItem(levels);
+function handleAvgLevel(levelDoc) {
+    var levelDocString = decodeURIComponent(levelDoc);
+    var levelDocJson = JSON.parse(levelDocString);
+    pushLevelPlotItem(levelDocJson.mostCurrentLevels.playout);
 }
 
 function showItemMeta(itemMeta){
