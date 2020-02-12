@@ -37,15 +37,15 @@ function pushTimelineUntilNow(dataSet, length, value) {
 function initPlots() {
     bandwidthPlotter = document.getElementById(bandwidthPlotId);
     initPlot(bandwidthPlotter, bandwidthDS, 'Bandwidth', 'bps', 0, 192000, 'hv',
-            false, 64000);
+            false, 64000, false);
     
     bufferPlotter = document.getElementById(bufferPlotId);
     initPlot(bufferPlotter, bufferDS, 'Playout Buffer', 'Seconds', 0, 5,
-            'spline', true, 2);
+            'spline', true, 2, false);
 
     levelPlotter = document.getElementById(avgLevelPlotId);
     initPlot(levelPlotter, levelDS, 'Volume', 'Level', -0.04, 0.04,
-            'spline', false, 0.02);
+            'spline', false, 0.02, true);
 }
 
 function initPlotLines() {
@@ -118,7 +118,61 @@ function updatePlotBars(plotter, dataSet, minY = 0){
    });
 }
 function initPlot(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
-        shapeVal, filled, dtickVal) {
+        shapeVal, filled, dtickVal, autoY) {
+
+    var layout = {
+            font : {
+                family : plotFont,
+                color : '#fff'
+            },
+            autosize : true,
+            height : 98,
+            title : plotTitle,
+            titlefont : {
+                size : 12,
+            },
+            xaxis : {
+                gridcolor : plotGridColor,
+                gridwidth : 0.5,
+                showticklabels : false,
+                zeroline : false,
+                showline : false
+            },
+            yaxis : {
+                gridcolor : plotGridColor,
+                gridwidth : 0.5,
+                title : yAxisTitle,
+                titlefont : {
+                    size : 10,
+                },
+                range : [ minY, maxY ],
+                showticklabels : true,
+                tickfont : {
+                    size : 8,
+                },
+                autotick : false,
+                autorange: false,
+                dtick : dtickVal,
+                zeroline : true,
+                zerolinewidth : 0.5,
+                zerolinecolor : '#7f7f7f',
+                showline : false
+            },
+            margin : {
+                l : 40,
+                r : 0,
+                b : 7,
+                t : 25,
+                pad : 5
+            },
+            paper_bgcolor : paperBackground,
+            plot_bgcolor : plotBackground
+        };
+    if(autoY){
+        layout.yaxis.autotick = true;
+        layout.yaxis.autorange = true;
+    }
+    
     fillVal = 'none';
     modeVal = 'lines';
     if (filled) {
@@ -136,53 +190,8 @@ function initPlot(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
             width : 1.0,
             shape : shapeVal
         }
-    } ], {
-        
-        font : {
-            family : plotFont,
-            color : '#fff'
-        },
-        autosize : true,
-        height : 98,
-        title : plotTitle,
-        titlefont : {
-            size : 12,
-        },
-        xaxis : {
-            gridcolor : plotGridColor,
-            gridwidth : 0.5,
-            showticklabels : false,
-            zeroline : false,
-            showline : false
-        },
-        yaxis : {
-            gridcolor : plotGridColor,
-            gridwidth : 0.5,
-            dtick : dtickVal,
-            title : yAxisTitle,
-            titlefont : {
-                size : 10,
-            },
-            range : [ minY, maxY ],
-            showticklabels : true,
-            tickfont : {
-                size : 8,
-            },
-            zeroline : true,
-            zerolinewidth : 0.5,
-            zerolinecolor : '#7f7f7f',
-            showline : false,
-        },
-        margin : {
-            l : 40,
-            r : 0,
-            b : 7,
-            t : 25,
-            pad : 5
-        },
-        paper_bgcolor : paperBackground,
-        plot_bgcolor : plotBackground
-    });
+    } ], layout);
+    
 }
 
 function initPlotBars(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
