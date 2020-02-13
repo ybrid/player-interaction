@@ -11,7 +11,7 @@ io.ybrid.audio.AudioCTX = function () {
 
     const ARAICYP_HEADER_ITEM_URL = 'AR-Meta-Item-URL';
     const ARAICYP_HEADER_CURRENT_BITRATE = 'AR-CTRL-Current-Bit-Rate';
-    const ARAICYP_HEADER_CURRENT_AVG_LEVEL = 'AR-CTRL-Current-Average-Level';
+    const ARAICYP_HEADER_CURRENT_LEVELS = 'AR-CTRL-Current-Levels';
     
     const ACCEPTED_MIME_TYPE = 'application/x-ybrid-discrete';
     const CODEC_MIME_TYPE = 'audio/mpeg';
@@ -185,10 +185,10 @@ io.ybrid.audio.AudioCTX = function () {
                             currentBitRateHandler(bitRate);
                         }, delay);
                     }
-                    var avgLevel = headers.get(ARAICYP_HEADER_CURRENT_AVG_LEVEL);
-                    if (typeof avgLevel !== undefined && avgLevel != null) {
+                    var currentLevels = headers.get(ARAICYP_HEADER_CURRENT_LEVELS);
+                    if (typeof currentLevels !== undefined && currentLevels != null) {
                         setTimeout(() => {
-                            handleAvgLevel(avgLevel);
+                            handleCurrentLevels(currentLevels);
                         }, delay);
                     }
                     if (_stopped == false) {

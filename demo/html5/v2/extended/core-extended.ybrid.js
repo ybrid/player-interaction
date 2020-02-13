@@ -67,7 +67,7 @@ function handleItemMetaURL(url) {
             });
 }
 
-function handleAvgLevel(levelDoc) {
+function handleCurrentLevels(levelDoc) {
     var levelDocString = decodeURIComponent(levelDoc);
     var levelDocJson = JSON.parse(levelDocString);
     var playoutArray = levelDocJson.mostCurrentLevels.playout;
