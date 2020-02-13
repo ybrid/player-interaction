@@ -70,7 +70,11 @@ function handleItemMetaURL(url) {
 function handleAvgLevel(levelDoc) {
     var levelDocString = decodeURIComponent(levelDoc);
     var levelDocJson = JSON.parse(levelDocString);
-    pushLevelPlotItem(levelDocJson.mostCurrentLevels.playout);
+    var playoutArray = levelDocJson.mostCurrentLevels.playout;
+//    for (var i = 0; i < playoutArray.length; i++) {
+//        playoutArray[i] = 168 + (Math.log(playoutArray[i]) * 10);
+//    }
+    pushLevelPlotItem(playoutArray);
 }
 
 function showItemMeta(itemMeta){

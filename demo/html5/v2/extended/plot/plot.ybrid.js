@@ -37,15 +37,15 @@ function pushTimelineUntilNow(dataSet, length, value) {
 function initPlots() {
     bandwidthPlotter = document.getElementById(bandwidthPlotId);
     initPlot(bandwidthPlotter, bandwidthDS, 'Bandwidth', 'bps', 0, 192000, 'hv',
-            false, 64000, false);
+            false, 64000);
     
     bufferPlotter = document.getElementById(bufferPlotId);
     initPlot(bufferPlotter, bufferDS, 'Playout Buffer', 'Seconds', 0, 5,
-            'spline', true, 2, false);
+            'spline', true, 2);
 
     levelPlotter = document.getElementById(avgLevelPlotId);
     initPlot(levelPlotter, levelDS, 'Volume', 'Level', -0.04, 0.04,
-            'spline', false, 0.02, true);
+            'spline', false, 0.02, true, false);
 }
 
 function initPlotLines() {
@@ -118,8 +118,7 @@ function updatePlotBars(plotter, dataSet, minY = 0){
    });
 }
 function initPlot(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
-        shapeVal, filled, dtickVal, autoY) {
-
+        shapeVal, filled, dtickVal, autoY = false, showTick = true) {
     var layout = {
             font : {
                 family : plotFont,
@@ -146,12 +145,9 @@ function initPlot(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
                     size : 10,
                 },
                 range : [ minY, maxY ],
-                showticklabels : true,
                 tickfont : {
                     size : 8,
                 },
-                autotick : false,
-                autorange: false,
                 dtick : dtickVal,
                 zeroline : true,
                 zerolinewidth : 0.5,
@@ -168,10 +164,10 @@ function initPlot(plotter, dataSet, plotTitle, yAxisTitle, minY, maxY,
             paper_bgcolor : paperBackground,
             plot_bgcolor : plotBackground
         };
-    if(autoY){
-        layout.yaxis.autotick = true;
-        layout.yaxis.autorange = true;
-    }
+    
+    layout.yaxis.autotick = autoY;
+    layout.yaxis.autorange = autoY;
+    layout.yaxis.showticklabels = showTick;
     
     fillVal = 'none';
     modeVal = 'lines';
