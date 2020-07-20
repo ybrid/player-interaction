@@ -90,19 +90,23 @@ Status 200 OK
 ```json
 {
     "host" : <host>,
-    "sessionId" : <session-uuid>
+    "sessionId" : <session-uuid>,
+    "baseURL" : <base-URL>
 }
+
 ```
 ```ini
 host         = *TEXT, host to be used by the client / player for all subsequent requests.
 session-uuid = *TEXT
+base-URL     = *TEXT, convenient combined string, equivalent to <SCHEME>://<HOSTNAME><PATH_TO_SERVICE> to be used by the client / player for all subsequent requests.
 ```
 
 ##### Example
 ```json
 {
     "host" : "vg652-uz6.platform-eu.ybrid.io",
-    "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7"
+    "sessionId" : "b28ac752-7881-4aa1-8cc6-c7e0f794a7f7",
+    "baseURL" : "https://vg652-uz6.platform-eu.ybrid.io/1003FM/live/mp3/high"
 }
 ```
 
