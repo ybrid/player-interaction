@@ -11,8 +11,8 @@ This document specifies how clients, or more specific players, interact with **Y
     * [**Icecast**](#icecast)
 
 ## Introduction
-The simplest form of service player interaction is just to request a stream. In that case the stream will be 
-delivered conform with the Icecast protocol.
+The simplest form of service player interaction is to request a stream. In that case, the stream will be 
+delivered conforming to the Icecast protocol.
 
 ##### Scheme of Stream Request
 ```http
@@ -28,10 +28,10 @@ PATH_TO_SERVICE = Includes trailing slash. Example "/stream.mp3".
 http://anyserverhostname.com/stream.mp3
 ```
 
-To use advanced features like skipping and others the player needs to implement the **control interface** of 
-the service. This enables to send commands to the service that directly influence the behaviour of the 
-delivered stream. That being said, a player that implemented the control interface is somehow comparable to a 
-**remote control for the service**.
+The player needs to implement the service's control interface to use advanced features like swapping and 
+others. Implementing it enables to send commands to the service that directly influence the behavior of 
+the delivered stream. That being said, a player that implemented the **control interface** is somehow 
+comparable to a **remote control for the service**.
 
 If the control interface was implemented the player would need to request the stream slightly different:
 
