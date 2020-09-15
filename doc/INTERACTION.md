@@ -66,7 +66,7 @@ Command | Short Description
 
 > In future releases clients have to authenticate with a **token**. This allows to exchange even secret data, 
 > like ad insertion points or others. Therefore, a token based on a secret has to be created by the client 
-> each time it want's to create a new session. That means, a serverside generated uuid will become 
+> each time it wants to create a new session. That means, a serverside generated uuid will become 
 > unnecessary.
 
 #### Request
