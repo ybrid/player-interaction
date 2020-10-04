@@ -21,4 +21,4 @@ V2 | HTML5/Javascript | [**Extended HTML Player**](demo/html5/v2/extended)  | A 
 @sebastian-weiss
 
 ### Copyright
-Ybrid®, a Hybrid Dynamic Live Audio Technology developed by nacamar GmbH 2017-2019
+Ybrid®, a Hybrid Dynamic Live Audio Technology developed by nacamar GmbH 2017-2020
