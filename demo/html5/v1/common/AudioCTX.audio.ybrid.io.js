@@ -67,6 +67,9 @@ io.ybrid.audio.AudioCTX = function () {
             return;
         }
         _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        _audioCtx.onstatechange = function() {
+            console.info(_audioCtx.state);
+        }
         _audio = document.querySelector('audio');
         var source = _audioCtx.createMediaElementSource(_audio);
 
@@ -80,6 +83,7 @@ io.ybrid.audio.AudioCTX = function () {
         // gainNode.connect(audioCtx.destination);
 
         source.connect(_audioCtx.destination);
+        
         _audio.addEventListener('canplay',
             () => {
                 _audio.play();
