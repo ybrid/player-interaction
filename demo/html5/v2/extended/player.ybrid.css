@@ -195,7 +195,7 @@ h1 {
 	height: 100%;
 	width: 100%;
 	background-image:
-		url("https://www.ybrid.io/ydemo/img/ybrid-background.svg");
+		url("ybrid-background.svg");
 	background-repeat: no-repeat;
 	background-position: 50% 20%;
 	background-size: 150% 150%;
