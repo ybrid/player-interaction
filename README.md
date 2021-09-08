@@ -14,8 +14,8 @@ Players for demonstration purposes can be found in **demo/**. These also can be 
 | :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | --- | --- | --- | --- | Chrome | Edge | Firefox | Internet Explorer | Opera | Safari |
 | V1 | HTML5/Javascript | [**Bare HTML Swap Only Player**](https://github.com/ybrid/player-interaction/tree/94f90dfc4761a032755fd96736c75010881f66e8/demo/html5/v1/bare-swap-only/README.md) | A bare player,  that is only able to swap. | ✓ | \(✓\) | ✓ | - | - | - |
-| V2 | HTML5/Javascript | [**Bare HTML Player**](https://github.com/ybrid/player-interaction/tree/94f90dfc4761a032755fd96736c75010881f66e8/demo/html5/v2/bare/README.md) | Bare player for V2, only containing the really necessary components. | ✓ | \(✓\) | ✓ | - | - | - |
-| V2 | HTML5/Javascript | [**Extended HTML Player**](https://github.com/ybrid/player-interaction/tree/94f90dfc4761a032755fd96736c75010881f66e8/demo/html5/v2/extended/README.md) | A beautiful and colorful player with a console, several plots, and showing current metadata in JSON. | ✓ | \(✓\) | ✓ | - | - | - |
+| V2 | HTML5/Javascript | [**Bare HTML Player**](https://github.com/ybrid/player-interaction/tree/94f90dfc4761a032755fd96736c75010881f66e8/demo/html5/v2/bare/README.md) | Bare player for V2, only containing the really necessary components. | ✓ | ✓ | - | - | - | \(✓\) |
+| V2 | HTML5/Javascript | [**Extended HTML Player**](https://github.com/ybrid/player-interaction/tree/94f90dfc4761a032755fd96736c75010881f66e8/demo/html5/v2/extended/README.md) | A beautiful and colorful player with a console, several plots, and showing current metadata in JSON. | ✓ | ✓ | - | - | - | \(✓\) |
 
 ## Credentials
 
