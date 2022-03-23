@@ -44,8 +44,8 @@ function initPlots() {
             'spline', true, 2);
 
     levelPlotter = document.getElementById(avgLevelPlotId);
-    initPlot(levelPlotter, levelDS, 'Volume', 'Level', -0.04, 0.04,
-            'spline', false, 0.02, true, false);
+    initPlot(levelPlotter, levelDS, 'Volume', 'Level', 0, 0.04,
+            'vh', false, 0.02, true, false);
 }
 
 function initPlotLines() {
@@ -85,15 +85,16 @@ function pushLevelPlotItem(levels) {
     }
     range = now - lastLevelTS;
     delta = Math.round(range / levels.length);
-    deltaHalf = Math.round(delta / 2);
+    // deltaHalf = Math.round(delta / 2);
     ts = lastLevelTS;
     for(value of levels){
         level = parseFloat(value).toFixed(5);
-        ts += deltaHalf;
+        // ts += deltaHalf;
+        ts += delta;
         levelDS.pushTuple(ts, level);
-        negativeLevel = level * -1;
-        ts += deltaHalf;
-        levelDS.pushTuple(ts, negativeLevel);
+        // negativeLevel = level * -1;
+        // ts += deltaHalf;
+        // levelDS.pushTuple(ts, negativeLevel);
     }
     lastLevelTS = ts;
     

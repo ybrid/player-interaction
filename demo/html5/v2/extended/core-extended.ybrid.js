@@ -72,7 +72,7 @@ function handleCurrentLevels(levelDoc) {
     var levelDocJson = JSON.parse(levelDocString);
     var playoutArray = levelDocJson.mostCurrentLevels.playout;
 //    for (var i = 0; i < playoutArray.length; i++) {
-//        playoutArray[i] = 168 + (Math.log(playoutArray[i]) * 10);
+//        playoutArray[i] = 316 + (Math.log10(playoutArray[i]) * 20);
 //    }
     pushLevelPlotItem(playoutArray);
 }
